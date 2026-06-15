@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Frequently Asked Questions - STACKLY Business Solutions. Find answers to common questions about our IT services, cloud solutions, and digital transformation offerings.">
+    <meta name="keywords" content="FAQ, frequently asked questions, support, IT services, cloud migration, digital transformation, STACKLY">
+    <meta name="author" content="STACKLY Business Solutions">
+    <meta name="theme-color" content="#0F172A">
+    <meta property="og:title" content="FAQ - STACKLY Business Solutions">
+    <meta property="og:description" content="Get answers to your questions about STACKLY's services, pricing, support, and implementation.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=600">
+
+    <title>FAQ - STACKLY Business Solutions | Frequently Asked Questions</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <style>
+        :root {
+            --dark-navy: var(--navy);
+            --professional-blue: var(--blue);
+            --cyan-accent: var(--cyan);
+            --light-bg: var(--light);
+            --dark-text: var(--dark-text);
+            --white: #FFFFFF;
+            --gray-200: var(--gray-bg);
+            --gray-300: var(--gray-lighter);
+            --gray-400: #94A3B8;
+            --gray-600: #475569;
+            --gray-700: #334155;
+            --gray-800: var(--dark-text);
+            --success: #10B981;
+            --warning: #F59E0B;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--dark-text);
+            background-color: var(--light-bg);
+            line-height: 1.6;
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .btn-primary {
+            background-color: var(--professional-blue);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--blue-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(37, 99, 235, 0.3);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--professional-blue);
+            border: 2px solid var(--professional-blue);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--professional-blue);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        /* Loading Screen */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--dark-navy) 0%, #1a2744 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            flex-direction: column;
+        }
+
+        .loading-content {
+            text-align: center;
+        }
+
+        .loading-logo {
+            font-size: 48px;
+            font-weight: 800;
+            color: var(--white);
+            margin-bottom: 32px;
+            letter-spacing: -1px;
+        }
+
+        .loading-bar {
+            width: 200px;
+            height: 4px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            margin-bottom: 24px;
+            overflow: hidden;
+        }
+
+        .loading-progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--cyan-accent), var(--professional-blue));
+            width: 0%;
+            animation: loading-progress 1.5s ease-in-out forwards;
+        }
+
+        @keyframes loading-progress {
+            0% { width: 0%; }
+            80% { width: 85%; }
+            100% { width: 100%; }
+        }
+
+        .loading-text {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 13px;
+            letter-spacing: 1px;
+        }
+
+        
+
+        /* Page Header */
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        /* FAQ Section */
+        .faq-section {
+            background-color: var(--light-bg);
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .faq-item {
+            background-color: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.6s ease-out forwards;
+            opacity: 0;
+        }
+
+        .faq-item:nth-child(1) { animation-delay: 0.1s; }
+        .faq-item:nth-child(2) { animation-delay: 0.15s; }
+        .faq-item:nth-child(3) { animation-delay: 0.2s; }
+        .faq-item:nth-child(4) { animation-delay: 0.25s; }
+        .faq-item:nth-child(5) { animation-delay: 0.3s; }
+        .faq-item:nth-child(6) { animation-delay: 0.35s; }
+        .faq-item:nth-child(7) { animation-delay: 0.4s; }
+        .faq-item:nth-child(8) { animation-delay: 0.45s; }
+        .faq-item:nth-child(9) { animation-delay: 0.5s; }
+        .faq-item:nth-child(10) { animation-delay: 0.55s; }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .faq-item:hover {
+            border-color: var(--cyan-accent);
+            box-shadow: 0 8px 24px rgba(37, 99, 235, 0.1);
+        }
+
+        .faq-question {
+            background-color: var(--white);
+            border: none;
+            padding: 24px;
+            width: 100%;
+            text-align: left;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--dark-navy);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .faq-question:hover {
+            color: var(--professional-blue);
+        }
+
+        .faq-item.active .faq-question {
+            color: var(--professional-blue);
+        }
+
+        .faq-icon {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--professional-blue);
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            background-color: rgba(245, 248, 250, 0.5);
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+
+        .faq-answer-inner {
+            padding: 24px;
+            color: var(--gray-600);
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        /* CTA Banner */
+        .cta-banner {
+            background: linear-gradient(135deg, var(--dark-navy) 0%, #1a2744 100%);
+            color: var(--white);
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .cta-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .cta-headline {
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            letter-spacing: -1px;
+        }
+
+        .cta-description {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 32px;
+            line-height: 1.6;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+        }
+
+        .social-link {
+            width: 36px;
+            height: 36px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .social-link:hover {
+            background-color: var(--cyan-accent);
+            border-color: var(--cyan-accent);
+        }
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--professional-blue);
+            color: var(--white);
+            border: none;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 500;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+        }
+
+        .back-to-top:hover {
+            background-color: var(--blue-dark);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.4);
+        }
+
+        .back-to-top.show {
+            display: flex;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar-menu {
+                display: none;
+            }
+
+            .nav-toggle {
+                display: flex;
+            }
+
+            .nav-toggle.active span:nth-child(1) {
+                transform: rotate(45deg) translate(10px, 10px);
+            }
+
+            .nav-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .nav-toggle.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -7px);
+            }
+
+            
+
+            .cta-headline {
+                font-size: 32px;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            
+
+            
+
+            
+
+            .faq-question {
+                padding: 16px;
+            }
+
+            .faq-answer-inner {
+                padding: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+      <!-- Loading Screen -->
+  <div class="loading-screen">
+    <div class="loading-content">
+      <div class="loading-logo">
+        <img src="assets/logo.webp" alt="STACKLY" class="logo-icon" style="height: 56px; width: auto; vertical-align: middle; object-fit: contain;"></div>
+      <div class="loading-bar">
+        <div class="loading-bar-inner"></div>
+      </div>
+      <p class="loading-text">Preparing your experience...</p>
+    </div>
+  </div>
+
+      <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-logo">
+        <img src="assets/logo.webp" alt="STACKLY" class="logo-icon" style="height: 38px; width: auto; vertical-align: middle; object-fit: contain;"></a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <div class="nav-dropdown">
+          <a href="services.html" class="nav-dropdown-toggle">
+            Services
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </a>
+          <div class="nav-dropdown-menu">
+            <a href="services.html">Services Overview</a>
+            <a href="solutions.html">Solutions</a>
+            <a href="industries.html">Industries</a>
+          </div>
+        </div>
+        <a href="projects.html">Projects</a>
+        <a href="team.html">Team</a>
+        <a href="blog.html">Blog</a>
+        <a href="contact.html">Contact</a>
+        <a href="contact.html" class="btn-nav">Get Started</a>
+      </div>
+      <button class="nav-toggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+      <!-- Page Header -->
+  <section class="page-header">
+    <div class="container">
+      <h1>Frequently Asked Questions</h1>
+      <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span>/</span>
+        <span>FAQ</span>
+      </div>
+    </div>
+  </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container faq-container">
+            <div class="faq-list">
+                <!-- FAQ Item 1 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>What services does STACKLY offer?</span>
+                        <div class="faq-icon">+</div>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            STACKLY offers a comprehensive range of IT services designed to drive digital transformation and business growth. Our services include enterprise software development, cloud innovation and migration, digital transformation consulting, security and compliance solutions, data analytics and business intelligence, and managed IT services. We tailor our solutions to meet your organization's unique needs and challenges.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>How long does a typical project take?</span>
+                        <div class="faq-icon">+</div>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            Project timelines vary depending on the scope, complexity, and specific requirements of your initiative. Small projects may take 4-6 weeks, while larger enterprise transformations can span 6-18 months. We conduct a thorough discovery process during the initial consultation to provide you with a realistic timeline and detailed project plan. We pride ourselves on delivering projects on schedule while maintaining the highest quality standards.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Do you provide ongoing support?</span>
+                        <div class="faq-icon">+</div>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            Absolutely. We offer comprehensive maintenance and support packages designed to keep your systems running smoothly long after deployment. Our support offerings include 24/7 monitoring, rapid incident response, regular system updates and patches, performance optimization, and proactive maintenance. You can choose from multiple support tiers based on your business requirements and we ensure your investment continues to deliver value over time.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 4 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>What industries do you serve?</span>
+                        <div class="faq-icon">+</div>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            We bring diverse industry experience spanning financial services, healthcare, retail and e-commerce, manufacturing, education, construction, travel and hospitality, and energy and utilities. This breadth of experience allows us to understand industry-specific challenges and regulatory requirements. Whether you operate in a highly regulated sector or a fast-paced startup environment, our team has the expertise to deliver solutions that drive real business impact.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 5 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>How do you ensure data security?</span>
+                        <div class="faq-icon">+</div>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            Data security is a cornerstone of our service delivery. We implement enterprise-grade security protocols including encryption, multi-factor authentication, role-based access controls, and comprehensive audit logging. We maintain compliance with industry standards such as HIPAA, PCI-DSS, SOC 2, and GDPR. Our security team conducts regular penetration testing and vulnerability assessments. We also provide employee training and establish security policies to create a culture of data protection throughout your organization.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 6 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>What is your pricing model?</span>
+                        <div class="faq-icon">+</div>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            We offer flexible pricing options to accommodate organizations of all sizes. Our models include fixed-price projects for well-defined scopes, time and materials engagements for flexible requirements, dedicated team arrangements for ongoing development needs, and retainer-based support packages. We customize our pricing based on your budget, timeline, and business objectives. We believe in transparent pricing with no hidden fees, and we'll provide detailed cost breakdowns during the proposal phase.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 7 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Can you work with our existing systems?</span>
+                        <div class="faq-icon">+</div>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            Yes, we excel at integrating with legacy systems and modernizing existing infrastructure. Whether you need to connect new solutions to established applications or gradually migrate from older systems, we have extensive experience with system integration and API development. Our team can work with any technology stack and help you maximize the value of your current investments while positioning you for future growth and innovation.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 8 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Do you offer cloud migration services?</span>
+                        <div class="faq-icon">+</div>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            Cloud migration is one of our core competencies. We provide comprehensive cloud services including cloud strategy and assessment, infrastructure migration, application modernization, and cloud-native architecture design. We've successfully migrated mission-critical systems to leading cloud platforms including AWS, Azure, and Google Cloud. Our migration approach minimizes downtime and business disruption while optimizing performance and reducing operational costs.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 9 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>What makes STACKLY different from competitors?</span>
+                        <div class="faq-icon">+</div>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            STACKLY stands out through our unique combination of deep technical expertise, industry experience, and customer-first approach. We maintain a 98% client satisfaction rate and have delivered 500+ successful projects. Our team brings decades of combined experience and a commitment to innovation. We view ourselves as true partners in your success, investing time in understanding your business goals rather than simply delivering technology. Our thought leadership and industry recognition demonstrate our commitment to staying at the forefront of enterprise solutions.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 10 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>How can I get started with STACKLY?</span>
+                        <div class="faq-icon">+</div>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            Getting started is simple. We recommend scheduling an initial consultation where we learn about your business, challenges, and objectives. During this no-obligation meeting, we'll discuss potential solutions, approach, timeline, and investment required. This consultation allows us to provide tailored recommendations specific to your needs. You can contact us through our website, email, or phone to schedule your consultation. Our team is eager to explore how we can help you achieve your business goals.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3 class="footer-logo">STACKLY</h3>
+                    <p class="footer-tagline">Transforming businesses through innovative enterprise solutions.</p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="LinkedIn" class="social-link">in</a>
+                        <a href="#" aria-label="Twitter" class="social-link">𝕏</a>
+                        <a href="#" aria-label="GitHub" class="social-link">gh</a>
+                        <a href="#" aria-label="Facebook" class="social-link">f</a>
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <h4 class="footer-title">Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="team.html">Team</a></li>
+                        <li><a href="careers.html">Careers</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="#">Press</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4 class="footer-title">Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="services.html">All Solutions</a></li>
+                        <li><a href="industries.html">Industries</a></li>
+                        <li><a href="#">Case Studies</a></li>
+                        <li><a href="#">Pricing</a></li>
+                        <li><a href="#">Documentation</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4 class="footer-title">Contact</h4>
+                    <ul class="footer-info">
+                        <li><a href="mailto:info@thestackly.com">info@thestackly.com</a></li>
+                        <li><a href="tel:+919876543210">+91 9876543210</a></li>
+                        <li>MMR Complex, Chinna Thirupathi, Salem</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p class="footer-copyright">&copy; 2026 STACKLY Business Solutions. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="privacy-policy.html">Privacy Policy</a>
+                    <a href="terms-and-conditions.html">Terms of Service</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+
+    <!-- JavaScript Files -->
+    <script src="js/navigation.js"></script>
+    <script src="js/animations.js"></script>
+
+    <script>
+        
+
+        // Back to top button functionality
+        const backToTopButton = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopButton.classList.add('show');
+            } else {
+                backToTopButton.classList.remove('show');
+            }
+        });
+
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+
+    </script>
+</body>
+</html>

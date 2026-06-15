@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore STACKLY's portfolio of innovative web development, mobile apps, cloud solutions, and ERP system projects.">
+    <meta name="keywords" content="projects, portfolio, web development, mobile apps, cloud solutions, ERP systems">
+    <meta name="author" content="STACKLY Business Solutions">
+    <meta property="og:title" content="Our Projects - STACKLY Business Solutions">
+    <meta property="og:description" content="Explore STACKLY's portfolio of innovative business solutions.">
+    <meta property="og:type" content="website">
+    <title>Our Projects - STACKLY Business Solutions</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <style>
+        :root {
+            --primary-color: var(--blue);
+            --primary-dark: var(--blue-dark);
+            --secondary-color: var(--cyan);
+            --dark-bg: var(--navy);
+            --light-gray: var(--light);
+            --text-dark: var(--dark-text);
+            --text-light: var(--gray);
+            --border-color: var(--gray-bg);
+            --success: var(--success);
+        }
+
+        /* Page Header */
+        
+
+        
+
+        
+
+        
+
+        
+
+        /* Filter Tabs */
+        .filter-section {
+            padding: 3rem 24px;
+            text-align: center;
+        }
+
+        .filter-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .filter-tab {
+            padding: 0.75rem 1.5rem;
+            border: 2px solid var(--border-color);
+            background: #ffffff;
+            color: var(--text-dark);
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .filter-tab:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .filter-tab.active {
+            background: var(--primary-color);
+            color: #ffffff;
+            border-color: var(--primary-color);
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            padding: 0 24px 3rem 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .project-card {
+            background: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-card-image {
+            width: 100%;
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 1.5rem;
+            color: #ffffff;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .project-card:hover .project-card-overlay {
+            opacity: 1;
+        }
+
+        .project-card-overlay h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .project-card-overlay p {
+            font-size: 0.9rem;
+            line-height: 1.4;
+            opacity: 0.9;
+        }
+
+        /* Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .modal {
+            background: #ffffff;
+            border-radius: 12px;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: #ffffff;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            transition: background 0.3s ease;
+        }
+
+        .modal-close:hover {
+            background: var(--light-gray);
+        }
+
+        .modal-image {
+            width: 100%;
+            height: 300px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .modal-body {
+            padding: 2rem;
+        }
+
+        .modal-body h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .modal-body p {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .modal-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .modal-tag {
+            display: inline-block;
+            background: var(--light-gray);
+            color: var(--primary-color);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .filter-tabs {
+                gap: 0.5rem;
+            }
+
+            .filter-tab {
+                padding: 0.6rem 1rem;
+                font-size: 0.85rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 1.5rem;
+                padding: 0 1rem 2rem 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .filter-tabs {
+                flex-direction: column;
+            }
+
+            .filter-tab {
+                width: 100%;
+            }
+
+            .modal {
+                max-width: 95vw;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+      <!-- Loading Screen -->
+  <div class="loading-screen">
+    <div class="loading-logo">
+      <img src="assets/logo.webp" alt="STACKLY" class="logo-icon" style="height: 56px; width: auto; vertical-align: middle; object-fit: contain;"></div>
+    <div class="loading-bar">
+      <div class="loading-bar-inner"></div>
+    </div>
+  </div>
+
+      <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-logo">
+        <img src="assets/logo.webp" alt="STACKLY" class="logo-icon" style="height: 38px; width: auto; vertical-align: middle; object-fit: contain;"></a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <div class="nav-dropdown">
+          <a href="services.html" class="nav-dropdown-toggle">
+            Services
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </a>
+          <div class="nav-dropdown-menu">
+            <a href="services.html">Services Overview</a>
+            <a href="solutions.html">Solutions</a>
+            <a href="industries.html">Industries</a>
+          </div>
+        </div>
+        <a href="projects.html">Projects</a>
+        <a href="team.html">Team</a>
+        <a href="blog.html">Blog</a>
+        <a href="contact.html">Contact</a>
+        <a href="contact.html" class="btn-nav">Get Started</a>
+      </div>
+      <button class="nav-toggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+    <!-- Page Header -->
+      <!-- Page Header -->
+  <section class="page-header">
+    <div class="container">
+      <h1>Our Projects</h1>
+      <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span>/</span>
+        <span>Projects</span>
+      </div>
+    </div>
+  </section>
+    </div>
+
+    <!-- Filter Section -->
+    <div class="filter-section reveal">
+        <div class="filter-tabs">
+            <button class="filter-tab active" data-filter="all">All</button>
+            <button class="filter-tab" data-filter="web-development">Web Development</button>
+            <button class="filter-tab" data-filter="mobile-apps">Mobile Apps</button>
+            <button class="filter-tab" data-filter="cloud-solutions">Cloud Solutions</button>
+            <button class="filter-tab" data-filter="erp-systems">ERP Systems</button>
+        </div>
+    </div>
+
+    <!-- Projects Grid -->
+    <div class="projects-grid">
+        <!-- Project 1: E-commerce Platform -->
+        <div class="project-card reveal" data-category="web-development" data-title="E-commerce Platform" data-description="Built a fully responsive e-commerce platform with advanced features including real-time inventory management, secure payment integration, and personalized recommendation engine for a leading retail brand." data-tags="React, Node.js, MongoDB, Stripe, AWS" data-image="assets/solution-ecommerce.webp">
+            <div class="project-card-image" style="background-image: url('assets/solution-ecommerce.webp');">
+                <div class="project-card-overlay">
+                    <h3>E-commerce Platform</h3>
+                    <p>Advanced retail solution with real-time inventory</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 2: Healthcare Mobile App -->
+        <div class="project-card reveal" data-category="mobile-apps" data-title="Healthcare Mobile App" data-description="Developed a comprehensive mobile application for patient management and telemedicine services with HIPAA compliance, appointment scheduling, and secure video consultation features." data-tags="React Native, Firebase, Python, Telemedicine" data-image="assets/solution-healthcare.webp">
+            <div class="project-card-image" style="background-image: url('assets/solution-healthcare.webp');">
+                <div class="project-card-overlay">
+                    <h3>Healthcare Mobile App</h3>
+                    <p>HIPAA-compliant telemedicine platform</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 3: Cloud Migration Project -->
+        <div class="project-card reveal" data-category="cloud-solutions" data-title="Cloud Migration Project" data-description="Orchestrated seamless migration of legacy enterprise systems to AWS cloud infrastructure, reducing operational costs by 40% and improving system availability to 99.99%." data-tags="AWS, Docker, Kubernetes, CI/CD" data-image="assets/solution-cloud.webp">
+            <div class="project-card-image" style="background-image: url('assets/solution-cloud.webp');">
+                <div class="project-card-overlay">
+                    <h3>Cloud Migration Project</h3>
+                    <p>Enterprise-scale migration to AWS infrastructure</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 4: ERP Implementation -->
+        <div class="project-card reveal" data-category="erp-systems" data-title="ERP Implementation" data-description="Implemented comprehensive ERP system for manufacturing company, streamlining supply chain, production planning, and financial management across 15 locations globally." data-tags="SAP, Business Intelligence, Analytics, Supply Chain" data-image="assets/solution-erp.webp">
+            <div class="project-card-image" style="background-image: url('assets/solution-erp.webp');">
+                <div class="project-card-overlay">
+                    <h3>ERP Implementation</h3>
+                    <p>Global manufacturing ERP solution</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 5: FinTech Dashboard -->
+        <div class="project-card reveal" data-category="web-development" data-title="FinTech Dashboard" data-description="Created an advanced financial dashboard with real-time market data visualization, portfolio analytics, and automated trading algorithms for institutional investors." data-tags="Vue.js, WebSockets, D3.js, Python, PostgreSQL" data-image="assets/solution-bi.webp">
+            <div class="project-card-image" style="background-image: url('assets/solution-bi.webp');">
+                <div class="project-card-overlay">
+                    <h3>FinTech Dashboard</h3>
+                    <p>Real-time financial analytics platform</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 6: Logistics Tracking App -->
+        <div class="project-card reveal" data-category="mobile-apps" data-title="Logistics Tracking App" data-description="Developed mobile application for real-time logistics tracking, route optimization, and delivery management with GPS integration and customer notifications." data-tags="Flutter, Google Maps API, Firebase, Node.js" data-image="assets/solution-crm.webp">
+            <div class="project-card-image" style="background-image: url('assets/solution-crm.webp');">
+                <div class="project-card-overlay">
+                    <h3>Logistics Tracking App</h3>
+                    <p>Real-time delivery management system</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 7: AWS Infrastructure -->
+        <div class="project-card reveal" data-category="cloud-solutions" data-title="AWS Infrastructure" data-description="Designed and implemented scalable AWS infrastructure for SaaS platform with auto-scaling, load balancing, and disaster recovery capabilities supporting 100k+ concurrent users." data-tags="AWS, Terraform, CloudFormation, DevOps" data-image="assets/solution-aws.webp">
+            <div class="project-card-image" style="background-image: url('assets/solution-aws.webp');">
+                <div class="project-card-overlay">
+                    <h3>AWS Infrastructure</h3>
+                    <p>Highly scalable cloud infrastructure</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 8: Manufacturing ERP -->
+        <div class="project-card reveal" data-category="erp-systems" data-title="Manufacturing ERP" data-description="Deployed comprehensive ERP system for automotive manufacturer with integrated quality management, production planning, and financial modules across 8 facilities." data-tags="Oracle ERP, Manufacturing, Analytics, Integration" data-image="assets/solution-factory-erp.webp">
+            <div class="project-card-image" style="background-image: url('assets/solution-factory-erp.webp');">
+                <div class="project-card-overlay">
+                    <h3>Manufacturing ERP</h3>
+                    <p>Automotive industry ERP solution</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 9: Social Media Platform -->
+        <div class="project-card reveal" data-category="web-development" data-title="Social Media Platform" data-description="Built scalable social media platform with real-time notifications, user-generated content management, and advanced content recommendation system for 5M+ active users." data-tags="Next.js, Redis, PostgreSQL, Elasticsearch, WebSockets" data-image="assets/solution-social.webp">
+            <div class="project-card-image" style="background-image: url('assets/solution-social.webp');">
+                <div class="project-card-overlay">
+                    <h3>Social Media Platform</h3>
+                    <p>Scalable social network for millions of users</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Overlay -->
+    <div class="modal-overlay">
+        <div class="modal">
+            <button class="modal-close">&times;</button>
+            <div class="modal-image"></div>
+            <div class="modal-body">
+                <h2></h2>
+                <p></p>
+                <div class="modal-tags"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA Banner -->
+    <section class="cta-banner">
+        <div class="container">
+            <div class="cta-content reveal">
+                <h2>Ready to Start Your Project?</h2>
+                <p>Let our experienced team help you bring your vision to life. Contact us today to discuss your business needs and how we can deliver exceptional results.</p>
+                <div class="cta-buttons">
+                    <a href="contact.html" class="btn btn-primary">Get in Touch</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3 class="footer-logo">STACKLY</h3>
+                    <p class="footer-tagline">Transforming businesses through innovative enterprise solutions.</p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="LinkedIn" class="social-link">in</a>
+                        <a href="#" aria-label="Twitter" class="social-link">𝕏</a>
+                        <a href="#" aria-label="GitHub" class="social-link">gh</a>
+                        <a href="#" aria-label="Facebook" class="social-link">f</a>
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <h4 class="footer-title">Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="team.html">Team</a></li>
+                        <li><a href="careers.html">Careers</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="#">Press</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4 class="footer-title">Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="services.html">All Solutions</a></li>
+                        <li><a href="industries.html">Industries</a></li>
+                        <li><a href="#">Case Studies</a></li>
+                        <li><a href="#">Pricing</a></li>
+                        <li><a href="#">Documentation</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4 class="footer-title">Contact</h4>
+                    <ul class="footer-info">
+                        <li><a href="mailto:info@thestackly.com">info@thestackly.com</a></li>
+                        <li><a href="tel:+919876543210">+91 9876543210</a></li>
+                        <li>MMR Complex, Chinna Thirupathi, Salem</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p class="footer-copyright">&copy; 2026 STACKLY Business Solutions. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="privacy-policy.html">Privacy Policy</a>
+                    <a href="terms-and-conditions.html">Terms of Service</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" title="Back to top">↑</button>
+
+    <!-- JavaScript Files -->
+    <script src="js/navigation.js"></script>
+    <script src="js/animations.js"></script>
+
+    <script>
+        
+
+        // Filter functionality
+        const filterTabs = document.querySelectorAll('.filter-tab');
+        const projectCards = document.querySelectorAll('.project-card');
+
+        filterTabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                const filter = this.getAttribute('data-filter');
+
+                filterTabs.forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+
+                projectCards.forEach(card => {
+                    const category = card.getAttribute('data-category');
+                    if (filter === 'all' || category === filter) {
+                        card.style.display = 'block';
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, 10);
+                    } else {
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(20px)';
+                        setTimeout(() => {
+                            card.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        });
+
+        // Modal functionality
+        const modalOverlay = document.querySelector('.modal-overlay');
+        const modalClose = document.querySelector('.modal-close');
+        const modalImage = document.querySelector('.modal-image');
+        const modalTitle = document.querySelector('.modal-body h2');
+        const modalDescription = document.querySelector('.modal-body p');
+        const modalTags = document.querySelector('.modal-tags');
+
+        projectCards.forEach(card => {
+            card.addEventListener('click', function() {
+                window.location.href = '404.html';
+            });
+        });
+
+        modalClose.addEventListener('click', function() {
+            modalOverlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+
+        modalOverlay.addEventListener('click', function(e) {
+            if (e.target === modalOverlay) {
+                modalOverlay.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+    </script>
+</body>
+</html>

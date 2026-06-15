@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore STACKLY's industry solutions for Construction, Healthcare, Education, Manufacturing, Logistics, Retail, Finance, Real Estate, and Technology sectors.">
+    <meta name="keywords" content="industries, construction software, healthcare solutions, education platform, manufacturing ERP, logistics management, retail systems, financial services, real estate tech">
+    <meta name="author" content="STACKLY Business Solutions">
+    <meta name="theme-color" content="#0F172A">
+    <meta property="og:title" content="Industries We Serve | STACKLY Business Solutions">
+    <meta property="og:description" content="Specialized enterprise solutions for 9 major industries. Transform your business with STACKLY's industry-specific solutions.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=600">
+
+    <title>Industries We Serve | STACKLY Business Solutions</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <style>
+        :root {
+            --dark-navy: var(--navy);
+            --professional-blue: var(--blue);
+            --cyan-accent: var(--cyan);
+            --light-bg: var(--light);
+            --dark-text: var(--dark-text);
+            --white: #FFFFFF;
+            --gray-200: var(--gray-bg);
+            --gray-300: var(--gray-lighter);
+            --gray-400: #94A3B8;
+            --gray-600: #475569;
+            --gray-700: #334155;
+            --gray-800: var(--dark-text);
+            --success: #10B981;
+            --warning: #F59E0B;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--dark-text);
+            background-color: var(--light-bg);
+            line-height: 1.6;
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .btn-primary {
+            background-color: var(--professional-blue);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--blue-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(37, 99, 235, 0.3);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--professional-blue);
+            border: 2px solid var(--professional-blue);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--professional-blue);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--dark-navy);
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            font-size: 16px;
+            color: var(--gray-600);
+            text-align: center;
+            margin-bottom: 48px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .text-cyan {
+            color: var(--cyan-accent);
+        }
+
+        .text-blue {
+            color: var(--professional-blue);
+        }
+
+        /* Loading Screen */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--dark-navy) 0%, #1a2744 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            flex-direction: column;
+        }
+
+        .loading-content {
+            text-align: center;
+        }
+
+        .loading-logo {
+            font-size: 48px;
+            font-weight: 800;
+            color: var(--white);
+            margin-bottom: 32px;
+            letter-spacing: -1px;
+        }
+
+        .loading-bar {
+            width: 200px;
+            height: 4px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            margin-bottom: 24px;
+            overflow: hidden;
+        }
+
+        .loading-progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--cyan-accent), var(--professional-blue));
+            width: 0%;
+            animation: loading-progress 1.5s ease-in-out forwards;
+        }
+
+        @keyframes loading-progress {
+            0% { width: 0%; }
+            80% { width: 85%; }
+            100% { width: 100%; }
+        }
+
+        .loading-text {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 13px;
+            letter-spacing: 1px;
+        }
+
+        
+
+        /* Page Header */
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        /* Industry Details Grid */
+        .industries-section {
+            background-color: var(--white);
+        }
+
+        .industry-detail-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            margin-top: 48px;
+        }
+
+        .industry-detail-card {
+            background-color: var(--light-bg);
+            border: 1px solid var(--gray-200);
+            border-radius: 12px;
+            padding: 32px;
+            transition: all 0.3s ease;
+        }
+
+        .industry-detail-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--cyan-accent);
+            box-shadow: 0 16px 32px rgba(6, 182, 212, 0.1);
+            background-color: var(--white);
+        }
+
+        .industry-detail-card .icon {
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .industry-detail-card .icon svg {
+            width: 48px;
+            height: 48px;
+            stroke: var(--professional-blue);
+            stroke-width: 1.75;
+            fill: none;
+            transition: stroke 0.3s ease, transform 0.3s ease;
+        }
+
+        .industry-detail-card:hover .icon svg {
+            stroke: var(--cyan-accent);
+            transform: scale(1.05);
+        }
+
+        .industry-detail-card h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--dark-navy);
+            margin-bottom: 12px;
+        }
+
+        .industry-detail-card p {
+            font-size: 14px;
+            color: var(--gray-600);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .industry-detail-card ul {
+            list-style: none;
+        }
+
+        .industry-detail-card ul li {
+            font-size: 13px;
+            color: var(--gray-600);
+            padding: 8px 0;
+            padding-left: 24px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .industry-detail-card ul li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--cyan-accent);
+            font-weight: 700;
+        }
+
+        /* CTA Banner */
+        .cta-banner {
+            background: linear-gradient(135deg, var(--dark-navy) 0%, #1a2744 100%);
+            color: var(--white);
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .cta-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .cta-headline {
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            letter-spacing: -1px;
+        }
+
+        .cta-description {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 32px;
+            line-height: 1.6;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+        }
+
+        .social-link {
+            width: 36px;
+            height: 36px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .social-link:hover {
+            background-color: var(--cyan-accent);
+            border-color: var(--cyan-accent);
+        }
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 48px;
+            height: 48px;
+            background-color: var(--professional-blue);
+            color: var(--white);
+            border: none;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+            z-index: 999;
+        }
+
+        .back-to-top:hover {
+            background-color: var(--cyan-accent);
+            transform: translateY(-4px);
+        }
+
+        .back-to-top.show {
+            display: flex;
+        }
+
+        /* Reveal animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .industry-detail-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            
+        }
+
+        @media (max-width: 768px) {
+            .navbar-menu {
+                display: none;
+            }
+
+            .nav-toggle {
+                display: flex;
+            }
+
+            .nav-toggle.active span:nth-child(1) {
+                transform: rotate(45deg) translate(10px, 10px);
+            }
+
+            .nav-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .nav-toggle.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -7px);
+            }
+
+            
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            .industry-detail-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            
+
+            
+
+            
+
+            .back-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 44px;
+                height: 44px;
+            }
+        }
+    </style>
+</head>
+<body>
+      <!-- Loading Screen -->
+  <div class="loading-screen">
+    <div class="loading-content">
+      <div class="loading-logo">
+        <img src="assets/logo.webp" alt="STACKLY" class="logo-icon" style="height: 56px; width: auto; vertical-align: middle; object-fit: contain;"></div>
+      <div class="loading-bar">
+        <div class="loading-bar-inner"></div>
+      </div>
+      <p class="loading-text">Preparing your experience...</p>
+    </div>
+  </div>
+
+      <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-logo">
+        <img src="assets/logo.webp" alt="STACKLY" class="logo-icon" style="height: 38px; width: auto; vertical-align: middle; object-fit: contain;"></a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <div class="nav-dropdown">
+          <a href="services.html" class="nav-dropdown-toggle">
+            Services
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </a>
+          <div class="nav-dropdown-menu">
+            <a href="services.html">Services Overview</a>
+            <a href="solutions.html">Solutions</a>
+            <a href="industries.html">Industries</a>
+          </div>
+        </div>
+        <a href="projects.html">Projects</a>
+        <a href="team.html">Team</a>
+        <a href="blog.html">Blog</a>
+        <a href="contact.html">Contact</a>
+        <a href="contact.html" class="btn-nav">Get Started</a>
+      </div>
+      <button class="nav-toggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <section class="page-header industries-header">
+    <div class="industries-header-bg" aria-hidden="true"></div>
+    <div class="container">
+      <h1>Industries We Serve</h1>
+      <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span>/</span>
+        <span>Industries</span>
+      </div>
+    </div>
+  </section>
+
+
+    <!-- Industries Section -->
+    <section class="industries-section">
+        <div class="container">
+            <h2 class="section-title">Specialized Solutions for Every <span class="text-blue">Industry</span></h2>
+            <p class="section-subtitle">Our expertise spans across diverse sectors with proven solutions tailored to your industry's unique challenges</p>
+
+            <div class="industry-detail-grid">
+                <!-- Construction -->
+                <div class="industry-detail-card reveal">
+                    <div class="icon">
+                        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M9 21V9a3 3 0 0 1 6 0v12"></path></svg>
+                    </div>
+                    <h3>Construction</h3>
+                    <p>Streamline project management and resource allocation for construction enterprises with our specialized solutions.</p>
+                    <ul>
+                        <li>Project Management</li>
+                        <li>Resource Planning</li>
+                        <li>Safety Compliance</li>
+                        <li>Cost Estimation</li>
+                    </ul>
+                </div>
+
+                <!-- Healthcare -->
+                <div class="industry-detail-card reveal">
+                    <div class="icon">
+                        <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+                    </div>
+                    <h3>Healthcare</h3>
+                    <p>HIPAA-compliant systems designed to enhance patient care and streamline healthcare operations.</p>
+                    <ul>
+                        <li>Patient Management</li>
+                        <li>EHR Systems</li>
+                        <li>Telemedicine</li>
+                        <li>Compliance Solutions</li>
+                    </ul>
+                </div>
+
+                <!-- Education -->
+                <div class="industry-detail-card reveal">
+                    <div class="icon">
+                        <svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"></path></svg>
+                    </div>
+                    <h3>Education</h3>
+                    <p>Empower institutions with modern learning platforms and comprehensive student management systems.</p>
+                    <ul>
+                        <li>LMS Development</li>
+                        <li>Student Management</li>
+                        <li>Virtual Classrooms</li>
+                        <li>Assessment Tools</li>
+                    </ul>
+                </div>
+
+                <!-- Manufacturing -->
+                <div class="industry-detail-card reveal">
+                    <div class="icon">
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                    </div>
+                    <h3>Manufacturing</h3>
+                    <p>Optimize production efficiency and supply chain operations with intelligent manufacturing solutions.</p>
+                    <ul>
+                        <li>Production Planning</li>
+                        <li>Quality Control</li>
+                        <li>Supply Chain</li>
+                        <li>IoT Integration</li>
+                    </ul>
+                </div>
+
+                <!-- Logistics -->
+                <div class="industry-detail-card reveal">
+                    <div class="icon">
+                        <svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+                    </div>
+                    <h3>Logistics</h3>
+                    <p>Enhance delivery efficiency and visibility with advanced logistics and fleet management solutions.</p>
+                    <ul>
+                        <li>Fleet Management</li>
+                        <li>Route Optimization</li>
+                        <li>Warehouse Automation</li>
+                        <li>Real-time Tracking</li>
+                    </ul>
+                </div>
+
+                <!-- Retail -->
+                <div class="industry-detail-card reveal">
+                    <div class="icon">
+                        <svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                    </div>
+                    <h3>Retail</h3>
+                    <p>Create seamless customer experiences across all channels with our omnichannel retail solutions.</p>
+                    <ul>
+                        <li>POS Systems</li>
+                        <li>Inventory Management</li>
+                        <li>Customer Analytics</li>
+                        <li>E-commerce Integration</li>
+                    </ul>
+                </div>
+
+                <!-- Finance -->
+                <div class="industry-detail-card reveal">
+                    <div class="icon">
+                        <svg viewBox="0 0 24 24"><line x1="3" y1="22" x2="21" y2="22"></line><line x1="6" y1="18" x2="6" y2="11"></line><line x1="10" y1="18" x2="10" y2="11"></line><line x1="14" y1="18" x2="14" y2="11"></line><line x1="18" y1="18" x2="18" y2="11"></line><polygon points="12 2 2 7 22 7 12 2"></polygon></svg>
+                    </div>
+                    <h3>Finance</h3>
+                    <p>Secure, compliant financial solutions for banking, insurance, and investment management.</p>
+                    <ul>
+                        <li>Risk Management</li>
+                        <li>Fraud Detection</li>
+                        <li>Regulatory Compliance</li>
+                        <li>Digital Banking</li>
+                    </ul>
+                </div>
+
+                <!-- Real Estate -->
+                <div class="industry-detail-card reveal">
+                    <div class="icon">
+                        <svg viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect><line x1="9" y1="22" x2="9" y2="16"></line><line x1="15" y1="22" x2="15" y2="16"></line><line x1="9" y1="16" x2="15" y2="16"></line><path d="M8 6h2v2H8zm6 0h2v2h-2zm-6 5h2v2H8zm6 0h2v2h-2z"></path></svg>
+                    </div>
+                    <h3>Real Estate</h3>
+                    <p>Transform property management and enhance sales with modern real estate technology platforms.</p>
+                    <ul>
+                        <li>Property Management</li>
+                        <li>CRM Solutions</li>
+                        <li>Virtual Tours</li>
+                        <li>Market Analytics</li>
+                    </ul>
+                </div>
+
+                <!-- Technology -->
+                <div class="industry-detail-card reveal">
+                    <div class="icon">
+                        <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="12" rx="2"></rect><line x1="12" y1="20" x2="12" y2="16"></line><line x1="8" y1="20" x2="16" y2="20"></line></svg>
+                    </div>
+                    <h3>Technology</h3>
+                    <p>Empower tech companies with cutting-edge infrastructure and cloud solutions.</p>
+                    <ul>
+                        <li>DevOps</li>
+                        <li>Cloud Infrastructure</li>
+                        <li>API Management</li>
+                        <li>Cybersecurity</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3 class="footer-logo">STACKLY</h3>
+                    <p class="footer-tagline">Transforming businesses through innovative enterprise solutions.</p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="LinkedIn" class="social-link">in</a>
+                        <a href="#" aria-label="Twitter" class="social-link">𝕏</a>
+                        <a href="#" aria-label="GitHub" class="social-link">gh</a>
+                        <a href="#" aria-label="Facebook" class="social-link">f</a>
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <h4 class="footer-title">Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="team.html">Team</a></li>
+                        <li><a href="careers.html">Careers</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="#">Press</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4 class="footer-title">Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="services.html">All Solutions</a></li>
+                        <li><a href="industries.html">Industries</a></li>
+                        <li><a href="#">Case Studies</a></li>
+                        <li><a href="#">Pricing</a></li>
+                        <li><a href="#">Documentation</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4 class="footer-title">Contact</h4>
+                    <ul class="footer-info">
+                        <li><a href="mailto:info@thestackly.com">info@thestackly.com</a></li>
+                        <li><a href="tel:+919876543210">+91 9876543210</a></li>
+                        <li>MMR Complex, Chinna Thirupathi, Salem</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p class="footer-copyright">&copy; 2026 STACKLY Business Solutions. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="privacy-policy.html">Privacy Policy</a>
+                    <a href="terms-and-conditions.html">Terms of Service</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top"></button>
+
+    <!-- JavaScript Files -->
+    <script src="js/navigation.js"></script>
+    <script src="js/animations.js"></script>
+
+    <script>
+        
+
+        // Back to Top functionality
+        const backToTopBtn = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        });
+
+        backToTopBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Reveal animations on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+        
+    </script>
+</body>
+</html>

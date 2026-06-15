@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn about STACKLY Business Solutions - a global enterprise delivering innovative business solutions since 2010. Discover our mission, vision, and leadership team.">
+    <meta name="keywords" content="about us, business solutions, company history, leadership team, mission, vision">
+    <meta name="author" content="STACKLY Business Solutions">
+    <meta property="og:title" content="About STACKLY Business Solutions">
+    <meta property="og:description" content="Discover STACKLY's journey from a small consulting firm to a global enterprise serving 500+ clients across 50+ countries.">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <title>About Us - STACKLY Business Solutions</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <style>
+        /* About Page Specific Styles */        
+        /* Company Story Section */
+        .why-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            max-width: 1200px;
+            margin: 100px auto;
+            padding: 0 20px;
+        }
+
+        .why-grid img {
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(37, 99, 235, 0.15);
+            animation: slideInLeft 0.8s ease-out;
+        }
+
+        .why-content {
+            animation: slideInRight 0.8s ease-out;
+        }
+
+        .why-content h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+
+        .why-content p {
+            font-size: 1.1rem;
+            color: #475569;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .why-content .highlight {
+            color: var(--blue);
+            font-weight: 600;
+        }
+
+        /* Values Section */
+        .values-section {
+            background: var(--light);
+            padding: 100px 20px;
+            margin: 100px 0;
+        }
+
+        .values-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 50px;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .value-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border-top: 4px solid var(--blue);
+            reveal-element: true;
+        }
+
+        .value-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(37, 99, 235, 0.15);
+            border-top-color: var(--cyan);
+        }
+
+        .value-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 15px;
+        }
+
+        .value-card p {
+            color: #475569;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        /* Achievements Section */
+        .achievements-section {
+            max-width: 1200px;
+            margin: 100px auto;
+            padding: 0 20px;
+        }
+
+        .achievements-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 60px;
+        }
+
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+
+        .achievement-card {
+            background: linear-gradient(135deg, var(--navy) 0%, #1a2744 100%);
+            color: white;
+            padding: 50px 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.2);
+            transition: all 0.3s ease;
+            reveal-element: true;
+        }
+
+        .achievement-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(37, 99, 235, 0.25);
+        }
+
+        .achievement-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--cyan);
+            margin-bottom: 10px;
+        }
+
+        .achievement-label {
+            font-size: 1.1rem;
+            color: var(--gray-bg);
+            font-weight: 500;
+        }
+
+        /* Milestones Section */
+        .milestones-section {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.92) 0%, rgba(15, 23, 42, 0.82) 100%), url('assets/milestones-bg.webp') no-repeat center center/cover;
+            padding: 100px 20px;
+            margin: 100px 0;
+            position: relative;
+        }
+
+        .milestones-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 80px;
+            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .milestone-timeline {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .milestone-timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--blue), var(--cyan));
+            top: 0;
+        }
+
+        .milestone-item {
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .milestone-item:nth-child(odd) {
+            margin-left: 0;
+            margin-right: 52%;
+            text-align: right;
+            padding-right: 50px;
+        }
+
+        .milestone-item:nth-child(even) {
+            margin-left: 52%;
+            margin-right: 0;
+            text-align: left;
+            padding-left: 50px;
+        }
+
+        .milestone-item::before {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            background: white;
+            border: 4px solid var(--blue);
+            border-radius: 50%;
+            top: 5px;
+        }
+
+        .milestone-item:nth-child(odd)::before {
+            right: -35px;
+        }
+
+        .milestone-item:nth-child(even)::before {
+            left: -35px;
+        }
+
+        .milestone-item:hover::before {
+            border-color: var(--cyan);
+            box-shadow: 0 0 10px rgba(6, 182, 212, 0.5);
+        }
+
+        .milestone-year {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--cyan);
+            margin-bottom: 8px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .milestone-description {
+            color: #475569;
+            font-size: 1rem;
+            line-height: 1.6;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Leadership Section */
+        .leadership-section {
+            max-width: 1200px;
+            margin: 100px auto;
+            padding: 0 20px;
+        }
+
+        .leadership-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 60px;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+
+        .team-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            reveal-element: true;
+        }
+
+        .team-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(37, 99, 235, 0.2);
+        }
+
+        .team-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .team-info {
+            padding: 30px;
+            text-align: center;
+        }
+
+        .team-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 8px;
+        }
+
+        .team-title {
+            color: var(--blue);
+            font-weight: 600;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+        }
+
+        .team-bio {
+            color: #475569;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* CTA Banner */
+        .cta-banner {
+            background: linear-gradient(135deg, var(--blue) 0%, var(--cyan) 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+            margin: 100px 0 0 0;
+            border-radius: 15px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 100px;
+        }
+
+        .cta-banner h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .cta-banner p {
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+            opacity: 0.95;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: var(--blue);
+            padding: 15px 40px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 2px solid white;
+        }
+
+        .cta-button:hover {
+            background: transparent;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Animations */
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes countUp {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .achievement-card {
+            animation: countUp 0.6s ease-out;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            
+
+            .why-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                margin: 60px auto;
+            }
+
+            .values-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .achievements-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+
+            .milestone-timeline::before {
+                left: 0;
+            }
+
+            .milestone-item,
+            .milestone-item:nth-child(odd),
+            .milestone-item:nth-child(even) {
+                margin-left: 30px;
+                margin-right: 0;
+                padding-left: 50px;
+                padding-right: 0;
+                text-align: left;
+            }
+
+            .milestone-item::before,
+            .milestone-item:nth-child(odd)::before,
+            .milestone-item:nth-child(even)::before {
+                left: -35px;
+                right: auto;
+            }
+
+            .cta-banner h2 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            
+
+            .achievements-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .value-card {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+      <!-- Loading Screen -->
+  <div class="loading-screen">
+    <div class="loading-logo">
+      <img src="assets/logo.webp" alt="STACKLY" class="logo-icon" style="height: 56px; width: auto; vertical-align: middle; object-fit: contain;"></div>
+    <div class="loading-bar">
+      <div class="loading-bar-inner"></div>
+    </div>
+  </div>
+
+    <!-- Navigation Bar -->
+        <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-logo">
+        <img src="assets/logo.webp" alt="STACKLY" class="logo-icon" style="height: 38px; width: auto; vertical-align: middle; object-fit: contain;"></a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <div class="nav-dropdown">
+          <a href="services.html" class="nav-dropdown-toggle">
+            Services
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </a>
+          <div class="nav-dropdown-menu">
+            <a href="services.html">Services Overview</a>
+            <a href="solutions.html">Solutions</a>
+            <a href="industries.html">Industries</a>
+          </div>
+        </div>
+        <a href="projects.html">Projects</a>
+        <a href="team.html">Team</a>
+        <a href="blog.html">Blog</a>
+        <a href="contact.html">Contact</a>
+        <a href="contact.html" class="btn-nav">Get Started</a>
+      </div>
+      <button class="nav-toggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+      <!-- Page Header -->
+  <section class="page-header">
+    <div class="container">
+      <h1>About Us</h1>
+      <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span>/</span>
+        <span>About Us</span>
+      </div>
+    </div>
+  </section>
+
+    <!-- Company Story Section -->
+    <section class="why-section">
+        <div class="why-grid reveal">
+            <div>
+                <img src="assets/collab.webp" alt="STACKLY Team collaborating on business solutions">
+            </div>
+            <div class="why-content">
+                <h2>Our Story</h2>
+                <p>
+                    STACKLY Business Solutions was founded in <span class="highlight">2010</span> with a simple yet powerful vision: to empower businesses of all sizes with innovative, reliable, and cost-effective solutions. What started as a small consulting firm with just five passionate professionals has evolved into a <span class="highlight">global enterprise</span> serving over 500 clients across 50+ countries.
+                </p>
+                <p>
+                    Over the past decade and a half, we've grown exponentially by maintaining our core values of integrity, excellence, and customer-centric innovation. Our team has expanded to include some of the industry's brightest minds, and we've successfully delivered over 1,000 transformative projects that have helped businesses scale, innovate, and thrive in an increasingly digital world.
+                </p>
+                <p>
+                    Today, STACKLY stands as a trusted partner for enterprises seeking digital transformation, strategic consulting, and cutting-edge technology solutions. Our journey has been defined by our unwavering commitment to understanding our clients' unique challenges and delivering tailored solutions that drive measurable results.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission, Vision, Values Section -->
+    <section class="values-section">
+        <h2>Our Mission, Vision & Values</h2>
+        <div class="values-grid">
+            <div class="value-card reveal">
+                <h3>Innovation</h3>
+                <p>We embrace cutting-edge technologies and creative thinking to deliver forward-thinking solutions that position our clients ahead of the competition.</p>
+            </div>
+            <div class="value-card reveal">
+                <h3>Excellence</h3>
+                <p>We maintain the highest standards in everything we do, from our service delivery to our team expertise, ensuring exceptional quality at every touchpoint.</p>
+            </div>
+            <div class="value-card reveal">
+                <h3>Integrity</h3>
+                <p>We conduct our business with honesty, transparency, and ethical principles, building trust and long-lasting relationships with our clients and partners.</p>
+            </div>
+            <div class="value-card reveal">
+                <h3>Collaboration</h3>
+                <p>We believe in the power of teamwork and partnership, working closely with our clients and team members to achieve shared goals and mutual success.</p>
+            </div>
+            <div class="value-card reveal">
+                <h3>Accountability</h3>
+                <p>We take ownership of our work, deliver on our promises, and hold ourselves to the highest standards of responsibility and performance.</p>
+            </div>
+            <div class="value-card reveal">
+                <h3>Customer Focus</h3>
+                <p>Our clients are at the heart of everything we do. We listen, understand their needs, and craft solutions that directly address their business objectives.</p>
+            </div>
+        </div>
+    </section>
+    <!-- Milestones Timeline -->
+    <section class="milestones-section">
+        <h2>Our Journey & Milestones</h2>
+        <div class="milestone-timeline">
+            <div class="milestone-item reveal">
+                <div class="milestone-year">2010</div>
+                <div class="milestone-description">Founded STACKLY with a vision to revolutionize business consulting and digital solutions for enterprises globally.</div>
+            </div>
+            <div class="milestone-item reveal">
+                <div class="milestone-year">2013</div>
+                <div class="milestone-description">Expanded operations to Asia-Pacific region, establishing offices in Singapore and India to serve growing client base.</div>
+            </div>
+            <div class="milestone-item reveal">
+                <div class="milestone-year">2016</div>
+                <div class="milestone-description">Launched our proprietary cloud platform, helping 100+ enterprises with digital transformation initiatives and agile solutions.</div>
+            </div>
+            <div class="milestone-item reveal">
+                <div class="milestone-year">2019</div>
+                <div class="milestone-description">Achieved ISO 27001 certification and expanded to 25+ countries with a dedicated team of 300+ professionals across global offices.</div>
+            </div>
+            <div class="milestone-item reveal">
+                <div class="milestone-year">2022</div>
+                <div class="milestone-description">Launched AI-powered consulting suite and reached 500+ enterprise clients with $100M+ in annual revenue.</div>
+            </div>
+            <div class="milestone-item reveal">
+                <div class="milestone-year">2025</div>
+                <div class="milestone-description">Recognized as industry leader in digital transformation, expanded to 50+ countries with 1000+ completed projects and 99% client satisfaction rate.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leadership Section -->
+    <section class="leadership-section">
+        <h2>Meet Our Leadership Team</h2>
+        <div class="team-grid">
+            <div class="team-card reveal">
+                <img src="assets/leader-ceo.webp" alt="CEO - Experienced business leader">
+                <div class="team-info">
+                    <h3 class="team-name">James Richardson</h3>
+                    <p class="team-title">Chief Executive Officer</p>
+                    <p class="team-bio">Visionary leader with 25+ years of experience in driving digital transformation and building high-performing teams across multiple industries.</p>
+                </div>
+            </div>
+            <div class="team-card reveal">
+                <img src="assets/leader-cto.webp" alt="CTO - Technology innovation leader">
+                <div class="team-info">
+                    <h3 class="team-name">Sarah Chen</h3>
+                    <p class="team-title">Chief Technology Officer</p>
+                    <p class="team-bio">Tech visionary with expertise in cloud architecture, AI/ML solutions, and innovation strategy. Former architect at leading tech companies.</p>
+                </div>
+            </div>
+            <div class="team-card reveal">
+                <img src="assets/leader-coo.webp" alt="COO - Operations expert">
+                <div class="team-info">
+                    <h3 class="team-name">Michael Torres</h3>
+                    <p class="team-title">Chief Operating Officer</p>
+                    <p class="team-bio">Operations excellence specialist with proven track record in scaling global businesses, optimizing processes, and improving operational efficiency.</p>
+                </div>
+            </div>
+            <div class="team-card reveal">
+                <img src="assets/leader-cfo.webp" alt="CFO - Finance strategist">
+                <div class="team-info">
+                    <h3 class="team-name">Emily Wong</h3>
+                    <p class="team-title">Chief Financial Officer</p>
+                    <p class="team-bio">Financial strategist with deep expertise in corporate finance, investment strategy, and sustainable business growth planning.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3 class="footer-logo">STACKLY</h3>
+                    <p class="footer-tagline">Transforming businesses through innovative enterprise solutions.</p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="LinkedIn" class="social-link">in</a>
+                        <a href="#" aria-label="Twitter" class="social-link">𝕏</a>
+                        <a href="#" aria-label="GitHub" class="social-link">gh</a>
+                        <a href="#" aria-label="Facebook" class="social-link">f</a>
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <h4 class="footer-title">Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="team.html">Team</a></li>
+                        <li><a href="careers.html">Careers</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="#">Press</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4 class="footer-title">Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="services.html">All Solutions</a></li>
+                        <li><a href="industries.html">Industries</a></li>
+                        <li><a href="#">Case Studies</a></li>
+                        <li><a href="#">Pricing</a></li>
+                        <li><a href="#">Documentation</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4 class="footer-title">Contact</h4>
+                    <ul class="footer-info">
+                        <li><a href="mailto:info@thestackly.com">info@thestackly.com</a></li>
+                        <li><a href="tel:+919876543210">+91 9876543210</a></li>
+                        <li>MMR Complex, Chinna Thirupathi, Salem</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p class="footer-copyright">&copy; 2026 STACKLY Business Solutions. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="privacy-policy.html">Privacy Policy</a>
+                    <a href="terms-and-conditions.html">Terms of Service</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Files -->
+    <script src="js/navigation.js"></script>
+    <script src="js/animations.js"></script>
+
+    <script>
+        // Counter animation for achievements
+        function animateCounters() {
+            const cards = document.querySelectorAll('.achievement-card');
+
+            const observerOptions = {
+                threshold: 0.5,
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        const card = entry.target;
+                        const counterElement = card.querySelector('.achievement-number');
+                        const finalValue = parseInt(counterElement.getAttribute('data-counter'));
+
+                        let currentValue = 0;
+                        const increment = Math.ceil(finalValue / 50);
+
+                        const interval = setInterval(() => {
+                            currentValue += increment;
+                            if (currentValue >= finalValue) {
+                                currentValue = finalValue;
+                                clearInterval(interval);
+                            }
+
+                            if (finalValue === 99) {
+                                counterElement.textContent = currentValue + '%';
+                            } else {
+                                counterElement.textContent = currentValue + '+';
+                            }
+                        }, 30);
+
+                        observer.unobserve(card);
+                    }
+                });
+            }, observerOptions);
+
+            cards.forEach((card) => observer.observe(card));
+        }
+
+        // Initialize animations on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            animateCounters();
+
+            // Add reveal animation for elements
+            const revealElements = document.querySelectorAll('.reveal');
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animation = 'fadeIn 0.6s ease-out forwards';
+                        revealObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            revealElements.forEach((el) => revealObserver.observe(el));
+        });
+
+        // Hide loading screen
+        
+    </script>
+</body>
+</html>

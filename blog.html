@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore STACKLY's blog for insights on cloud computing, digital transformation, AI, and enterprise technology solutions.">
+    <meta name="keywords" content="technology blog, cloud computing, digital transformation, AI, business solutions, microservices">
+    <meta name="author" content="STACKLY Business Solutions">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Blog - STACKLY Business Solutions">
+    <meta property="og:description" content="Read our latest articles on technology, business, and digital transformation.">
+    <meta property="og:type" content="website">
+
+    <title>Blog - STACKLY Business Solutions</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <style>
+        /* Blog-specific styles */
+        
+        /* Blog Search Section */
+        .blog-search {
+            padding: 60px 24px;
+            background: var(--white);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .search-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            display: flex;
+            align-items: center;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 15px;
+            color: var(--gray-light);
+            font-size: 1.2rem;
+            pointer-events: none;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 15px 15px 15px 45px;
+            border: 2px solid var(--gray-bg);
+            border-radius: var(--radius-sm);
+            font-size: 1rem;
+            font-family: var(--font-primary);
+            transition: var(--transition);
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--blue);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        /* Blog Categories */
+        .blog-categories {
+            padding: 40px 24px;
+            background: var(--light);
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        /* Blog Grid Custom Layout wrapper */
+        .blog-grid {
+            padding: 80px 24px;
+            background: var(--white);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 32px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .blog-card.hidden {
+            display: none;
+        }
+
+        .read-more {
+            color: var(--blue);
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            font-family: var(--font-primary);
+            align-self: flex-start;
+        }
+
+        .read-more:hover {
+            color: var(--blue-dark);
+            transform: translateX(4px);
+        }
+
+        /* Reveal animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+      <!-- Loading Screen -->
+  <div class="loading-screen">
+    <div class="loading-logo">
+      <img src="assets/logo.webp" alt="STACKLY" class="logo-icon" style="height: 56px; width: auto; vertical-align: middle; object-fit: contain;"></div>
+    <div class="loading-bar">
+      <div class="loading-bar-inner"></div>
+    </div>
+  </div>
+        </div>
+    </div>
+
+    <!-- Navigation Bar -->
+        <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-logo">
+        <img src="assets/logo.webp" alt="STACKLY" class="logo-icon" style="height: 38px; width: auto; vertical-align: middle; object-fit: contain;"></a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <div class="nav-dropdown">
+          <a href="services.html" class="nav-dropdown-toggle">
+            Services
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </a>
+          <div class="nav-dropdown-menu">
+            <a href="services.html">Services Overview</a>
+            <a href="solutions.html">Solutions</a>
+            <a href="industries.html">Industries</a>
+          </div>
+        </div>
+        <a href="projects.html">Projects</a>
+        <a href="team.html">Team</a>
+        <a href="blog.html">Blog</a>
+        <a href="contact.html">Contact</a>
+        <a href="contact.html" class="btn-nav">Get Started</a>
+      </div>
+      <button class="nav-toggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Our Blog</h1>
+            <div class="breadcrumb">
+                <a href="index.html">Home</a>
+                <span>/</span>
+                <span>Blog</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Search Section -->
+    <section class="blog-search reveal">
+        <div class="search-wrapper">
+            <span class="search-icon">🔍</span>
+            <input type="text" class="search-input" placeholder="Search articles..." id="searchInput">
+        </div>
+    </section>
+
+    <!-- Blog Categories -->
+    <section class="blog-categories reveal">
+        <button class="filter-tab active" data-filter="all">All</button>
+        <button class="filter-tab" data-filter="technology">Technology</button>
+        <button class="filter-tab" data-filter="business">Business</button>
+        <button class="filter-tab" data-filter="digital-marketing">Digital Marketing</button>
+        <button class="filter-tab" data-filter="cloud">Cloud</button>
+        <button class="filter-tab" data-filter="ai">AI</button>
+    </section>
+
+    <!-- Blog Grid -->
+    <section class="blog-grid reveal">
+        <!-- Blog Card 1: Cloud Computing -->
+        <article class="blog-card reveal" data-category="technology">
+            <div class="blog-card-image" style="background-image: url('assets/blog-1.webp');">
+                <span class="blog-card-category">Technology</span>
+            </div>
+            <div class="blog-card-body">
+                <span class="blog-card-date">January 15, 2024</span>
+                <h3>The Future of Cloud Computing</h3>
+                <p>Explore the latest trends in cloud computing, including serverless architecture, multi-cloud strategies, and enhanced security measures that are shaping the future of enterprise infrastructure.</p>
+                <a href="404.html" class="read-more">Read More →</a>
+            </div>
+        </article>
+
+        <!-- Blog Card 2: Digital Transformation -->
+        <article class="blog-card reveal" data-category="business">
+            <div class="blog-card-image" style="background-image: url('assets/blog-2.webp');">
+                <span class="blog-card-category">Business</span>
+            </div>
+            <div class="blog-card-body">
+                <span class="blog-card-date">January 10, 2024</span>
+                <h3>5 Strategies for Digital Transformation</h3>
+                <p>Learn the proven strategies that leading businesses use to successfully navigate digital transformation, from change management to technology adoption and organizational culture shifts.</p>
+                <a href="404.html" class="read-more">Read More →</a>
+            </div>
+        </article>
+
+        <!-- Blog Card 3: SEO Trends -->
+        <article class="blog-card reveal" data-category="digital-marketing">
+            <div class="blog-card-image" style="background-image: url('assets/blog-3.webp');">
+                <span class="blog-card-category">Digital Marketing</span>
+            </div>
+            <div class="blog-card-body">
+                <span class="blog-card-date">January 8, 2024</span>
+                <h3>SEO Trends to Watch in 2024</h3>
+                <p>Discover the SEO trends that will dominate 2024, including AI-powered search, voice search optimization, and the importance of E-E-A-T (Experience, Expertise, Authority, Trustworthiness) signals.</p>
+                <a href="404.html" class="read-more">Read More →</a>
+            </div>
+        </article>
+
+        <!-- Blog Card 4: Microservices -->
+        <article class="blog-card reveal" data-category="cloud">
+            <div class="blog-card-image" style="background-image: url('assets/blog-4.webp');">
+                <span class="blog-card-category">Cloud</span>
+            </div>
+            <div class="blog-card-body">
+                <span class="blog-card-date">January 5, 2024</span>
+                <h3>Building Scalable Microservices</h3>
+                <p>Master the art of building scalable microservices architecture with containerization, orchestration, and best practices for deployment, monitoring, and maintaining distributed systems at scale.</p>
+                <a href="404.html" class="read-more">Read More →</a>
+            </div>
+        </article>
+
+        <!-- Blog Card 5: AI in Enterprise -->
+        <article class="blog-card reveal" data-category="ai">
+            <div class="blog-card-image" style="background-image: url('assets/blog-5.webp');">
+                <span class="blog-card-category">AI</span>
+            </div>
+            <div class="blog-card-body">
+                <span class="blog-card-date">December 28, 2023</span>
+                <h3>AI in Enterprise: A Practical Guide</h3>
+                <p>Understand how to implement artificial intelligence in your enterprise, from identifying use cases and building data pipelines to deploying models and measuring ROI on AI investments.</p>
+                <a href="404.html" class="read-more">Read More →</a>
+            </div>
+        </article>
+
+        <!-- Blog Card 6: Remote Work -->
+        <article class="blog-card reveal" data-category="business">
+            <div class="blog-card-image" style="background-image: url('assets/blog-6.webp');">
+                <span class="blog-card-category">Business</span>
+            </div>
+            <div class="blog-card-body">
+                <span class="blog-card-date">December 20, 2023</span>
+                <h3>Remote Work: Best Practices for Teams</h3>
+                <p>Discover the best practices for managing remote teams effectively, including communication strategies, productivity tools, work-life balance, and creating a strong remote company culture.</p>
+                <a href="404.html" class="read-more">Read More →</a>
+            </div>
+        </article>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3 class="footer-logo">STACKLY</h3>
+                    <p class="footer-tagline">Transforming businesses through innovative enterprise solutions.</p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="LinkedIn" class="social-link">in</a>
+                        <a href="#" aria-label="Twitter" class="social-link">𝕏</a>
+                        <a href="#" aria-label="GitHub" class="social-link">gh</a>
+                        <a href="#" aria-label="Facebook" class="social-link">f</a>
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <h4 class="footer-title">Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="team.html">Team</a></li>
+                        <li><a href="careers.html">Careers</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="#">Press</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4 class="footer-title">Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="services.html">All Solutions</a></li>
+                        <li><a href="industries.html">Industries</a></li>
+                        <li><a href="#">Case Studies</a></li>
+                        <li><a href="#">Pricing</a></li>
+                        <li><a href="#">Documentation</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4 class="footer-title">Contact</h4>
+                    <ul class="footer-info">
+                        <li><a href="mailto:info@thestackly.com">info@thestackly.com</a></li>
+                        <li><a href="tel:+919876543210">+91 9876543210</a></li>
+                        <li>MMR Complex, Chinna Thirupathi, Salem</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p class="footer-copyright">&copy; 2026 STACKLY Business Solutions. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="privacy-policy.html">Privacy Policy</a>
+                    <a href="terms-and-conditions.html">Terms of Service</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTopBtn" aria-label="Back to top">↑</button>
+
+    <!-- JavaScript Files -->
+    <script src="js/navigation.js"></script>
+    <script src="js/animations.js"></script>
+
+    <!-- Blog-specific JavaScript -->
+    <script>
+        // Search functionality
+        const searchInput = document.getElementById('searchInput');
+        const blogCards = document.querySelectorAll('.blog-card');
+
+        if (searchInput) {
+            searchInput.addEventListener('input', function(e) {
+                const searchTerm = e.target.value.toLowerCase();
+                blogCards.forEach(card => {
+                    const text = card.innerText.toLowerCase();
+                    card.style.display = text.includes(searchTerm) ? '' : 'none';
+                });
+            });
+        }
+
+        // Filter functionality
+        const filterTabs = document.querySelectorAll('.filter-tab');
+
+        filterTabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                const filter = this.getAttribute('data-filter');
+
+                // Update active tab
+                filterTabs.forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+
+                // Filter cards
+                blogCards.forEach(card => {
+                    const category = card.getAttribute('data-category');
+                    if (filter === 'all' || category === filter) {
+                        card.classList.remove('hidden');
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                });
+            });
+        });
+
+        // Back to top button functionality
+        const backToTopBtn = document.getElementById('backToTopBtn');
+
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        });
+
+        backToTopBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Reveal animations on scroll
+        const reveals = document.querySelectorAll('.reveal');
+
+        function checkReveal() {
+            reveals.forEach(element => {
+                const windowHeight = window.innerHeight;
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', checkReveal);
+        checkReveal();
+    </script>
+</body>
+</html>

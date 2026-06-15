@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="404 Page Not Found - STACKLY Business Solutions. The page you're looking for might have been removed or is temporarily unavailable.">
+    <meta name="keywords" content="404, error, page not found, STACKLY">
+    <meta name="author" content="STACKLY Business Solutions">
+    <meta name="robots" content="noindex, nofollow">
+    <title>404 - Page Not Found | STACKLY Business Solutions</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <style>
+        .error-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background: radial-gradient(circle at center, #111b30 0%, #070a13 100%);
+            padding: 24px;
+        }
+
+        /* Ambient blurred blobs in background */
+        .floating-shape {
+            position: absolute;
+            opacity: 0.18;
+            filter: blur(100px);
+            mix-blend-mode: screen;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .floating-shape:nth-child(1) {
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, rgba(37,99,235,0.8) 0%, rgba(6,182,212,0) 70%);
+            top: -10%;
+            left: -10%;
+            animation: morph 12s ease-in-out infinite alternate;
+        }
+
+        .floating-shape:nth-child(2) {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(139,92,246,0.7) 0%, rgba(139,92,246,0) 70%);
+            bottom: -15%;
+            right: -10%;
+            animation: morph 15s ease-in-out infinite alternate;
+        }
+
+        .floating-shape:nth-child(3) {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(6,182,212,0.6) 0%, rgba(6,182,212,0) 70%);
+            top: 40%;
+            right: 15%;
+            animation: morph 10s ease-in-out infinite alternate;
+        }
+
+        @keyframes morph {
+            0% { border-radius: 43% 57% 70% 30% / 45% 45% 55% 55%; transform: translate(0, 0) rotate(0deg); }
+            50% { border-radius: 70% 30% 50% 50% / 30% 60% 40% 70%; transform: translate(40px, -60px) rotate(180deg); }
+            100% { border-radius: 50% 50% 30% 70% / 50% 60% 40% 50%; transform: translate(-40px, 40px) rotate(360deg); }
+        }
+
+        /* Glassmorphic content card */
+        .error-page-content {
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            padding: 60px 48px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 24px;
+            max-width: 550px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+            animation: cardFadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        @keyframes cardFadeIn {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Cybernetic Glitch 404 text */
+        .error-number {
+            font-size: 10rem;
+            font-weight: 800;
+            position: relative;
+            color: #ffffff;
+            margin: 0;
+            line-height: 0.9;
+            letter-spacing: -4px;
+            text-shadow: 0 0 15px rgba(6, 182, 212, 0.5);
+            animation: bounce 3s ease-in-out infinite;
+        }
+        
+        .error-number::before,
+        .error-number::after {
+            content: "404";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+        }
+        
+        .error-number::before {
+            left: 3px;
+            text-shadow: -2px 0 #ef4444;
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim 5s infinite linear alternate-reverse;
+        }
+        
+        .error-number::after {
+            left: -3px;
+            text-shadow: -2px 0 #06b6d4, 0 2px #3b82f6;
+            clip: rect(85px, 450px, 140px, 0);
+            animation: glitch-anim2 5s infinite linear alternate-reverse;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes glitch-anim {
+            0% { clip: rect(15px, 9999px, 66px, 0); }
+            10% { clip: rect(34px, 9999px, 55px, 0); }
+            20% { clip: rect(81px, 9999px, 92px, 0); }
+            30% { clip: rect(11px, 9999px, 33px, 0); }
+            40% { clip: rect(98px, 9999px, 105px, 0); }
+            50% { clip: rect(44px, 9999px, 56px, 0); }
+            60% { clip: rect(76px, 9999px, 88px, 0); }
+            70% { clip: rect(23px, 9999px, 45px, 0); }
+            80% { clip: rect(65px, 9999px, 78px, 0); }
+            90% { clip: rect(54px, 9999px, 63px, 0); }
+            100% { clip: rect(88px, 9999px, 98px, 0); }
+        }
+
+        @keyframes glitch-anim2 {
+            0% { clip: rect(65px, 9999px, 115px, 0); }
+            10% { clip: rect(12px, 9999px, 45px, 0); }
+            20% { clip: rect(76px, 9999px, 87px, 0); }
+            30% { clip: rect(98px, 9999px, 134px, 0); }
+            40% { clip: rect(23px, 9999px, 54px, 0); }
+            50% { clip: rect(87px, 9999px, 112px, 0); }
+            60% { clip: rect(34px, 9999px, 76px, 0); }
+            70% { clip: rect(45px, 9999px, 98px, 0); }
+            80% { clip: rect(12px, 9999px, 65px, 0); }
+            90% { clip: rect(78px, 9999px, 123px, 0); }
+            100% { clip: rect(56px, 9999px, 90px, 0); }
+        }
+
+        .error-page h2 {
+            font-size: 2.2rem;
+            color: #f8fafc;
+            margin: 24px 0 12px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .error-page p {
+            font-size: 1.05rem;
+            color: #cbd5e1;
+            margin: 0 0 36px 0;
+            line-height: 1.6;
+        }
+
+        /* Premium glow button */
+        .btn-glow {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 36px;
+            background: linear-gradient(135deg, var(--cyan), var(--blue-light));
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(6, 182, 212, 0.25);
+        }
+
+        .btn-glow:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(6, 182, 212, 0.45);
+        }
+        
+        .btn-glow:active {
+            transform: translateY(-1px);
+        }
+    </style>
+</head>
+<body>
+    <main class="error-page">
+        <!-- Interactive Canvas Background -->
+        <canvas id="particleCanvas" style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1;"></canvas>
+
+        <div class="floating-shape"></div>
+        <div class="floating-shape"></div>
+        <div class="floating-shape"></div>
+
+        <div class="error-page-content">
+            <h1 class="error-number" data-text="404">404</h1>
+            <h2>Lost in Space</h2>
+            <p>The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.</p>
+            <a href="index.html" class="btn-glow">Back to Homepage</a>
+        </div>
+    </main>
+
+    <!-- JavaScript Files -->
+    <script src="js/navigation.js"></script>
+    <script src="js/animations.js"></script>
+
+    <!-- Canvas Particle Interaction Script -->
+    <script>
+        const canvas = document.getElementById('particleCanvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        let mouse = { x: null, y: null, radius: 150 };
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            init();
+        }
+        window.addEventListener('resize', resizeCanvas);
+        
+        // Track mouse coordinate
+        window.addEventListener('mousemove', (e) => {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+        });
+
+        window.addEventListener('mouseleave', () => {
+            mouse.x = null;
+            mouse.y = null;
+        });
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 1;
+                this.baseX = this.x;
+                this.baseY = this.y;
+                // Speed coefficient when returning/moving
+                this.density = (Math.random() * 25) + 12;
+                this.color = 'rgba(34, 211, 238, ' + (Math.random() * 0.4 + 0.15) + ')';
+            }
+            draw() {
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.closePath();
+                ctx.fill();
+            }
+            update() {
+                // If cursor matches position, calculate repulsion vectors
+                if (mouse.x !== null && mouse.y !== null) {
+                    let dx = mouse.x - this.x;
+                    let dy = mouse.y - this.y;
+                    let distance = Math.sqrt(dx * dx + dy * dy);
+                    let maxDistance = mouse.radius;
+                    
+                    if (distance < maxDistance) {
+                        let forceDirectionX = dx / distance;
+                        let forceDirectionY = dy / distance;
+                        let force = (maxDistance - distance) / maxDistance;
+                        
+                        let directionX = forceDirectionX * force * this.density;
+                        let directionY = forceDirectionY * force * this.density;
+                        
+                        this.x -= directionX;
+                        this.y -= directionY;
+                    } else {
+                        // Slowly lerp return back to base origin coordinates
+                        if (this.x !== this.baseX) {
+                            let returnDx = this.x - this.baseX;
+                            this.x -= returnDx / 15;
+                        }
+                        if (this.y !== this.baseY) {
+                            let returnDy = this.y - this.baseY;
+                            this.y -= returnDy / 15;
+                        }
+                    }
+                } else {
+                    if (this.x !== this.baseX) {
+                        let returnDx = this.x - this.baseX;
+                        this.x -= returnDx / 15;
+                    }
+                    if (this.y !== this.baseY) {
+                        let returnDy = this.y - this.baseY;
+                        this.y -= returnDy / 15;
+                    }
+                }
+            }
+        }
+
+        function init() {
+            particles = [];
+            // Create particles based on screen space density
+            const numberOfParticles = Math.min((canvas.width * canvas.height) / 8000, 150);
+            for (let i = 0; i < numberOfParticles; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+            }
+            requestAnimationFrame(animate);
+        }
+
+        // Run
+        resizeCanvas();
+        animate();
+    </script>
+</body>
+</html>

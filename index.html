@@ -1,0 +1,2117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="STACKLY Business Solutions - Trusted by 500+ companies for digital transformation, enterprise software, and cloud innovation solutions.">
+    <meta name="keywords" content="business solutions, digital transformation, enterprise software, cloud innovation, IT consulting">
+    <meta name="author" content="STACKLY Business Solutions">
+    <meta name="theme-color" content="#0F172A">
+    <meta property="og:title" content="STACKLY Business Solutions - Enterprise Software & Digital Transformation">
+    <meta property="og:description" content="Transform your business with STACKLY's enterprise software solutions and digital transformation services.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="assets/carousel-1.webp">
+
+    <title>STACKLY Business Solutions | Enterprise Software & Digital Transformation</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <style>
+        :root {
+            --dark-navy: var(--navy);
+            --professional-blue: var(--blue);
+            --cyan-accent: var(--cyan);
+            --light-bg: var(--light);
+            --dark-text: var(--dark-text);
+            --white: #FFFFFF;
+            --gray-200: var(--gray-bg);
+            --gray-300: var(--gray-lighter);
+            --gray-400: #94A3B8;
+            --gray-600: #475569;
+            --gray-700: #334155;
+            --gray-800: var(--dark-text);
+            --success: #10B981;
+            --warning: #F59E0B;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--dark-text);
+            background-color: var(--light-bg);
+            line-height: 1.6;
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .btn-primary {
+            background-color: var(--professional-blue);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--blue-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(37, 99, 235, 0.3);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--professional-blue);
+            border: 2px solid var(--professional-blue);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--professional-blue);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            border: 2px solid var(--gray-300);
+            color: var(--dark-text);
+            background-color: transparent;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--professional-blue);
+            color: var(--professional-blue);
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--dark-navy);
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            font-size: 16px;
+            color: var(--gray-600);
+            text-align: center;
+            margin-bottom: 48px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .text-cyan {
+            color: var(--cyan-accent);
+        }
+
+        .text-blue {
+            color: var(--professional-blue);
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: center;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 32px;
+        }
+
+        /* Loading Screen */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--dark-navy) 0%, #1a2744 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            flex-direction: column;
+        }
+
+        .loading-content {
+            text-align: center;
+        }
+
+        .loading-logo {
+            font-size: 48px;
+            font-weight: 800;
+            color: var(--white);
+            margin-bottom: 32px;
+            letter-spacing: -1px;
+        }
+
+        .loading-bar {
+            width: 200px;
+            height: 4px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            margin-bottom: 24px;
+            overflow: hidden;
+        }
+
+        .loading-progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--cyan-accent), var(--professional-blue));
+            width: 0%;
+            animation: loading-progress 1.5s ease-in-out forwards;
+        }
+
+        @keyframes loading-progress {
+            0% { width: 0%; }
+            80% { width: 85%; }
+            100% { width: 100%; }
+        }
+
+        .loading-text {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 13px;
+            letter-spacing: 1px;
+        }
+
+        
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background-color: var(--light-bg);
+            padding: 120px 0;
+            box-sizing: border-box;
+        }
+
+        .hero-title span.text-cyan {
+            display: inline-block;
+            min-height: 1.2em;
+            vertical-align: bottom;
+        }
+
+        .hero-bg-shapes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .hero-shape {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.1;
+        }
+
+        .hero-shape:nth-child(1) {
+            width: 400px;
+            height: 400px;
+            background-color: var(--professional-blue);
+            top: -100px;
+            right: -100px;
+        }
+
+        .hero-shape:nth-child(2) {
+            width: 300px;
+            height: 300px;
+            background-color: var(--cyan-accent);
+            bottom: 100px;
+            left: -50px;
+        }
+
+        .hero-shape:nth-child(3) {
+            width: 250px;
+            height: 250px;
+            background-color: var(--professional-blue);
+            bottom: 200px;
+            right: 10%;
+        }
+
+        .hero-grid-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(0deg, transparent 24%, rgba(37, 99, 235, 0.05) 25%, rgba(37, 99, 235, 0.05) 26%, transparent 27%, transparent 74%, rgba(37, 99, 235, 0.05) 75%, rgba(37, 99, 235, 0.05) 76%, transparent 77%, transparent),
+                linear-gradient(90deg, transparent 24%, rgba(37, 99, 235, 0.05) 25%, rgba(37, 99, 235, 0.05) 26%, transparent 27%, transparent 74%, rgba(37, 99, 235, 0.05) 75%, rgba(37, 99, 235, 0.05) 76%, transparent 77%, transparent);
+            background-size: 50px 50px;
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            width: 100%;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: rgba(6, 182, 212, 0.1);
+            border: 1px solid rgba(6, 182, 212, 0.3);
+            padding: 8px 16px;
+            border-radius: 20px;
+            margin-bottom: 24px;
+            font-size: 13px;
+            color: var(--cyan-accent);
+            font-weight: 600;
+        }
+
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--cyan-accent);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.2); }
+        }
+
+        .hero-title {
+            font-size: 56px;
+            font-weight: 800;
+            color: var(--white);
+            margin-bottom: 24px;
+            line-height: 1.2;
+            letter-spacing: -1px;
+        }
+
+        .hero-description {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 32px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            margin-bottom: 80px;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 80px;
+            margin-bottom: 80px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--cyan);
+        }
+
+        .stat-label {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-top: 4px;
+            font-weight: 500;
+        }
+
+        .hero-carousel {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .hero-carousel::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.85) 0%, rgba(15, 23, 42, 0.7) 100%);
+            z-index: 3;
+        }
+
+        .carousel-track {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .carousel-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transform: scale(1.08);
+            transition: opacity 1.5s ease-in-out, transform 1.5s ease-in-out;
+            z-index: 1;
+        }
+
+        .carousel-slide.active {
+            opacity: 1;
+            transform: scale(1.02);
+            z-index: 2;
+        }
+
+        .carousel-dots {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+
+        .carousel-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .carousel-dot.active {
+            background: var(--cyan);
+            width: 24px;
+            border-radius: 5px;
+        }
+
+        /* Clients Section */
+        .clients-section {
+            background-color: var(--white);
+            border-top: 1px solid var(--gray-200);
+            border-bottom: 1px solid var(--gray-200);
+            padding: 40px 0;
+        }
+
+        .clients-label {
+            text-align: center;
+            color: var(--gray-600);
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .clients-slider {
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .clients-track {
+            display: flex;
+            gap: 40px;
+            animation: scroll 30s linear infinite;
+        }
+
+        .client-logo {
+            min-width: 150px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-weight: 700;
+            color: var(--gray-600);
+            font-size: 16px;
+            opacity: 0.6;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            white-space: nowrap;
+        }
+
+        .client-logo:hover {
+            opacity: 1;
+            color: var(--dark-navy);
+            transform: translateY(-2px);
+        }
+
+        .client-logo-svg {
+            display: inline-block;
+            vertical-align: middle;
+            transition: transform 0.3s ease;
+        }
+
+        .client-logo:hover .client-logo-svg {
+            transform: scale(1.1);
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Services Section */
+        .services {
+            background-color: var(--light-bg);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .service-card {
+            background-color: var(--white);
+            padding: 32px;
+            border-radius: 12px;
+            border: 1px solid var(--gray-200);
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--cyan-accent);
+            box-shadow: 0 16px 32px rgba(37, 99, 235, 0.1);
+        }
+
+        .service-icon {
+            font-size: 40px;
+            margin-bottom: 16px;
+        }
+
+        .service-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--dark-navy);
+            margin-bottom: 12px;
+        }
+
+        .service-description {
+            font-size: 14px;
+            color: var(--gray-600);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .service-link {
+            color: var(--professional-blue);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .service-link:hover {
+            gap: 8px;
+            color: var(--cyan-accent);
+        }
+
+        /* Why Choose Us */
+        .why-choose-us {
+            background-color: var(--white);
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: center;
+        }
+
+        .why-image {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 48px rgba(0, 0, 0, 0.1);
+        }
+
+        .why-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .why-features {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .why-feature {
+            display: flex;
+            gap: 16px;
+        }
+
+        .feature-icon {
+            width: 36px;
+            height: 36px;
+            background-color: var(--cyan-accent);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-weight: 700;
+        }
+
+        .feature-content h3 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--dark-navy);
+            margin-bottom: 4px;
+        }
+
+        .feature-content p {
+            font-size: 14px;
+            color: var(--gray-600);
+            line-height: 1.6;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background: linear-gradient(135deg, var(--dark-navy) 0%, #1a2744 100%);
+            color: var(--white);
+            padding: 80px 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+        }
+
+        .stat-counter {
+            text-align: center;
+        }
+
+        .counter-number {
+            font-size: 48px;
+            font-weight: 800;
+            color: var(--cyan-accent);
+            margin-bottom: 8px;
+        }
+
+        .counter-label {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 500;
+        }
+
+        /* Featured Solutions */
+        .featured-solutions {
+            background-color: var(--light-bg);
+            padding: 80px 0;
+        }
+
+        .solution-card {
+            background-color: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--gray-200);
+            transition: all 0.3s ease;
+        }
+
+        .solution-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 32px rgba(37, 99, 235, 0.1);
+        }
+
+        .solution-image {
+            width: 100%;
+            height: 240px;
+            overflow: hidden;
+        }
+
+        .solution-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .solution-card:hover .solution-image img {
+            transform: scale(1.05);
+        }
+
+        .solution-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--dark-navy);
+            padding: 20px 20px 12px 20px;
+        }
+
+        .solution-description {
+            font-size: 14px;
+            color: var(--gray-600);
+            padding: 0 20px 20px 20px;
+            line-height: 1.6;
+        }
+
+        /* Industries Section */
+        .industries {
+            background-color: var(--white);
+            padding: 80px 0;
+        }
+
+        .industries-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .industry-card {
+            background-color: var(--light-bg);
+            padding: 32px;
+            border-radius: 12px;
+            border: 1px solid var(--gray-200);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .industry-card:hover {
+            transform: translateY(-8px);
+            background-color: var(--white);
+            border-color: var(--cyan-accent);
+            box-shadow: 0 12px 24px rgba(6, 182, 212, 0.1);
+        }
+
+        .industry-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        .industry-card h3 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--dark-navy);
+            margin-bottom: 8px;
+        }
+
+        .industry-card p {
+            font-size: 13px;
+            color: var(--gray-600);
+            line-height: 1.6;
+        }
+
+        /* Case Studies */
+        .case-studies {
+            background-color: var(--light-bg);
+            padding: 80px 0;
+        }
+
+        .case-study-card {
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 12px;
+            border: 1px solid var(--gray-200);
+            transition: all 0.3s ease;
+        }
+
+        .case-study-card:hover {
+            border-color: var(--cyan-accent);
+            box-shadow: 0 16px 32px rgba(37, 99, 235, 0.1);
+        }
+
+        .case-study-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .case-study-header h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--dark-navy);
+        }
+
+        .case-industry {
+            background-color: var(--cyan-accent);
+            color: var(--white);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .case-challenge,
+        .case-result {
+            font-size: 14px;
+            color: var(--gray-600);
+            margin-bottom: 16px;
+            line-height: 1.7;
+        }
+
+        .case-link {
+            color: var(--professional-blue);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .case-link:hover {
+            color: var(--cyan-accent);
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background-image: linear-gradient(135deg, rgba(15, 23, 42, 0.85) 0%, rgba(26, 39, 68, 0.75) 100%), url('assets/testimonials-bg-new.webp');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            padding: 80px 0;
+            position: relative;
+        }
+
+        .testimonials .section-title {
+            color: var(--white);
+        }
+
+        .testimonials .section-subtitle {
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .testimonials-carousel {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .testimonials-container {
+            overflow: hidden;
+            border-radius: 12px;
+        }
+
+        .testimonials-track {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .testimonial-card {
+            min-width: 100%;
+            padding: 48px 40px;
+            background-color: var(--light-bg);
+            border-radius: 12px;
+        }
+
+        .testimonial-text {
+            font-size: 18px;
+            color: var(--dark-navy);
+            font-style: italic;
+            margin-bottom: 24px;
+            line-height: 1.8;
+        }
+
+        .testimonial-author {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .author-name {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--dark-navy);
+        }
+
+        .author-title {
+            font-size: 13px;
+            color: var(--gray-600);
+            margin-top: 2px;
+        }
+
+        .testimonials-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 32px;
+            margin-top: 32px;
+        }
+
+        .testimonial-btn {
+            background: none;
+            border: none;
+            color: var(--professional-blue);
+            font-size: 24px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .testimonial-btn:hover {
+            color: var(--cyan-accent);
+        }
+
+        .testimonials-dots {
+            display: flex;
+            gap: 12px;
+        }
+
+        .testimonial-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: 2px solid var(--gray-300);
+            background-color: transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-dot.active {
+            background-color: var(--professional-blue);
+            border-color: var(--professional-blue);
+        }
+
+        /* Team Highlights */
+        .team-highlights {
+            background-color: var(--light-bg);
+            padding: 80px 0;
+        }
+
+        .team-card {
+            background-color: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--gray-200);
+            transition: all 0.3s ease;
+        }
+
+        .team-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 32px rgba(37, 99, 235, 0.1);
+        }
+
+        .team-image {
+            width: 100%;
+            height: 280px;
+            overflow: hidden;
+            background-color: var(--gray-200);
+        }
+
+        .team-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .team-card:hover .team-image img {
+            transform: scale(1.05);
+        }
+
+        .team-name {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--dark-navy);
+            padding: 20px 16px 4px 16px;
+        }
+
+        .team-role {
+            font-size: 13px;
+            color: var(--professional-blue);
+            font-weight: 600;
+            padding: 0 16px 8px 16px;
+        }
+
+        .team-bio {
+            font-size: 13px;
+            color: var(--gray-600);
+            padding: 0 16px 16px 16px;
+            line-height: 1.6;
+        }
+
+        /* Latest Blog */
+        .latest-blog {
+            background-color: var(--white);
+            padding: 80px 0;
+        }
+
+        .blog-card {
+            background-color: var(--light-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--gray-200);
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 32px rgba(37, 99, 235, 0.1);
+        }
+
+        .blog-image {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .blog-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .blog-card:hover .blog-image img {
+            transform: scale(1.05);
+        }
+
+        .blog-content {
+            padding: 24px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .blog-category {
+            display: inline-block;
+            background-color: var(--professional-blue);
+            color: var(--white);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            width: fit-content;
+        }
+
+        .blog-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--dark-navy);
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+
+        .blog-excerpt {
+            font-size: 13px;
+            color: var(--gray-600);
+            margin-bottom: 16px;
+            line-height: 1.6;
+            flex: 1;
+        }
+
+        .blog-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: var(--gray-600);
+            margin-bottom: 16px;
+            border-top: 1px solid var(--gray-200);
+            padding-top: 12px;
+        }
+
+        .blog-link {
+            color: var(--professional-blue);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 13px;
+            transition: color 0.3s ease;
+        }
+
+        .blog-link:hover {
+            color: var(--cyan-accent);
+        }
+
+        /* CTA Banner */
+        .cta-banner {
+            background: linear-gradient(135deg, var(--dark-navy) 0%, #1a2744 100%);
+            color: var(--white);
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .cta-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .cta-headline {
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            letter-spacing: -1px;
+        }
+
+        .cta-description {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 32px;
+            line-height: 1.6;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+        }
+
+        .social-link {
+            width: 36px;
+            height: 36px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .social-link:hover {
+            background-color: var(--cyan-accent);
+            border-color: var(--cyan-accent);
+        }
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .services-grid,
+            .industries-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .grid-4 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .hero-stats {
+                gap: 40px;
+            }
+
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+
+            .why-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 32px;
+            }
+
+            
+        }
+
+        @media (max-width: 768px) {
+            .hero-title span.text-cyan {
+                min-height: 2.4em;
+            }
+
+            .navbar-menu {
+                display: none;
+            }
+
+            .nav-toggle {
+                display: flex;
+            }
+
+            .nav-toggle.active span:nth-child(1) {
+                transform: rotate(45deg) translate(10px, 10px);
+            }
+
+            .nav-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .nav-toggle.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -7px);
+            }
+
+            .hero-title {
+                font-size: 36px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 24px;
+            }
+
+            .services-grid,
+            .industries-grid,
+            .grid-3,
+            .grid-4 {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            
+
+            
+
+            
+        }
+    </style>
+</head>
+<body>
+      <!-- Loading Screen -->
+  <div class="loading-screen">
+    <div class="loading-content">
+      <div class="loading-logo">
+        <img src="assets/logo.webp" alt="STACKLY" class="logo-icon" style="height: 56px; width: auto; vertical-align: middle; object-fit: contain;"></div>
+      <div class="loading-bar">
+        <div class="loading-bar-inner"></div>
+      </div>
+      <p class="loading-text">Preparing your experience...</p>
+    </div>
+  </div>
+
+      <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-logo">
+        <img src="assets/logo.webp" alt="STACKLY" class="logo-icon" style="height: 38px; width: auto; vertical-align: middle; object-fit: contain;"></a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <div class="nav-dropdown">
+          <a href="services.html" class="nav-dropdown-toggle">
+            Services
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </a>
+          <div class="nav-dropdown-menu">
+            <a href="services.html">Services Overview</a>
+            <a href="solutions.html">Solutions</a>
+            <a href="industries.html">Industries</a>
+          </div>
+        </div>
+        <a href="projects.html">Projects</a>
+        <a href="team.html">Team</a>
+        <a href="blog.html">Blog</a>
+        <a href="contact.html">Contact</a>
+        <a href="contact.html" class="btn-nav">Get Started</a>
+      </div>
+      <button class="nav-toggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <!-- Background Carousel -->
+        <div class="hero-carousel">
+            <div class="carousel-track">
+                <div class="carousel-slide active" style="background-image: url('assets/carousel-1.webp');"></div>
+                <div class="carousel-slide" style="background-image: url('assets/carousel-2.webp');"></div>
+                <div class="carousel-slide" style="background-image: url('assets/carousel-3.webp');"></div>
+                <div class="carousel-slide" style="background-image: url('assets/carousel-4.webp');"></div>
+            </div>
+            <div class="carousel-dots">
+                <span class="carousel-dot active" data-index="0"></span>
+                <span class="carousel-dot" data-index="1"></span>
+                <span class="carousel-dot" data-index="2"></span>
+                <span class="carousel-dot" data-index="3"></span>
+            </div>
+        </div>
+
+        <div class="hero-bg-shapes">
+            <div class="hero-shape"></div>
+            <div class="hero-shape"></div>
+            <div class="hero-shape"></div>
+        </div>
+
+        <div class="hero-grid-overlay"></div>
+
+        <div class="container hero-content">
+            <div class="hero-badge">
+                <span class="pulse-dot"></span>
+                <span class="badge-text">Trusted by 500+ Companies</span>
+            </div>
+
+            <h1 class="hero-title">
+                Transform Your <br><span class="text-cyan" data-typing="Business Solutions, Digital Transformation, Enterprise Software, Cloud Innovation">Business Solutions</span>
+            </h1>
+
+            <p class="hero-description">
+                Empower your organization with cutting-edge enterprise software solutions and digital transformation services designed for modern businesses.
+            </p>
+
+            <div class="hero-buttons">
+                <a href="contact.html" class="btn btn-primary">Get Started Today</a>
+                <a href="services.html" class="btn btn-secondary">Explore Our Services</a>
+            </div>
+
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Enterprise Clients</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">15+</div>
+                    <div class="stat-label">Years Experience</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">98%</div>
+                    <div class="stat-label">Client Satisfaction</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Clients Logo Slider -->
+    <section class="clients-section">
+        <div class="container">
+            <p class="clients-label">Trusted by Leading Companies</p>
+            <div class="clients-slider" id="clientsSlider">
+                <div class="clients-track">
+                    <div class="client-logo">
+                        <svg class="client-logo-svg" viewBox="0 0 24 24" width="20" height="20">
+                            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22c-.87-2.6-2.6-4.53 5.84-4.53z"/>
+                            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+                        </svg>
+                        <span>Google</span>
+                    </div>
+                    <div class="client-logo">
+                        <svg class="client-logo-svg" viewBox="0 0 23 23" width="18" height="18" style="vertical-align: middle;">
+                            <rect x="0" y="0" width="11" height="11" fill="#F25022" />
+                            <rect x="12" y="0" width="11" height="11" fill="#7FBA00" />
+                            <rect x="0" y="12" width="11" height="11" fill="#00A4EF" />
+                            <rect x="12" y="12" width="11" height="11" fill="#FFB900" />
+                        </svg>
+                        <span>Microsoft</span>
+                    </div>
+                    <div class="client-logo">
+                        <svg class="client-logo-svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                            <path d="M18.8 17.85c-2.3 1.76-5.83 2.15-8.52 2.15-4.22 0-7.75-1.86-9.76-4.8-.27-.4.07-.84.5-.62 2.45 1.25 5.56 1.78 8.44 1.78 2.68 0 5.67-.44 7.9-1.6.43-.22.75.24.44.64l.01.01zM19.64 16.5c-.17-.23-.97.1-1.33.24-.37.13-.17.57.02.8.2.22.86-.03 1.13-.24.28-.2-.14-.58-.32-.8zM12.18 10.3c0 1.63-.83 2.92-2.3 2.92-.7 0-1.12-.34-1.4-.7v.58H7.13V5.55h1.35v2.85c.28-.43.72-.75 1.34-.75 1.48 0 2.36 1.15 2.36 2.65zm-1.4-.04c0-.98-.44-1.7-1.18-1.7s-1.17.72-1.17 1.7.43 1.7 1.17 1.7 1.18-.7 1.18-1.7z"/>
+                        </svg>
+                        <span>Amazon</span>
+                    </div>
+                    <div class="client-logo">
+                        <svg class="client-logo-svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                            <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.82M15.97 4.17c.66-.81 1.11-1.93.99-3.06-1 .04-2.2.67-2.92 1.49-.62.71-1.16 1.85-1.01 2.96 1.1.09 2.23-.57 2.94-1.39z"/>
+                        </svg>
+                        <span>Apple</span>
+                    </div>
+                    <div class="client-logo">
+                        <svg class="client-logo-svg" viewBox="0 0 100 100" width="18" height="18" fill="#E50914" style="vertical-align: middle;">
+                            <path d="M22.5 15.5h14v69h-14zm41 0h14v69h-14z"/>
+                            <path d="M22.5 15.5l41 69h14.5l-41-69z" fill="#B20710"/>
+                        </svg>
+                        <span>Netflix</span>
+                    </div>
+                    <div class="client-logo">
+                        <svg class="client-logo-svg" viewBox="0 0 600 600" width="18" height="18" fill="#E82127">
+                            <path d="M301.2 506.6c-49.8-59.5-121.7-160.1-137.9-243h275.8c-16.2 82.9-88.1 183.5-137.9 243.6v.4zm-140-279.7c15.6-77.9 74.3-138.8 139.7-156.4 65.4 17.6 124.1 78.5 139.7 156.4H161.2zm140-192.4C215.1 43.1 106.6 96.1 47.9 173.3v16.1h506v-16.1C495.2 96.1 386.7 43.1 301.2 34.5z"/>
+                        </svg>
+                        <span>Tesla</span>
+                    </div>
+                    <div class="client-logo">
+                        <svg class="client-logo-svg" viewBox="0 0 24 24" width="22" height="22" fill="#0064E0">
+                            <path d="M16.94 5.38c-1.57 0-3.08.68-4.22 1.83a8.91 8.91 0 0 0-1.43 1.88 8.91 8.91 0 0 0-1.43-1.88c-1.14-1.15-2.65-1.83-4.22-1.83-3.41 0-6.14 2.87-6.14 6.38s2.73 6.38 6.14 6.38c1.57 0 3.08-.68 4.22-1.83a8.91 8.91 0 0 0 1.43-1.88 8.91 8.91 0 0 0 1.43 1.88c1.14 1.15 2.65 1.83 4.22 1.83 3.41 0 6.14-2.87 6.14-6.38s-2.73-6.38-6.14-6.38zm-11.3 10.26c-2.06 0-3.64-1.78-3.64-3.88s1.58-3.88 3.64-3.88c.99 0 1.95.43 2.7 1.2a6.38 6.38 0 0 1 .9 1.18 6.38 6.38 0 0 1-.9 1.18c-.75.77-1.71 1.2-2.7 1.2zm11.3 0c-.99 0-1.95-.43-2.7-1.2a6.38 6.38 0 0 1-.9-1.18 6.38 6.38 0 0 1 .9-1.18c.75-.77 1.71-1.2 2.7-1.2 2.06 0 3.64 1.78 3.64 3.88s-1.58 3.88-3.64 3.88z"/>
+                        </svg>
+                        <span>Meta</span>
+                    </div>
+                    <div class="client-logo">
+                        <svg class="client-logo-svg" viewBox="0 0 100 100" width="18" height="18" fill="#FF0000">
+                            <path d="M62 13.5h31v73H62zm-24 0H7v73h29.2L41.3 72 56 31.7zM48 48.5L66.7 86.5H52.5l-4-9.5H35.8l8.2-18.7z"/>
+                        </svg>
+                        <span>Adobe</span>
+                    </div>
+                    <!-- Repeated set for infinite scroll effect -->
+                    <div class="client-logo">
+                        <svg class="client-logo-svg" viewBox="0 0 24 24" width="20" height="20">
+                            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22c-.87-2.6-2.6-4.53 5.84-4.53z"/>
+                            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+                        </svg>
+                        <span>Google</span>
+                    </div>
+                    <div class="client-logo">
+                        <svg class="client-logo-svg" viewBox="0 0 23 23" width="18" height="18" style="vertical-align: middle;">
+                            <rect x="0" y="0" width="11" height="11" fill="#F25022" />
+                            <rect x="12" y="0" width="11" height="11" fill="#7FBA00" />
+                            <rect x="0" y="12" width="11" height="11" fill="#00A4EF" />
+                            <rect x="12" y="12" width="11" height="11" fill="#FFB900" />
+                        </svg>
+                        <span>Microsoft</span>
+                    </div>
+                    <div class="client-logo">
+                        <svg class="client-logo-svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                            <path d="M18.8 17.85c-2.3 1.76-5.83 2.15-8.52 2.15-4.22 0-7.75-1.86-9.76-4.8-.27-.4.07-.84.5-.62 2.45 1.25 5.56 1.78 8.44 1.78 2.68 0 5.67-.44 7.9-1.6.43-.22.75.24.44.64l.01.01zM19.64 16.5c-.17-.23-.97.1-1.33.24-.37.13-.17.57.02.8.2.22.86-.03 1.13-.24.28-.2-.14-.58-.32-.8zM12.18 10.3c0 1.63-.83 2.92-2.3 2.92-.7 0-1.12-.34-1.4-.7v.58H7.13V5.55h1.35v2.85c.28-.43.72-.75 1.34-.75 1.48 0 2.36 1.15 2.36 2.65zm-1.4-.04c0-.98-.44-1.7-1.18-1.7s-1.17.72-1.17 1.7.43 1.7 1.17 1.7 1.18-.7 1.18-1.7z"/>
+                        </svg>
+                        <span>Amazon</span>
+                    </div>
+                    <div class="client-logo">
+                        <svg class="client-logo-svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                            <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.82M15.97 4.17c.66-.81 1.11-1.93.99-3.06-1 .04-2.2.67-2.92 1.49-.62.71-1.16 1.85-1.01 2.96 1.1.09 2.23-.57 2.94-1.39z"/>
+                        </svg>
+                        <span>Apple</span>
+                    </div>
+                    <div class="client-logo">
+                        <svg class="client-logo-svg" viewBox="0 0 100 100" width="18" height="18" fill="#E50914" style="vertical-align: middle;">
+                            <path d="M22.5 15.5h14v69h-14zm41 0h14v69h-14z"/>
+                            <path d="M22.5 15.5l41 69h14.5l-41-69z" fill="#B20710"/>
+                        </svg>
+                        <span>Netflix</span>
+                    </div>
+                    <div class="client-logo">
+                        <svg class="client-logo-svg" viewBox="0 0 600 600" width="18" height="18" fill="#E82127">
+                            <path d="M301.2 506.6c-49.8-59.5-121.7-160.1-137.9-243h275.8c-16.2 82.9-88.1 183.5-137.9 243.6v.4zm-140-279.7c15.6-77.9 74.3-138.8 139.7-156.4 65.4 17.6 124.1 78.5 139.7 156.4H161.2zm140-192.4C215.1 43.1 106.6 96.1 47.9 173.3v16.1h506v-16.1C495.2 96.1 386.7 43.1 301.2 34.5z"/>
+                        </svg>
+                        <span>Tesla</span>
+                    </div>
+                    <div class="client-logo">
+                        <svg class="client-logo-svg" viewBox="0 0 24 24" width="22" height="22" fill="#0064E0">
+                            <path d="M16.94 5.38c-1.57 0-3.08.68-4.22 1.83a8.91 8.91 0 0 0-1.43 1.88 8.91 8.91 0 0 0-1.43-1.88c-1.14-1.15-2.65-1.83-4.22-1.83-3.41 0-6.14 2.87-6.14 6.38s2.73 6.38 6.14 6.38c1.57 0 3.08-.68 4.22-1.83a8.91 8.91 0 0 0 1.43-1.88 8.91 8.91 0 0 0 1.43 1.88c1.14 1.15 2.65 1.83 4.22 1.83 3.41 0 6.14-2.87 6.14-6.38s-2.73-6.38-6.14-6.38zm-11.3 10.26c-2.06 0-3.64-1.78-3.64-3.88s1.58-3.88 3.64-3.88c.99 0 1.95.43 2.7 1.2a6.38 6.38 0 0 1 .9 1.18 6.38 6.38 0 0 1-.9 1.18c-.75.77-1.71 1.2-2.7 1.2zm11.3 0c-.99 0-1.95-.43-2.7-1.2a6.38 6.38 0 0 1-.9-1.18 6.38 6.38 0 0 1 .9-1.18c.75-.77 1.71-1.2 2.7-1.2 2.06 0 3.64 1.78 3.64 3.88s-1.58 3.88-3.64 3.88z"/>
+                        </svg>
+                        <span>Meta</span>
+                    </div>
+                    <div class="client-logo">
+                        <svg class="client-logo-svg" viewBox="0 0 100 100" width="18" height="18" fill="#FF0000">
+                            <path d="M62 13.5h31v73H62zm-24 0H7v73h29.2L41.3 72 56 31.7zM48 48.5L66.7 86.5H52.5l-4-9.5H35.8l8.2-18.7z"/>
+                        </svg>
+                        <span>Adobe</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Overview -->
+<section class="services" style="background-image: url('assets/solution-bi.webp'); background-size: cover; background-position: center;">
+        <div class="container">
+            <h2 class="section-title">Our <span class="text-blue">Services</span></h2>
+            <p class="section-subtitle">Comprehensive solutions tailored to drive your business forward and accelerate digital growth</p>
+
+        <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                    </div>
+                    <h3 class="service-title">Enterprise Software</h3>
+                    <p class="service-description">Custom-built enterprise solutions designed to streamline operations and enhance productivity across your organization.</p>
+                    <a href="services.html" class="service-link">Learn More →</a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path></svg>
+                    </div>
+                    <h3 class="service-title">Cloud Innovation</h3>
+                    <p class="service-description">Migrate, scale, and optimize your infrastructure with our cloud-native solutions and expert guidance.</p>
+                    <a href="services.html" class="service-link">Learn More →</a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24"><path d="M23 4v6h-6M1 20v-6h6"></path><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+                    </div>
+                    <h3 class="service-title">Digital Transformation</h3>
+                    <p class="service-description">Reimagine your business processes with digital-first strategies that drive innovation and competitive advantage.</p>
+                    <a href="services.html" class="service-link">Learn More →</a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                    </div>
+                    <h3 class="service-title">Security & Compliance</h3>
+                    <p class="service-description">Protect your data and systems with enterprise-grade security solutions and comprehensive compliance management.</p>
+                    <a href="services.html" class="service-link">Learn More →</a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path><path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"></path></svg>
+                    </div>
+                    <h3 class="service-title">Data & Analytics</h3>
+                    <p class="service-description">Unlock insights from your data with advanced analytics, reporting, and business intelligence solutions.</p>
+                    <a href="services.html" class="service-link">Learn More →</a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                    </div>
+                    <h3 class="service-title">Managed Services</h3>
+                    <p class="service-description">Proactive management and support for your IT infrastructure, 24/7 monitoring, and rapid incident response.</p>
+                    <a href="services.html" class="service-link">Learn More →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="why-choose-us">
+        <div class="container">
+            <div class="why-grid">
+                <div class="why-image">
+                    <img src="assets/collab.webp" alt="Professional team collaboration">
+                </div>
+
+                <div class="why-content">
+                    <h2 class="section-title" style="text-align: left;">Why Choose <span class="text-blue">STACKLY</span></h2>
+
+                    <div class="why-features">
+                        <div class="why-feature">
+                            <div class="feature-icon">✓</div>
+                            <div class="feature-content">
+                                <h3>Expert Team</h3>
+                                <p>Seasoned professionals with decades of combined experience in enterprise solutions and digital transformation.</p>
+                            </div>
+                        </div>
+
+                        <div class="why-feature">
+                            <div class="feature-icon">✓</div>
+                            <div class="feature-content">
+                                <h3>Proven Track Record</h3>
+                                <p>Successfully delivered 500+ projects with measurable results and exceptional client satisfaction rates.</p>
+                            </div>
+                        </div>
+
+                        <div class="why-feature">
+                            <div class="feature-icon">✓</div>
+                            <div class="feature-content">
+                                <h3>Innovation Focused</h3>
+                                <p>Constantly evolving our solutions to leverage the latest technologies and industry best practices.</p>
+                            </div>
+                        </div>
+
+                        <div class="why-feature">
+                            <div class="feature-icon">✓</div>
+                            <div class="feature-content">
+                                <h3>24/7 Support</h3>
+                                <p>Comprehensive support and maintenance services to ensure your systems run smoothly around the clock.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats & Counters -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-counter">
+                    <div class="counter-number" data-counter="500" data-suffix="+">0+</div>
+                    <div class="counter-label">Happy Clients</div>
+                </div>
+
+                <div class="stat-counter">
+                    <div class="counter-number" data-counter="1500" data-suffix="+">0+</div>
+                    <div class="counter-label">Projects Delivered</div>
+                </div>
+
+                <div class="stat-counter">
+                    <div class="counter-number" data-counter="15" data-suffix="">0</div>
+                    <div class="counter-label">Years In Business</div>
+                </div>
+
+                <div class="stat-counter">
+                    <div class="counter-number" data-counter="98" data-suffix="%">0%</div>
+                    <div class="counter-label">Client Retention</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Solutions -->
+    <section class="featured-solutions">
+        <div class="container">
+            <h2 class="section-title">Featured <span class="text-blue">Solutions</span></h2>
+            <p class="section-subtitle">Explore our most popular enterprise solutions trusted by industry leaders</p>
+
+            <div class="grid-3">
+                <div class="solution-card">
+                    <div class="solution-image">
+                        <img src="assets/solution-erp.webp" alt="Enterprise Resource Planning">
+                    </div>
+                    <h3 class="solution-title">Enterprise Resource Planning</h3>
+                    <p class="solution-description">Integrated business management software that streamlines operations and improves data-driven decision making.</p>
+                </div>
+
+                <div class="solution-card">
+                    <div class="solution-image">
+                        <img src="assets/solution-crm.webp" alt="Customer Relationship Management">
+                    </div>
+                    <h3 class="solution-title">Customer Relationship Management</h3>
+                    <p class="solution-description">Powerful CRM platform to manage customer interactions, sales pipelines, and drive revenue growth.</p>
+                </div>
+
+                <div class="solution-card">
+                    <div class="solution-image">
+                        <img src="assets/solution-bi.webp" alt="Business Intelligence Suite">
+                    </div>
+                    <h3 class="solution-title">Business Intelligence Suite</h3>
+                    <p class="solution-description">Advanced analytics and reporting tools to transform raw data into actionable business insights.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Industries Served -->
+<section class="industries industries-we-serve" style="background-image: url('assets/industries-bg-new.webp'); background-size: cover; background-position: center;">
+        <div class="container">
+            <h2 class="section-title">Industries We <span class="text-blue">Serve</span></h2>
+            <p class="section-subtitle">Specialized solutions for diverse sectors and business verticals</p>
+
+            <div class="industries-grid">
+                <div class="industry-card">
+                    <div class="industry-icon">
+                        <svg viewBox="0 0 24 24"><line x1="3" y1="22" x2="21" y2="22"></line><line x1="6" y1="18" x2="6" y2="11"></line><line x1="10" y1="18" x2="10" y2="11"></line><line x1="14" y1="18" x2="14" y2="11"></line><line x1="18" y1="18" x2="18" y2="11"></line><polygon points="12 2 2 7 22 7 12 2"></polygon></svg>
+                    </div>
+                    <h3>Financial Services</h3>
+                    <p>Secure, compliant solutions for banking, insurance, and wealth management</p>
+                </div>
+
+                <div class="industry-card">
+                    <div class="industry-icon">
+                        <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+                    </div>
+                    <h3>Healthcare</h3>
+                    <p>HIPAA-compliant systems for patient management and medical records</p>
+                </div>
+
+                <div class="industry-card">
+                    <div class="industry-icon">
+                        <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                    </div>
+                    <h3>Retail & E-commerce</h3>
+                    <p>Omnichannel solutions for seamless customer experiences</p>
+                </div>
+
+                <div class="industry-card">
+                    <div class="industry-icon">
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                    </div>
+                    <h3>Manufacturing</h3>
+                    <p>Supply chain and production optimization systems</p>
+                </div>
+
+                <div class="industry-card">
+                    <div class="industry-icon">
+                        <svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"></path></svg>
+                    </div>
+                    <h3>Education</h3>
+                    <p>Learning management and student information systems</p>
+                </div>
+
+                <div class="industry-card">
+                    <div class="industry-icon">
+                        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M9 21V9a3 3 0 0 1 6 0v12"></path></svg>
+                    </div>
+                    <h3>Construction</h3>
+                    <p>Project management and resource planning tools</p>
+                </div>
+
+                <div class="industry-card">
+                    <div class="industry-icon">
+                        <svg viewBox="0 0 24 24"><path d="M22 16.24v-2.3l-7.78-4.63V4.2a2.2 2.2 0 1 0-4.4 0v5.1L2 13.93v2.3l8.02-2.5v5.18l-2.04 1.53v1.5L12 21.03l4.02.9v-1.5l-2.04-1.53v-5.18l8.02 2.5z"></path></svg>
+                    </div>
+                    <h3>Travel & Hospitality</h3>
+                    <p>Booking and guest management solutions</p>
+                </div>
+
+                <div class="industry-card">
+                    <div class="industry-icon">
+                        <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                    </div>
+                    <h3>Energy & Utilities</h3>
+                    <p>Grid management and meter reading systems</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Studies -->
+    <section class="case-studies">
+        <div class="container">
+            <h2 class="section-title">Case <span class="text-blue">Studies</span></h2>
+            <p class="section-subtitle">See how STACKLY has transformed businesses across industries</p>
+
+            <div class="grid-2">
+                <div class="case-study-card">
+                    <div class="case-study-header">
+                        <h3>Global Retailer Digital Transformation</h3>
+                        <span class="case-industry">Retail & E-commerce</span>
+                    </div>
+                    <p class="case-challenge"><strong>Challenge:</strong> Legacy systems preventing omnichannel integration and real-time inventory management.</p>
+                    <p class="case-result"><strong>Result:</strong> 40% increase in operational efficiency, 25% boost in customer satisfaction, and $5M in cost savings annually.</p>
+                    <a href="404.html" class="case-link">Read Full Case Study →</a>
+                </div>
+
+                <div class="case-study-card">
+                    <div class="case-study-header">
+                        <h3>Enterprise Cloud Migration</h3>
+                        <span class="case-industry">Financial Services</span>
+                    </div>
+                    <p class="case-challenge"><strong>Challenge:</strong> Complex migration of mission-critical systems to cloud with zero downtime required.</p>
+                    <p class="case-result"><strong>Result:</strong> Seamless migration completed 3 weeks ahead of schedule with 99.99% uptime achieved.</p>
+                    <a href="404.html" class="case-link">Read Full Case Study →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Carousel -->
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">What Our <span class="text-blue">Clients Say</span></h2>
+            <p class="section-subtitle">Hear from industry leaders who've transformed their business with STACKLY</p>
+
+            <div class="testimonials-carousel">
+                <div class="testimonials-container">
+                    <div class="testimonials-track" id="testimonialsTrack">
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <p class="testimonial-text">"STACKLY's enterprise software solution revolutionized our operations. We saw immediate improvements in productivity and cost efficiency. Their team is exceptional."</p>
+                                <div class="testimonial-author">
+                                    <div class="author-name">Sarah Johnson</div>
+                                    <div class="author-title">CEO, Global Tech Solutions</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <p class="testimonial-text">"The cloud migration process was seamless and professional. STACKLY's team provided excellent support throughout the entire project. Highly recommended!"</p>
+                                <div class="testimonial-author">
+                                    <div class="author-name">Michael Chen</div>
+                                    <div class="author-title">CTO, Digital Innovations Inc</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <p class="testimonial-text">"Working with STACKLY was a game-changer for our business. Their digital transformation expertise and innovative solutions exceeded all our expectations."</p>
+                                <div class="testimonial-author">
+                                    <div class="author-name">Emma Rodriguez</div>
+                                    <div class="author-title">Managing Director, Enterprise Consulting Group</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonials-controls">
+                    <button class="testimonial-btn testimonial-prev" id="testimonialPrev" aria-label="Previous testimonial">←</button>
+                    <div class="testimonials-dots">
+                        <button class="testimonial-dot active" data-slide="0" aria-label="Testimonial 1"></button>
+                        <button class="testimonial-dot" data-slide="1" aria-label="Testimonial 2"></button>
+                        <button class="testimonial-dot" data-slide="2" aria-label="Testimonial 3"></button>
+                    </div>
+                    <button class="testimonial-btn testimonial-next" id="testimonialNext" aria-label="Next testimonial">→</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Highlights -->
+    <section class="team-highlights">
+        <div class="container">
+            <h2 class="section-title">Meet Our <span class="text-blue">Team</span></h2>
+            <p class="section-subtitle">Talented professionals dedicated to your business success</p>
+
+            <div class="grid-4">
+                <div class="team-card">
+                    <div class="team-image">
+                        <img src="assets/leader-ceo.webp" alt="James Wilson">
+                    </div>
+                    <h3 class="team-name">James Wilson</h3>
+                    <p class="team-role">Chief Executive Officer</p>
+                    <p class="team-bio">Visionary leader with 20+ years in enterprise software.</p>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-image">
+                        <img src="assets/leader-cto.webp" alt="Lisa Anderson">
+                    </div>
+                    <h3 class="team-name">Lisa Anderson</h3>
+                    <p class="team-role">Chief Technology Officer</p>
+                    <p class="team-bio">Innovation pioneer specializing in cloud architecture.</p>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-image">
+                        <img src="assets/leader-coo.webp" alt="David Martinez">
+                    </div>
+                    <h3 class="team-name">David Martinez</h3>
+                    <p class="team-role">Head of Solutions</p>
+                    <p class="team-bio">Strategic advisor with expertise in digital transformation.</p>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-image">
+                        <img src="assets/leader-cfo.webp" alt="Rebecca Taylor">
+                    </div>
+                    <h3 class="team-name">Rebecca Taylor</h3>
+                    <p class="team-role">VP of Client Success</p>
+                    <p class="team-bio">Dedicated to ensuring exceptional client outcomes.</p>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 48px;">
+                <a href="team.html" class="btn btn-secondary">View Full Team</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Latest Blog -->
+    <section class="latest-blog">
+        <div class="container">
+            <h2 class="section-title">Latest <span class="text-blue">Blog</span></h2>
+            <p class="section-subtitle">Insights and trends in enterprise software and digital transformation</p>
+
+            <div class="grid-3">
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <img src="assets/blog-1.webp" alt="Blog post image">
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-category">Technology</span>
+                        <h3 class="blog-title">The Future of Cloud-Native Architecture</h3>
+                        <p class="blog-excerpt">Exploring the latest trends in cloud-native development and how organizations can leverage these innovations.</p>
+                        <div class="blog-meta">
+                            <span class="blog-author">By Jane Smith</span>
+                            <span class="blog-date">June 12, 2026</span>
+                        </div>
+                        <a href="blog.html" class="blog-link">Read More →</a>
+                    </div>
+                </article>
+
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <img src="assets/blog-2.webp" alt="Blog post image">
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-category">Digital Transformation</span>
+                        <h3 class="blog-title">Digital Transformation Success Stories</h3>
+                        <p class="blog-excerpt">Real-world examples of how companies are successfully implementing digital transformation initiatives.</p>
+                        <div class="blog-meta">
+                            <span class="blog-author">By John Peterson</span>
+                            <span class="blog-date">June 10, 2026</span>
+                        </div>
+                        <a href="blog.html" class="blog-link">Read More →</a>
+                    </div>
+                </article>
+
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <img src="assets/blog-3.webp" alt="Blog post image">
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-category">Enterprise Software</span>
+                        <h3 class="blog-title">Choosing the Right ERP Solution for Your Business</h3>
+                        <p class="blog-excerpt">A comprehensive guide to selecting an ERP system that aligns with your organization's unique needs.</p>
+                        <div class="blog-meta">
+                            <span class="blog-author">By Emily Watson</span>
+                            <span class="blog-date">June 8, 2026</span>
+                        </div>
+                        <a href="blog.html" class="blog-link">Read More →</a>
+                    </div>
+                </article>
+            </div>
+
+            <div style="text-align: center; margin-top: 48px;">
+                <a href="blog.html" class="btn btn-secondary">View All Articles</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3 class="footer-logo">STACKLY</h3>
+                    <p class="footer-tagline">Transforming businesses through innovative enterprise solutions.</p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="LinkedIn" class="social-link">in</a>
+                        <a href="#" aria-label="Twitter" class="social-link">𝕏</a>
+                        <a href="#" aria-label="GitHub" class="social-link">gh</a>
+                        <a href="#" aria-label="Facebook" class="social-link">f</a>
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <h4 class="footer-title">Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="team.html">Team</a></li>
+                        <li><a href="careers.html">Careers</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="#">Press</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4 class="footer-title">Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="services.html">All Solutions</a></li>
+                        <li><a href="industries.html">Industries</a></li>
+                        <li><a href="#">Case Studies</a></li>
+                        <li><a href="#">Pricing</a></li>
+                        <li><a href="#">Documentation</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4 class="footer-title">Contact</h4>
+                    <ul class="footer-info">
+                        <li><a href="mailto:info@thestackly.com">info@thestackly.com</a></li>
+                        <li><a href="tel:+919876543210">+91 9876543210</a></li>
+                        <li>MMR Complex, Chinna Thirupathi, Salem</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p class="footer-copyright">&copy; 2026 STACKLY Business Solutions. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="privacy-policy.html">Privacy Policy</a>
+                    <a href="terms-and-conditions.html">Terms of Service</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Files -->
+    <script src="js/navigation.js"></script>
+    <script src="js/animations.js"></script>
+
+    <script>
+        
+
+
+
+        // Counter animation
+        const observerOptions = {
+            threshold: 0.5
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counterElement = entry.target.querySelector('[data-counter]');
+                    if (counterElement) {
+                        const target = parseInt(counterElement.getAttribute('data-counter'));
+                        const suffix = counterElement.getAttribute('data-suffix') || '';
+                        let current = 0;
+                        const increment = target / 50;
+
+                        const counter = setInterval(() => {
+                            current += increment;
+                            if (current >= target) {
+                                counterElement.textContent = target + suffix;
+                                clearInterval(counter);
+                            } else {
+                                counterElement.textContent = Math.floor(current) + suffix;
+                            }
+                        }, 30);
+                    }
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.stat-counter').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Testimonials carousel
+        let currentTestimonial = 0;
+        const testimonialDots = document.querySelectorAll('.testimonial-dot');
+        const testimonialsTrack = document.getElementById('testimonialsTrack');
+
+        function showTestimonial(index) {
+            currentTestimonial = (index + testimonialDots.length) % testimonialDots.length;
+            testimonialDots.forEach(dot => dot.classList.remove('active'));
+            testimonialDots[currentTestimonial].classList.add('active');
+
+            const offset = -currentTestimonial * 100;
+            testimonialsTrack.style.transform = `translateX(${offset}%)`;
+        }
+
+        document.getElementById('testimonialPrev').addEventListener('click', () => {
+            showTestimonial(currentTestimonial - 1);
+        });
+
+        document.getElementById('testimonialNext').addEventListener('click', () => {
+            showTestimonial(currentTestimonial + 1);
+        });
+
+        testimonialDots.forEach((dot, index) => {
+            dot.addEventListener('click', () => showTestimonial(index));
+        });
+
+        // Auto-advance testimonials every 6 seconds
+        setInterval(() => {
+            showTestimonial(currentTestimonial + 1);
+        }, 6000);
+
+        // Clients slider infinite scroll
+        const clientsTrack = document.querySelector('.clients-track');
+        if (clientsTrack) {
+            let scrollPosition = 0;
+            setInterval(() => {
+                scrollPosition += 2;
+                clientsTrack.style.transform = `translateX(-${scrollPosition}px)`;
+
+                if (scrollPosition >= clientsTrack.scrollWidth / 2) {
+                    scrollPosition = 0;
+                }
+            }, 50);
+        }
+
+        // Homepage Hero Carousel script
+        const slides = document.querySelectorAll('.carousel-slide');
+        const dots = document.querySelectorAll('.carousel-dot');
+        let currentCarouselIndex = 0;
+        const carouselIntervalTime = 4000; // 4 seconds
+        let carouselInterval;
+
+        function showCarouselSlide(index) {
+            slides.forEach((slide, i) => {
+                if (i === index) {
+                    slide.classList.add('active');
+                    dots[i].classList.add('active');
+                } else {
+                    slide.classList.remove('active');
+                    dots[i].classList.remove('active');
+                }
+            });
+            currentCarouselIndex = index;
+        }
+
+        function nextCarouselSlide() {
+            let next = (currentCarouselIndex + 1) % slides.length;
+            showCarouselSlide(next);
+        }
+
+        function startCarouselSlideShow() {
+            carouselInterval = setInterval(nextCarouselSlide, carouselIntervalTime);
+        }
+
+        function resetCarouselSlideShow() {
+            clearInterval(carouselInterval);
+            startCarouselSlideShow();
+        }
+
+        // Dot clicks
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                showCarouselSlide(index);
+                resetCarouselSlideShow();
+            });
+        });
+
+        // Initialize
+        if (slides.length > 0) {
+            startCarouselSlideShow();
+        }
+    </script>
+</body>
+</html>
