@@ -296,10 +296,65 @@
             box-shadow: 0 20px 40px rgba(37, 99, 235, 0.2);
         }
 
-        .team-card img {
+        .team-image {
             width: 100%;
             height: 300px;
+            overflow: hidden;
+            position: relative;
+            background-color: var(--gray-200);
+        }
+
+        .team-image img {
+            width: 100%;
+            height: 100%;
             object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .team-card:hover .team-image img {
+            transform: scale(1.05);
+        }
+
+        .team-card-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.75);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+        }
+
+        .team-card:hover .team-card-overlay {
+            opacity: 1;
+        }
+
+        .team-card-social {
+            display: flex;
+            gap: 12px;
+        }
+
+        .team-card-social a {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: var(--white);
+            color: var(--dark-navy);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .team-card-social a:hover {
+            background: var(--professional-blue);
+            color: var(--white);
+            transform: translateY(-3px);
         }
 
         .team-info {
@@ -498,12 +553,16 @@
     </style>
 </head>
 <body>
-      <!-- Loading Screen -->
+        <!-- Loading Screen -->
   <div class="loading-screen">
-    <div class="loading-logo">
-      <img src="assets/logo.webp" alt="STACKLY" class="logo-icon" style="height: 56px; width: auto; vertical-align: middle; object-fit: contain;"></div>
-    <div class="loading-bar">
-      <div class="loading-bar-inner"></div>
+    <div class="loading-content">
+      <div class="loading-logo">
+        <img src="assets/logo.webp" alt="STACKLY" class="logo-icon" style="height: 56px; width: auto; vertical-align: middle; object-fit: contain;">
+      </div>
+      <div class="loading-bar">
+        <div class="loading-bar-inner"></div>
+      </div>
+      <p class="loading-text">Preparing your experience...</p>
     </div>
   </div>
 
@@ -533,6 +592,7 @@
         <a href="team.html">Team</a>
         <a href="blog.html">Blog</a>
         <a href="contact.html">Contact</a>
+        <a href="login.html" class="btn-login-nav">Login</a>
         <a href="contact.html" class="btn-nav">Get Started</a>
       </div>
       <button class="nav-toggle" aria-label="Toggle navigation">
@@ -642,7 +702,15 @@
         <h2>Meet Our Leadership Team</h2>
         <div class="team-grid">
             <div class="team-card reveal">
-                <img src="assets/leader-ceo.webp" alt="CEO - Experienced business leader">
+                <div class="team-image">
+                    <img src="assets/leader-ceo.webp" alt="CEO - Experienced business leader">
+                    <div class="team-card-overlay">
+                        <div class="team-card-social">
+                            <a href="https://linkedin.com" target="_blank" title="LinkedIn">in</a>
+                            <a href="mailto:ceo@stackly.com" title="Email">em</a>
+                        </div>
+                    </div>
+                </div>
                 <div class="team-info">
                     <h3 class="team-name">James Richardson</h3>
                     <p class="team-title">Chief Executive Officer</p>
@@ -650,7 +718,15 @@
                 </div>
             </div>
             <div class="team-card reveal">
-                <img src="assets/leader-cto.webp" alt="CTO - Technology innovation leader">
+                <div class="team-image">
+                    <img src="assets/leader-cto.webp" alt="CTO - Technology innovation leader">
+                    <div class="team-card-overlay">
+                        <div class="team-card-social">
+                            <a href="https://linkedin.com" target="_blank" title="LinkedIn">in</a>
+                            <a href="mailto:cto@stackly.com" title="Email">em</a>
+                        </div>
+                    </div>
+                </div>
                 <div class="team-info">
                     <h3 class="team-name">Sarah Chen</h3>
                     <p class="team-title">Chief Technology Officer</p>
@@ -658,7 +734,15 @@
                 </div>
             </div>
             <div class="team-card reveal">
-                <img src="assets/leader-coo.webp" alt="COO - Operations expert">
+                <div class="team-image">
+                    <img src="assets/leader-coo.webp" alt="COO - Operations expert">
+                    <div class="team-card-overlay">
+                        <div class="team-card-social">
+                            <a href="https://linkedin.com" target="_blank" title="LinkedIn">in</a>
+                            <a href="mailto:coo@stackly.com" title="Email">em</a>
+                        </div>
+                    </div>
+                </div>
                 <div class="team-info">
                     <h3 class="team-name">Michael Torres</h3>
                     <p class="team-title">Chief Operating Officer</p>
@@ -666,7 +750,15 @@
                 </div>
             </div>
             <div class="team-card reveal">
-                <img src="assets/leader-cfo.webp" alt="CFO - Finance strategist">
+                <div class="team-image">
+                    <img src="assets/leader-cfo.webp" alt="CFO - Finance strategist">
+                    <div class="team-card-overlay">
+                        <div class="team-card-social">
+                            <a href="https://linkedin.com" target="_blank" title="LinkedIn">in</a>
+                            <a href="mailto:cfo@stackly.com" title="Email">em</a>
+                        </div>
+                    </div>
+                </div>
                 <div class="team-info">
                     <h3 class="team-name">Emily Wong</h3>
                     <p class="team-title">Chief Financial Officer</p>
@@ -681,7 +773,7 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <h3 class="footer-logo">STACKLY</h3>
+                    <a href="index.html" class="footer-logo-link" style="display: inline-block; margin-bottom: 20px;"><img src="assets/logo.webp" alt="STACKLY" class="logo-icon" style="height: 38px; width: auto; vertical-align: middle; object-fit: contain;"></a>
                     <p class="footer-tagline">Transforming businesses through innovative enterprise solutions.</p>
                     <div class="footer-social">
                         <a href="#" aria-label="LinkedIn" class="social-link">in</a>

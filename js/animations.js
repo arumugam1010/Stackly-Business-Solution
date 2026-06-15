@@ -67,6 +67,12 @@ function initTypingEffect() {
     function type() {
       const currentWord = words[wordIndex];
 
+      if (currentWord === "Digital Transformation") {
+        el.classList.add('typing-small');
+      } else {
+        el.classList.remove('typing-small');
+      }
+
       if (isDeleting) {
         el.textContent = currentWord.substring(0, charIndex - 1);
         charIndex--;

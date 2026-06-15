@@ -353,6 +353,25 @@ input, textarea, select { font-family: inherit; outline: none; }
 .nav-links .btn-nav::after { display: none; }
 .nav-links .btn-nav:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(37,99,235,0.4); }
 
+.nav-links .btn-login-nav {
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: var(--white);
+  padding: 10px 24px;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: 14px;
+  background: transparent;
+  transition: var(--transition);
+}
+
+.nav-links .btn-login-nav::after { display: none; }
+.nav-links .btn-login-nav:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--cyan);
+  color: var(--cyan);
+  transform: translateY(-2px);
+}
+
 /* Dropdown */
 .nav-dropdown {
   position: relative;
@@ -1360,7 +1379,7 @@ input, textarea, select { font-family: inherit; outline: none; }
 /* ===== FOOTER ===== */
 .footer {
   background: var(--navy);
-  padding: 80px 0 0;
+  padding: 30px 0 0;
   color: rgba(255,255,255,0.7);
 }
 
@@ -1409,7 +1428,19 @@ input, textarea, select { font-family: inherit; outline: none; }
   color: var(--white);
   font-size: 16px;
   font-weight: 700;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.footer-column h4::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 40px;
+  height: 2px;
+  background-color: var(--blue);
 }
 
 .footer-column a {
@@ -2724,4 +2755,61 @@ textarea.form-control {
 .case-study-result .label {
   font-size: 12px;
   color: var(--gray);
+}
+
+/* ==========================================
+   GLOBAL PREMIUM CARD HOVER INTERACTION
+   ========================================== */
+html body .testimonial-card {
+  border: 1px solid transparent !important;
+}
+
+html body .service-card,
+html body .solution-card,
+html body .industry-card,
+html body .testimonial-card,
+html body .blog-card,
+html body .glass-card,
+html body .project-card,
+html body .team-card,
+html body .contact-info-card,
+html body .value-card,
+html body .solution-detail-card,
+html body .industry-detail-card,
+html body .benefit-card,
+html body .achievement-card,
+html body .case-study-card,
+html body .process-step,
+html body .career-item,
+html body .stat-card,
+html body .office-card,
+html body .faq-item {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important, 
+              border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important, 
+              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+html body .service-card:hover,
+html body .solution-card:hover,
+html body .industry-card:hover,
+html body .testimonial-card:hover,
+html body .blog-card:hover,
+html body .glass-card:hover,
+html body .project-card:hover,
+html body .team-card:hover,
+html body .contact-info-card:hover,
+html body .value-card:hover,
+html body .solution-detail-card:hover,
+html body .industry-detail-card:hover,
+html body .benefit-card:hover,
+html body .achievement-card:hover,
+html body .case-study-card:hover,
+html body .process-step:hover,
+html body .career-item:hover,
+html body .stat-card:hover,
+html body .office-card:hover,
+html body .faq-item:hover {
+  transform: translateY(-8px) scale(1.02) !important;
+  border-color: rgba(37, 99, 235, 0.45) !important; /* Glow border in blue */
+  box-shadow: 0 20px 40px rgba(37, 99, 235, 0.15) !important; /* Glow shadow in blue */
 }

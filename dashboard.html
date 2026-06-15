@@ -1,0 +1,2246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="STACKLY Portal Dashboard - Tailored to your active organizational workspace.">
+    <title>Workspace Dashboard | STACKLY Business Solutions</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+
+    <style>
+        :root {
+            --sidebar-width: 260px;
+            --header-height: 70px;
+            --card-bg: rgba(30, 41, 59, 0.4);
+            --border-glow: rgba(6, 182, 212, 0.15);
+        }
+
+        body {
+            background: radial-gradient(circle at top right, #111827, #070a13) !important;
+            color: #f1f5f9;
+            min-height: 100vh;
+            display: flex;
+            overflow-x: hidden;
+        }
+
+        /* Dashboard Layout */
+        .dash-sidebar {
+            width: var(--sidebar-width);
+            height: 100vh;
+            background: rgba(15, 23, 42, 0.85);
+            border-right: 1px solid rgba(255, 255, 255, 0.08);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            transition: var(--transition);
+        }
+
+        .dash-logo {
+            height: var(--header-height);
+            display: flex;
+            align-items: center;
+            padding: 0 24px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .dash-logo img {
+            height: 36px;
+            width: auto;
+            filter: drop-shadow(0 0 6px rgba(6, 182, 212, 0.3));
+        }
+
+        .user-profile-section {
+            padding: 24px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .user-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--blue), var(--cyan));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: var(--white);
+            font-size: 16px;
+            box-shadow: 0 0 10px rgba(6, 182, 212, 0.4);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .user-info {
+            overflow: hidden;
+        }
+
+        .user-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--white);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .user-role-badge {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--cyan);
+            background: rgba(6, 182, 212, 0.1);
+            padding: 2px 8px;
+            border-radius: 20px;
+            margin-top: 4px;
+            border: 1px solid rgba(6, 182, 212, 0.2);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .sidebar-menu {
+            padding: 20px 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        .sidebar-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 14px;
+            font-weight: 500;
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .sidebar-link svg {
+            width: 18px;
+            height: 18px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .sidebar-link:hover {
+            color: var(--cyan);
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .sidebar-link.active {
+            background: rgba(37, 99, 235, 0.15);
+            color: var(--white);
+            border-left: 3px solid var(--blue);
+            box-shadow: inset 5px 0 15px rgba(37, 99, 235, 0.05);
+        }
+
+        .sidebar-footer {
+            padding: 16px 12px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .btn-logout {
+            color: var(--error);
+            border: 1px solid rgba(239, 68, 68, 0.15);
+            background: rgba(239, 68, 68, 0.05);
+        }
+
+        .btn-logout:hover {
+            background: rgba(239, 68, 68, 0.15);
+            color: var(--error) !important;
+            border-color: var(--error);
+        }
+
+        /* Main Workspace Content Area */
+        .dash-main {
+            margin-left: var(--sidebar-width);
+            flex: 1;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: var(--transition);
+        }
+
+        .dash-header {
+            height: var(--header-height);
+            background: rgba(15, 23, 42, 0.4);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            position: sticky;
+            top: 0;
+            z-index: 90;
+        }
+
+        .dash-header-title h1 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--white);
+        }
+
+        .dash-header-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .dash-content {
+            padding: 40px;
+            flex: 1;
+            max-width: 1400px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        /* Dashboard Widgets / Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-md);
+            padding: 24px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--blue);
+        }
+
+        .stat-card.cyan::before { background: var(--cyan); }
+        .stat-card.purple::before { background: var(--accent); }
+        .stat-card.success::before { background: var(--success); }
+
+        .stat-card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(6, 182, 212, 0.3);
+            box-shadow: 0 10px 25px rgba(6, 182, 212, 0.05);
+        }
+
+        .stat-card-info h3 {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--gray-light);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .stat-card-value {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--white);
+            line-height: 1;
+        }
+
+        .stat-card-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: var(--radius-sm);
+            background: rgba(255, 255, 255, 0.03);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--cyan);
+        }
+
+        .stat-card-icon svg {
+            width: 24px;
+            height: 24px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+        }
+
+        /* Card panels */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+
+        .dash-panel {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-md);
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding-bottom: 16px;
+        }
+
+        .panel-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Dynamic action buttons */
+        .dash-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 18px;
+            background: linear-gradient(135deg, var(--blue), var(--cyan));
+            color: var(--white);
+            font-size: 13px;
+            font-weight: 600;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 4px 10px rgba(6, 182, 212, 0.2);
+        }
+
+        .dash-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(6, 182, 212, 0.4);
+        }
+
+        .dash-btn-outline {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .dash-btn-outline:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.3);
+            color: var(--white);
+            transform: translateY(-1px);
+        }
+
+        /* Mock data structures */
+        .dash-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .dash-table th {
+            text-align: left;
+            padding: 12px 16px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--gray-light);
+            text-transform: uppercase;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .dash-table td {
+            padding: 16px;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.8);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .dash-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .status-pill {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 2px 8px;
+            border-radius: 10px;
+        }
+
+        .status-pill.success { background: rgba(16, 185, 129, 0.15); color: var(--success); }
+        .status-pill.warning { background: rgba(245, 158, 11, 0.15); color: var(--warning); }
+        .status-pill.error { background: rgba(239, 68, 68, 0.15); color: var(--error); }
+
+        /* Mobile Hamburger & Sidebar states */
+        .dash-toggle {
+            display: none;
+            cursor: pointer;
+            background: none;
+            color: var(--white);
+        }
+
+        .dash-toggle svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        /* Logs visual console */
+        .log-console {
+            background: #080c14;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-sm);
+            padding: 16px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 12px;
+            color: #10b981;
+            height: 200px;
+            overflow-y: auto;
+            margin-top: 16px;
+        }
+
+        .log-line {
+            margin-bottom: 6px;
+            line-height: 1.4;
+        }
+
+        .log-line span.time { color: var(--gray); margin-right: 8px; }
+        .log-line span.warn { color: var(--warning); }
+        .log-line span.error { color: var(--error); }
+
+        /* Custom forms */
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .form-control-dash {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            padding: 10px 14px;
+            border-radius: var(--radius-sm);
+            font-size: 13px;
+        }
+
+        .form-control-dash:focus {
+            border-color: var(--cyan);
+        }
+
+        /* Control Center Grid and Cards */
+        .control-center-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 24px;
+            margin-top: 20px;
+        }
+
+        .role-card {
+            background: rgba(30, 41, 59, 0.45);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 32px 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .role-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            transition: all 0.4s ease;
+        }
+
+        /* Specific colors */
+        .role-card.admin-card::before { background: linear-gradient(90deg, #ef4444, #f87171); }
+        .role-card.manager-card::before { background: linear-gradient(90deg, #3b82f6, #60a5fa); }
+        .role-card.employee-card::before { background: linear-gradient(90deg, #8b5cf6, #a78bfa); }
+        .role-card.client-card::before { background: linear-gradient(90deg, #10b981, #34d399); }
+        .role-card.partner-card::before { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
+
+        .role-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .role-card.admin-card:hover { border-color: rgba(37, 99, 235, 0.4) !important; box-shadow: 0 0 30px rgba(37, 99, 235, 0.15), 0 20px 40px rgba(0,0,0,0.4); }
+        .role-card.manager-card:hover { border-color: rgba(37, 99, 235, 0.4) !important; box-shadow: 0 0 30px rgba(37, 99, 235, 0.15), 0 20px 40px rgba(0,0,0,0.4); }
+        .role-card.employee-card:hover { border-color: rgba(37, 99, 235, 0.4) !important; box-shadow: 0 0 30px rgba(37, 99, 235, 0.15), 0 20px 40px rgba(0,0,0,0.4); }
+        .role-card.client-card:hover { border-color: rgba(37, 99, 235, 0.4) !important; box-shadow: 0 0 30px rgba(37, 99, 235, 0.15), 0 20px 40px rgba(0,0,0,0.4); }
+        .role-card.partner-card:hover { border-color: rgba(37, 99, 235, 0.4) !important; box-shadow: 0 0 30px rgba(37, 99, 235, 0.15), 0 20px 40px rgba(0,0,0,0.4); }
+
+        .role-icon-wrapper {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.4s ease;
+        }
+
+        .role-card:hover .role-icon-wrapper {
+            transform: scale(1.1);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .role-card.admin-card .role-icon-wrapper { color: #f87171; }
+        .role-card.manager-card .role-icon-wrapper { color: #60a5fa; }
+        .role-card.employee-card .role-icon-wrapper { color: #a78bfa; }
+        .role-card.client-card .role-icon-wrapper { color: #34d399; }
+        .role-card.partner-card .role-icon-wrapper { color: #fbbf24; }
+
+        .role-icon-wrapper svg {
+            width: 24px;
+            height: 24px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+        }
+
+        .role-card h3 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 10px;
+        }
+
+        .role-card p {
+            font-size: 12px;
+            color: var(--gray-light);
+            line-height: 1.6;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .role-sim-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            font-size: 11px;
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+        }
+
+        .role-card:hover .role-sim-btn {
+            background: linear-gradient(135deg, var(--blue), var(--cyan));
+            border-color: transparent;
+            box-shadow: 0 4px 15px rgba(6, 182, 212, 0.3);
+        }
+
+        /* Back Button styling */
+        .btn-back-cc {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            color: var(--cyan);
+            background: rgba(6, 182, 212, 0.1);
+            border: 1px solid rgba(6, 182, 212, 0.2);
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-right: 12px;
+        }
+
+        .btn-back-cc:hover {
+            background: rgba(6, 182, 212, 0.2);
+            border-color: var(--cyan);
+            color: var(--white);
+            transform: translateX(-2px);
+        }
+
+        /* Responsive Media Queries */
+        @media (max-width: 1024px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .dash-sidebar {
+                transform: translateX(-100%);
+            }
+            .dash-sidebar.open {
+                transform: translateX(0);
+            }
+            .dash-main {
+                margin-left: 0;
+            }
+            .dash-toggle {
+                display: block;
+            }
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            .dash-header {
+                padding: 0 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <aside id="sidebar" class="dash-sidebar">
+        <div class="dash-logo">
+            <a href="index.html">
+                <img src="assets/logo.webp" alt="STACKLY">
+            </a>
+        </div>
+        
+        <div class="user-profile-section">
+            <div id="user-avatar-initial" class="user-avatar">A</div>
+            <div class="user-info">
+                <div id="user-display-name" class="user-name">Loading...</div>
+                <div id="user-role-lbl" class="user-role-badge">Guest</div>
+            </div>
+        </div>
+
+        <nav class="sidebar-menu">
+           
+            
+            <!-- Dynamic Navigation Links will go here depending on role -->
+            <div id="role-menu-items"></div>
+            
+            <div class="sidebar-link" onclick="switchView('settings')">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                <span>Settings</span>
+            </div>
+        </nav>
+
+        <div class="sidebar-footer">
+            <button class="sidebar-link btn-logout" onclick="handleLogout()">
+                <svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+                <span>Sign Out</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- Main Workspace -->
+    <main class="dash-main">
+        <!-- Top bar header -->
+        <header class="dash-header">
+            <div style="display: flex; align-items: center; gap: 16px;">
+                <button class="dash-toggle" onclick="toggleSidebar()" aria-label="Toggle menu">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+                </button>
+                <div class="dash-header-title">
+                    <h1 id="header-view-title">Portal Dashboard</h1>
+                </div>
+            </div>
+            
+            <div class="dash-header-actions">
+                <button id="btn-back-admin" class="btn-back-cc" style="display: none;" onclick="exitSimulation()">
+                    &larr; Back to Control Center
+                </button>
+                <span id="live-indicator" style="display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: var(--success); font-weight: 600;">
+                    <span style="width: 8px; height: 8px; border-radius: 50%; background-color: var(--success); display: inline-block; animation: pulse 1.5s infinite;"></span>
+                    SYSTEM ONLINE
+                </span>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <div class="dash-content">
+            <!-- Dynamic workspace render -->
+            <div id="dashboard-view-content"></div>
+            
+            <!-- Shared Settings View (Hidden by default) -->
+            <div id="settings-view-content" style="display: none;">
+                <div class="dash-panel">
+                    <div class="panel-header">
+                        <div class="panel-title">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                            Account Settings
+                        </div>
+                    </div>
+                    
+                    <form onsubmit="return false;" style="max-width: 600px;">
+                        <div class="form-row">
+                            <div>
+                                <label style="display:block; font-size:12px; margin-bottom:8px; font-weight:600;">First Name</label>
+                                <input type="text" class="form-control-dash" id="set-fname" value="John">
+                            </div>
+                            <div>
+                                <label style="display:block; font-size:12px; margin-bottom:8px; font-weight:600;">Last Name</label>
+                                <input type="text" class="form-control-dash" id="set-lname" value="Doe">
+                            </div>
+                        </div>
+                        
+                        <div style="margin-bottom:16px;">
+                            <label style="display:block; font-size:12px; margin-bottom:8px; font-weight:600;">Email Address</label>
+                            <input type="email" class="form-control-dash" id="set-email" value="admin@stackly.com">
+                        </div>
+
+                        <div style="margin-bottom:24px;">
+                            <label style="display:block; font-size:12px; margin-bottom:8px; font-weight:600;">Notification Preferences</label>
+                            <select class="form-control-dash">
+                                <option>Email Alerts (Immediate)</option>
+                                <option>Daily Digests</option>
+                                <option>Weekly Summary Only</option>
+                                <option>Mute All Notifications</option>
+                            </select>
+                        </div>
+
+                        <div style="display: flex; gap: 12px;">
+                            <button type="submit" class="dash-btn">Save Changes</button>
+                            <button type="button" class="dash-btn dash-btn-outline" onclick="switchView('dashboard')">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        let activeRole = 'Admin';
+        let currentSubView = 'main';
+
+        const rolePages = {
+            'Admin': [
+                {
+                    id: 'main',
+                    title: 'Super Admin Control Center',
+                    icon: `<svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="9"></rect><rect x="14" y="3" width="7" height="5"></rect><rect x="14" y="12" width="7" height="9"></rect><rect x="3" y="16" width="7" height="5"></rect></svg>`,
+                    html: `
+                        <p style="color:var(--gray-light); font-size:14px; margin-bottom: 24px;">
+                            Select a simulated role workspace from the control center below to monitor live user layouts.
+                        </p>
+
+                        <div class="control-center-grid">
+                            <!-- Admin Card -->
+                            <div class="role-card admin-card" onclick="simulateRole('Admin')">
+                                <div class="role-icon-wrapper">
+                                    <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="9"></rect><rect x="14" y="3" width="7" height="5"></rect><rect x="14" y="12" width="7" height="9"></rect><rect x="3" y="16" width="7" height="5"></rect></svg>
+                                </div>
+                                <h3>Admin View</h3>
+                                <p>Access complete infrastructure metrics, system settings, database backups, and server statuses.</p>
+                                <div class="role-sim-btn">Enter Admin View &rarr;</div>
+                            </div>
+
+                            <!-- Manager Card -->
+                            <div class="role-card manager-card" onclick="simulateRole('Manager')">
+                                <div class="role-icon-wrapper">
+                                    <svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                                </div>
+                                <h3>Manager View</h3>
+                                <p>Supervise project planners, view timesheet approvals, and check overall budget and run rate analytics.</p>
+                                <div class="role-sim-btn">Enter Manager View &rarr;</div>
+                            </div>
+
+                            <!-- Employee Card -->
+                            <div class="role-card employee-card" onclick="simulateRole('Employee')">
+                                <div class="role-icon-wrapper">
+                                    <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle></svg>
+                                </div>
+                                <h3>Employee View</h3>
+                                <p>Manage individual daily task logs, track deadlines, and log standard team work hours via timesheet logs.</p>
+                                <div class="role-sim-btn">Enter Employee View &rarr;</div>
+                            </div>
+
+                            <!-- Client Card -->
+                            <div class="role-card client-card" onclick="simulateRole('Client')">
+                                <div class="role-icon-wrapper">
+                                    <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                                </div>
+                                <h3>Client View</h3>
+                                <p>Review detailed project deliverable timelines, inspect unpaid invoices, and track milestone releases.</p>
+                                <div class="role-sim-btn">Enter Client View &rarr;</div>
+                            </div>
+
+                            <!-- Partner Card -->
+                            <div class="role-card partner-card" onclick="simulateRole('Partner')">
+                                <div class="role-icon-wrapper">
+                                    <svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                                </div>
+                                <h3>Partner View</h3>
+                                <p>Generate custom affiliate campaign links, view net commissions, and download resource agreements.</p>
+                                <div class="role-sim-btn">Enter Partner View &rarr;</div>
+                            </div>
+                        </div>
+                    `
+                },
+                {
+                    id: 'users',
+                    title: 'User Manager',
+                    icon: `<svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>`,
+                    html: `
+                        <div class="dash-panel">
+                            <div class="panel-header">
+                                <div class="panel-title">User Account Registry</div>
+                                <button class="dash-btn">Create User Account</button>
+                            </div>
+                            <table class="dash-table">
+                                <thead>
+                                    <tr>
+                                        <th>User</th>
+                                        <th>Department</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Sarah Jenkins</td>
+                                        <td>Product Management</td>
+                                        <td><span class="status-pill success">ACTIVE</span></td>
+                                        <td><button class="dash-btn-outline" style="padding:4px 8px; font-size:11px;">Edit</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Alex Mercer</td>
+                                        <td>Cloud Ops Dev</td>
+                                        <td><span class="status-pill success">ACTIVE</span></td>
+                                        <td><button class="dash-btn-outline" style="padding:4px 8px; font-size:11px;">Edit</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Michael Chang</td>
+                                        <td>Internal Finance</td>
+                                        <td><span class="status-pill warning">AWAY</span></td>
+                                        <td><button class="dash-btn-outline" style="padding:4px 8px; font-size:11px;">Edit</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    `
+                },
+                {
+                    id: 'servers',
+                    title: 'Servers Status',
+                    icon: `<svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>`,
+                    html: `
+                        <div class="dash-panel">
+                            <div class="panel-header">
+                                <div class="panel-title">Live Server Event Logs</div>
+                                <button class="dash-btn dash-btn-outline">Clear Terminal Logs</button>
+                            </div>
+                            <div class="log-console">
+                                <div class="log-line"><span class="time">[15:42:01]</span> <span class="success">INFO:</span> DB Connection initialized successfully on port 5432.</div>
+                                <div class="log-line"><span class="time">[15:42:05]</span> <span class="success">INFO:</span> Redis cluster cluster01 online with 3 nodes.</div>
+                                <div class="log-line"><span class="time">[15:42:12]</span> <span class="warn">WARN:</span> Node node-17 reported memory utilization at 84%. Auto-scaling rules checked.</div>
+                                <div class="log-line"><span class="time">[15:42:15]</span> <span class="success">INFO:</span> Automated cron database backup completed. File uploaded: db_backup_2026-06-15.tar.gz</div>
+                                <div class="log-line"><span class="time">[15:42:28]</span> <span class="error">ERROR:</span> API rate limit hit by host 192.168.1.104. Request block deployed.</div>
+                            </div>
+                        </div>
+                    `
+                },
+                {
+                    id: 'backups',
+                    title: 'Database backups',
+                    icon: `<svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>`,
+                    html: `
+                        <div class="dash-panel">
+                            <div class="panel-header">
+                                <div class="panel-title">Backup Log Archives</div>
+                                <button class="dash-btn">Run Backup Now</button>
+                            </div>
+                            <table class="dash-table">
+                                <thead>
+                                    <tr>
+                                        <th>Backup Name</th>
+                                        <th>Creation Date</th>
+                                        <th>Size</th>
+                                        <th>Verification</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>stackly_db_prod_20260615.tar.gz</td>
+                                        <td>June 15, 2026 12:00 PM</td>
+                                        <td>1.2 GB</td>
+                                        <td><span class="status-pill success">VERIFIED</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>stackly_db_prod_20260614.tar.gz</td>
+                                        <td>June 14, 2026 12:00 PM</td>
+                                        <td>1.18 GB</td>
+                                        <td><span class="status-pill success">VERIFIED</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>stackly_db_prod_20260613.tar.gz</td>
+                                        <td>June 13, 2026 12:00 PM</td>
+                                        <td>1.15 GB</td>
+                                        <td><span class="status-pill error">CORRUPT SIGNATURE</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    `
+                },
+                {
+                    id: 'config',
+                    title: 'System Config',
+                    icon: `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>`,
+                    html: `
+                        <div class="dash-panel">
+                            <div class="panel-header">
+                                <div class="panel-title">Global Variables & Switches</div>
+                                <button class="dash-btn">Save Configurations</button>
+                            </div>
+                            <form onsubmit="return false;" style="margin-top:20px;">
+                                <div style="margin-bottom:16px;">
+                                    <label style="display:block; font-size:12px; margin-bottom:8px; font-weight:600;">Maintenance Mode</label>
+                                    <select class="form-control-dash">
+                                        <option>Disabled (Website Live)</option>
+                                        <option>Enabled (Under Construction Page)</option>
+                                    </select>
+                                </div>
+                                <div style="margin-bottom:16px;">
+                                    <label style="display:block; font-size:12px; margin-bottom:8px; font-weight:600;">Automated DB Backups Frequency</label>
+                                    <select class="form-control-dash">
+                                        <option>Every 12 Hours</option>
+                                        <option>Daily at Midnight</option>
+                                        <option>Weekly (Sundays)</option>
+                                    </select>
+                                </div>
+                                <div style="margin-bottom:24px;">
+                                    <label style="display:block; font-size:12px; margin-bottom:8px; font-weight:600;">CDN Static Cache TTL</label>
+                                    <input type="text" class="form-control-dash" value="86400 seconds (24 Hours)">
+                                </div>
+                                <button class="dash-btn dash-btn-outline">Purge Edge CDN Cache</button>
+                            </form>
+                        </div>
+                    `
+                },
+                {
+                    id: 'security',
+                    title: 'Security Audits',
+                    icon: `<svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>`,
+                    html: `
+                        <div class="dash-panel">
+                            <div class="panel-header">
+                                <div class="panel-title">System Firewalls & Threat Logs</div>
+                                <button class="dash-btn">Generate Audit Report</button>
+                            </div>
+                            <table class="dash-table">
+                                <thead>
+                                    <tr>
+                                        <th>Origin Host</th>
+                                        <th>Target Resource</th>
+                                        <th>Incident</th>
+                                        <th>Action Taken</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>182.43.109.11</td>
+                                        <td>/api/v1/auth/login</td>
+                                        <td>Brute force (45 requests/sec)</td>
+                                        <td><span class="status-pill error">IP BLOCKED</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>92.128.2.14</td>
+                                        <td>/admin/backups</td>
+                                        <td>Unauthorized path access query</td>
+                                        <td><span class="status-pill warning">CREDENTIAL CHALLENGE</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Internal Cron</td>
+                                        <td>SSL Certificates Renew</td>
+                                        <td>LetsEncrypt Auto-renewal</td>
+                                        <td><span class="status-pill success">CERT SUCCESS</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    `
+                },
+                {
+                    id: 'licenses',
+                    title: 'License Keys',
+                    icon: `<svg viewBox="0 0 24 24"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"></path></svg>`,
+                    html: `
+                        <div class="dash-panel">
+                            <div class="panel-header">
+                                <div class="panel-title">Product License Registry</div>
+                                <button class="dash-btn">Register New Key</button>
+                            </div>
+                            <table class="dash-table">
+                                <thead>
+                                    <tr>
+                                        <th>Product Type</th>
+                                        <th>License Key</th>
+                                        <th>Client Mapping</th>
+                                        <th>State</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Stackly ERP Premium</td>
+                                        <td>STK-ERP-8832-A9X2</td>
+                                        <td>Acme Corp International</td>
+                                        <td><span class="status-pill success">ACTIVE</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Stackly CRM Analytics</td>
+                                        <td>STK-CRM-0982-L3P1</td>
+                                        <td>Global Ventures Inc.</td>
+                                        <td><span class="status-pill success">ACTIVE</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Stackly Cloud Scaling</td>
+                                        <td>STK-CLD-3721-H5T9</td>
+                                        <td>Pied Piper Co.</td>
+                                        <td><span class="status-pill error">EXPIRED</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    `
+                },
+                {
+                    id: 'activity',
+                    title: 'Activity Logs',
+                    icon: `<svg viewBox="0 0 24 24"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>`,
+                    html: `
+                        <div class="dash-panel">
+                            <div class="panel-header">
+                                <div class="panel-title">Admin Operations History Stream</div>
+                                <button class="dash-btn dash-btn-outline">Download Full CSV</button>
+                            </div>
+                            <table class="dash-table">
+                                <thead>
+                                    <tr>
+                                        <th>Operator</th>
+                                        <th>Operation Details</th>
+                                        <th>Timestamp</th>
+                                        <th>Result</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Admin (Root)</td>
+                                        <td>Purged Cloudflare Cache</td>
+                                        <td>June 15, 2026 16:12:05</td>
+                                        <td><span class="status-pill success">DONE</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Admin (Root)</td>
+                                        <td>Edited Database backup limits</td>
+                                        <td>June 15, 2026 15:32:10</td>
+                                        <td><span class="status-pill success">DONE</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Sarah J.</td>
+                                        <td>Updated Client Invoice INV-004</td>
+                                        <td>June 15, 2026 14:02:44</td>
+                                        <td><span class="status-pill success">DONE</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    `
+                }
+            ],
+            'Manager': [
+                {
+                    id: 'planner',
+                    title: 'Team Planner',
+                    icon: `<svg viewBox="0 0 24 24"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"></path><path d="M12 6v6l4 2"></path></svg>`,
+                    html: `
+                        <div class="dash-panel">
+                            <div class="panel-header">
+                                <div class="panel-title">Active Projects Status</div>
+                                <button class="dash-btn">Create New Project</button>
+                            </div>
+                            <table class="dash-table">
+                                <thead>
+                                    <tr>
+                                        <th>Project</th>
+                                        <th>Lead</th>
+                                        <th>Completion</th>
+                                        <th>Milestone Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Stackly App Refresh</td>
+                                        <td>Sarah J.</td>
+                                        <td>85%</td>
+                                        <td><span class="status-pill success">ON TRACK</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Enterprise ERP Integration</td>
+                                        <td>Alex M.</td>
+                                        <td>42%</td>
+                                        <td><span class="status-pill warning">REVIEWS</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Cloud Migration Phase 2</td>
+                                        <td>Michael C.</td>
+                                        <td>98%</td>
+                                        <td><span class="status-pill success">DELIVERED</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    `
+                },
+                {
+                    id: 'approvals',
+                    title: 'Approve Requests',
+                    icon: `<svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>`,
+                    html: `
+                        <div class="dash-panel">
+                            <div class="panel-header">
+                                <div class="panel-title">Manager Approvals Queue</div>
+                                <button class="dash-btn dash-btn-outline">Approve All</button>
+                            </div>
+                            <table class="dash-table">
+                                <thead>
+                                    <tr>
+                                        <th>Request Type</th>
+                                        <th>Employee</th>
+                                        <th>Details</th>
+                                        <th>Decision</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Expense Reimbursement</td>
+                                        <td>Daniel Radcliffe</td>
+                                        <td>$432.50 Travel</td>
+                                        <td><button class="dash-btn" style="padding: 4px 8px; font-size: 11px;">Approve</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Timesheet Approval</td>
+                                        <td>Emma Watson</td>
+                                        <td>45 Hours logged</td>
+                                        <td><button class="dash-btn" style="padding: 4px 8px; font-size: 11px;">Approve</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Annual Vacation Request</td>
+                                        <td>Rupert Grint</td>
+                                        <td>5 Business Days</td>
+                                        <td><button class="dash-btn" style="padding: 4px 8px; font-size: 11px;">Approve</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    `
+                },
+                {
+                    id: 'analytics',
+                    title: 'Project Analytics',
+                    icon: `<svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>`,
+                    html: `
+                        <div class="dash-panel">
+                            <div class="panel-header">
+                                <div class="panel-title">Analytics & Run Rates</div>
+                                <button class="dash-btn">Export Report PDF</button>
+                            </div>
+                            <table class="dash-table">
+                                <thead>
+                                    <tr>
+                                        <th>Task Type</th>
+                                        <th>Spent This Week</th>
+                                        <th>Estimated Budget</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Software Engineering</td>
+                                        <td>$12,400.00</td>
+                                        <td>$15,000.00</td>
+                                        <td><span class="status-pill success">IN BUDGET</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Infrastructure Setup</td>
+                                        <td>$8,200.00</td>
+                                        <td>$5,000.00</td>
+                                        <td><span class="status-pill error">OVER BUDGET</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>UI Mockups & Frontend</td>
+                                        <td>$4,100.00</td>
+                                        <td>$8,000.00</td>
+                                        <td><span class="status-pill success">IN BUDGET</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    `
+                },
+                {
+                    id: 'crm',
+                    title: 'Client Relations',
+                    icon: `<svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>`,
+                    html: `
+                        <div class="dash-panel">
+                            <div class="panel-header">
+                                <div class="panel-title">Key Accounts CRM Registry</div>
+                                <button class="dash-btn">Add Client Account</button>
+                            </div>
+                            <table class="dash-table">
+                                <thead>
+                                    <tr>
+                                        <th>Company</th>
+                                        <th>Main Contact</th>
+                                        <th>Project Active</th>
+                                        <th>Contract Value</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Acme Corp International</td>
+                                        <td>Sarah J. (Sarah@acme.com)</td>
+                                        <td>ERP Upgrade</td>
+                                        <td>$45,000.00</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Global Ventures Inc.</td>
+                                        <td>Mark L. (mark@gventures.com)</td>
+                                        <td>Mobile App Design</td>
+                                        <td>$28,500.00</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Pied Piper Co.</td>
+                                        <td>Richard H. (richard@piedpiper.com)</td>
+                                        <td>Cloud Backend Scaling</td>
+                                        <td>$64,000.00</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    `
+                },
+                {
+                    id: 'resources',
+                    title: 'Resource Allocator',
+                    icon: `<svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>`,
+                    html: `
+                        <div class="dash-panel">
+                            <div class="panel-header">
+                                <div class="panel-title">Employee Resource Workload</div>
+                                <button class="dash-btn">Optimize Allocation</button>
+                            </div>
+                            <table class="dash-table">
+                                <thead>
+                                    <tr>
+                                        <th>Engineer Name</th>
+                                        <th>Primary Project</th>
+                                        <th>Weekly Workload</th>
+                                        <th>Utilization</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Daniel Radcliffe</td>
+                                        <td>Stackly App Refresh</td>
+                                        <td>38 Hours</td>
+                                        <td><span class="status-pill success">OPTIMAL (95%)</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Emma Watson</td>
+                                        <td>ERP Upgrade Integration</td>
+                                        <td>44 Hours</td>
+                                        <td><span class="status-pill warning">OVERLOAD (110%)</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Rupert Grint</td>
+                                        <td>Cloud Backend Scaling</td>
+                                        <td>15 Hours</td>
+                                        <td><span class="status-pill success">UNDER-UTIL (37%)</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    `
+                },
+                {
+                    id: 'delegation',
+                    title: 'Task Delegation',
+                    icon: `<svg viewBox="0 0 24 24"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>`,
+                    html: `
+                        <div class="dash-panel" style="max-width:650px; margin:0 auto;">
+                            <div class="panel-header">
+                                <div class="panel-title">Delegate Task / Ticket</div>
+                            </div>
+                            <form onsubmit="return false;" style="margin-top:20px;">
+                                <div style="margin-bottom:16px;">
+                                    <label style="display:block; font-size:11px; margin-bottom:8px; font-weight:600;">Assignee Employee</label>
+                                    <select class="form-control-dash">
+                                        <option>Daniel Radcliffe</option>
+                                        <option>Emma Watson</option>
+                                        <option>Rupert Grint</option>
+                                    </select>
+                                </div>
+                                <div style="margin-bottom:16px;">
+                                    <label style="display:block; font-size:11px; margin-bottom:8px; font-weight:600;">Task Summary</label>
+                                    <input type="text" class="form-control-dash" value="Fix UI button glitches on the dashboard layout">
+                                </div>
+                                <div style="margin-bottom:16px;">
+                                    <label style="display:block; font-size:11px; margin-bottom:8px; font-weight:600;">Due Date</label>
+                                    <input type="date" class="form-control-dash" value="2026-06-20">
+                                </div>
+                                <button type="submit" class="dash-btn" style="width:100%; justify-content:center;">Delegate Task Card</button>
+                            </form>
+                        </div>
+                    `
+                },
+                {
+                    id: 'performance',
+                    title: 'Performance Reports',
+                    icon: `<svg viewBox="0 0 24 24"><path d="M18 20V10M12 20V4M6 20v-6"></path></svg>`,
+                    html: `
+                        <div class="dash-panel">
+                            <div class="panel-header">
+                                <div class="panel-title">Weekly Deliverables & Milestones Chart</div>
+                                <button class="dash-btn">Export Performance Excel</button>
+                            </div>
+                            <div class="stats-grid">
+                                <div class="stat-card">
+                                    <div class="stat-card-info">
+                                        <h3>Completed Milestones</h3>
+                                        <div class="stat-card-value">14 Met</div>
+                                    </div>
+                                </div>
+                                <div class="stat-card cyan">
+                                    <div class="stat-card-info">
+                                        <h3>Missed Deadlines</h3>
+                                        <div class="stat-card-value">1 Item</div>
+                                    </div>
+                                </div>
+                                <div class="stat-card success">
+                                    <div class="stat-card-info">
+                                        <h3>Team Velocity</h3>
+                                        <div class="stat-card-value">94.8%</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `
+                }
+            ],
+            'Employee': [
+                {
+                    id: 'tasks',
+                    title: 'Assigned Tasks',
+                    icon: `<svg viewBox="0 0 24 24"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>`,
+                    html: `
+                        <div class="dash-panel">
+                            <div class="panel-header">
+                                <div class="panel-title">My Daily Task List</div>
+                                <button class="dash-btn">Create Task Card</button>
+                            </div>
+                            <table class="dash-table">
+                                <thead>
+                                    <tr>
+                                        <th>Task Name</th>
+                                        <th>Project File</th>
+                                        <th>Deadline</th>
+                                        <th>Operation</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Update landing page navbar buttons</td>
+                                        <td>Stackly App Refresh</td>
+                                        <td>Today (5:00 PM)</td>
+                                        <td><button class="dash-btn" style="padding: 4px 8px; font-size: 11px;">Complete Task</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Review database replication schema</td>
+                                        <td>ERP Integration</td>
+                                        <td>June 18, 2026</td>
+                                        <td><button class="dash-btn" style="padding: 4px 8px; font-size: 11px;">Complete Task</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Write integration tests suite</td>
+                                        <td>ERP Integration</td>
+                                        <td>June 22, 2026</td>
+                                        <td><button class="dash-btn-outline" style="padding: 4px 8px; font-size: 11px;">Start Work</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    `
+                },
+                {
+                    id: 'logger',
+                    title: 'Log Hours / Timesheet',
+                    icon: `<svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>`,
+                    html: `
+                        <div class="dash-panel" style="max-width: 700px; margin: 0 auto;">
+                            <div class="panel-header">
+                                <div class="panel-title">Time Logger Widget</div>
+                            </div>
+                            <form onsubmit="return false;">
+                                <div class="form-row">
+                                    <div>
+                                        <label style="display:block; font-size:11px; margin-bottom:8px;">Project</label>
+                                        <select class="form-control-dash">
+                                            <option>Stackly App Refresh</option>
+                                            <option>Enterprise ERP Integration</option>
+                                            <option>Cloud Migration Phase 2</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label style="display:block; font-size:11px; margin-bottom:8px;">Hours Logged</label>
+                                        <input type="number" class="form-control-dash" placeholder="e.g. 8" min="1" max="24">
+                                    </div>
+                                </div>
+                                <div style="margin-bottom:16px;">
+                                    <label style="display:block; font-size:11px; margin-bottom:8px;">Accomplishments / Notes</label>
+                                    <textarea class="form-control-dash" rows="3" placeholder="Explain what you developed or fixed..."></textarea>
+                                </div>
+                                <button type="submit" class="dash-btn" style="width:100%; justify-content:center;">Submit Log entry</button>
+                            </form>
+                        </div>
+                    `
+                },
+                {
+                    id: 'files',
+                    title: 'Project Files',
+                    icon: `<svg viewBox="0 0 24 24"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>`,
+                    html: `
+                        <div class="dash-panel">
+                            <div class="panel-header">
+                                <div class="panel-title">Repository Files explorer</div>
+                                <button class="dash-btn">Upload File</button>
+                            </div>
+                            <table class="dash-table">
+                                <thead>
+                                    <tr>
+                                        <th>File Name</th>
+                                        <th>Size</th>
+                                        <th>Kind</th>
+                                        <th>Download</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>stackly_blueprint_v2.pdf</td>
+                                        <td>4.8 MB</td>
+                                        <td>Architecture Doc</td>
+                                        <td><button class="dash-btn-outline" style="padding: 4px 8px; font-size: 11px;">Download</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>db_schema_final.png</td>
+                                        <td>1.2 MB</td>
+                                        <td>Image Asset</td>
+                                        <td><button class="dash-btn-outline" style="padding: 4px 8px; font-size: 11px;">Download</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>api_integration_guide.md</td>
+                                        <td>24 KB</td>
+                                        <td>Markdown Text</td>
+                                        <td><button class="dash-btn-outline" style="padding: 4px 8px; font-size: 11px;">Download</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    `
+                },
+                {
+                    id: 'leave',
+                    title: 'Leave Application',
+                    icon: `<svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>`,
+                    html: `
+                        <div class="dash-panel" style="max-width: 600px; margin: 0 auto;">
+                            <div class="panel-header">
+                                <div class="panel-title">Apply for Leave / Time Off</div>
+                            </div>
+                            <form onsubmit="return false;" style="margin-top:20px;">
+                                <div class="form-row">
+                                    <div>
+                                        <label style="display:block; font-size:11px; margin-bottom:8px;">Start Date</label>
+                                        <input type="date" class="form-control-dash" value="2026-07-01">
+                                    </div>
+                                    <div>
+                                        <label style="display:block; font-size:11px; margin-bottom:8px;">End Date</label>
+                                        <input type="date" class="form-control-dash" value="2026-07-05">
+                                    </div>
+                                </div>
+                                <div style="margin-bottom:16px;">
+                                    <label style="display:block; font-size:11px; margin-bottom:8px;">Reason / Comments</label>
+                                    <textarea class="form-control-dash" rows="3" placeholder="Explain your time-off request..."></textarea>
+                                </div>
+                                <button type="submit" class="dash-btn" style="width:100%; justify-content:center;">Apply for Time-Off</button>
+                            </form>
+                        </div>
+                    `
+                },
+                {
+                    id: 'kpi',
+                    title: 'My Performance',
+                    icon: `<svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon></svg>`,
+                    html: `
+                        <div class="dash-panel">
+                            <div class="panel-header">
+                                <div class="panel-title">Personal KPI Velocity Metrics</div>
+                            </div>
+                            <div class="stats-grid">
+                                <div class="stat-card">
+                                    <div class="stat-card-info">
+                                        <h3>Tasks Completed</h3>
+                                        <div class="stat-card-value">28 Tasks</div>
+                                    </div>
+                                </div>
+                                <div class="stat-card cyan">
+                                    <div class="stat-card-info">
+                                        <h3>Sprint Points Met</h3>
+                                        <div class="stat-card-value">42 Points</div>
+                                    </div>
+                                </div>
+                                <div class="stat-card success">
+                                    <div class="stat-card-info">
+                                        <h3>On-Time Ratio</h3>
+                                        <div class="stat-card-value">96.4%</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `
+                },
+                {
+                    id: 'chat',
+                    title: 'Team Chat',
+                    icon: `<svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>`,
+                    html: `
+                        <div class="dash-panel">
+                            <div class="panel-header">
+                                <div class="panel-title">Mock Collaboration Feed</div>
+                                <button class="dash-btn">Open Chat App</button>
+                            </div>
+                            <div class="log-console" style="height: 250px;">
+                                <div class="log-line"><span class="time">[16:10]</span> <b>Sarah Jenkins:</b> Hey team, did we push the navbar updates?</div>
+                                <div class="log-line"><span class="time">[16:12]</span> <b>Emma Watson:</b> Yes! navbar toggles are live.</div>
+                                <div class="log-line"><span class="time">[16:15]</span> <b>Daniel Radcliffe:</b> I logged my weekly hours. Check them out!</div>
+                                <div class="log-line"><span class="time">[16:20]</span> <b>Alex Mercer:</b> Database backup verified. Everything green.</div>
+                            </div>
+                        </div>
+                    `
+                },
+                {
+                    id: 'training',
+                    title: 'Training Resources',
+                    icon: `<svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>`,
+                    html: `
+                        <div class="dash-panel">
+                            <div class="panel-header">
+                                <div class="panel-title">Employee Guideline Documents</div>
+                            </div>
+                            <table class="dash-table">
+                                <thead>
+                                    <tr>
+                                        <th>Document Title</th>
+                                        <th>Version</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Stackly Internal Standards Guideline.pdf</td>
+                                        <td>v2.1</td>
+                                        <td><button class="dash-btn" style="padding: 4px 8px; font-size: 11px;">Open PDF</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Git Branching Strategy Guidelines.docx</td>
+                                        <td>v1.0</td>
+                                        <td><button class="dash-btn" style="padding: 4px 8px; font-size: 11px;">Open Doc</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Securing Personal Keys Cheat-sheet.pdf</td>
+                                        <td>v3.2</td>
+                                        <td><button class="dash-btn" style="padding: 4px 8px; font-size: 11px;">Open PDF</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    `
+                }
+            ],
+            'Client': [
+                {
+                    id: 'deliverables',
+                    title: 'Project Deliverables',
+                    icon: `<svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>`,
+                    html: `
+                        <div class="dash-panel">
+                            <div class="panel-header">
+                                <div class="panel-title">Project Delivery Timeline</div>
+                                <button class="dash-btn">Submit Project Feedback</button>
+                            </div>
+                            <table class="dash-table">
+                                <thead>
+                                    <tr>
+                                        <th>Milestone Name</th>
+                                        <th>Planned Target</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>System Architecture blueprint design</td>
+                                        <td>May 10, 2026</td>
+                                        <td><span class="status-pill success">APPROVED</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Database and API setup</td>
+                                        <td>May 28, 2026</td>
+                                        <td><span class="status-pill success">APPROVED</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>User portal custom dashboards styling</td>
+                                        <td>June 15, 2026</td>
+                                        <td><span class="status-pill warning">UNDER REVIEW</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Product Launch & Final Release</td>
+                                        <td>July 20, 2026</td>
+                                        <td><span class="status-pill error">PENDING DEPS</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    `
+                },
+                {
+                    id: 'billing',
+                    title: 'Billing & Invoices',
+                    icon: `<svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>`,
+                    html: `
+                        <div class="dash-panel">
+                            <div class="panel-header">
+                                <div class="panel-title">Pending Project Invoices</div>
+                                <button class="dash-btn">Pay Selected Invoices</button>
+                            </div>
+                            <table class="dash-table">
+                                <thead>
+                                    <tr>
+                                        <th>Invoice #</th>
+                                        <th>Scope</th>
+                                        <th>Amount</th>
+                                        <th>State</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>INV-2026-004</td>
+                                        <td>Setup & Framework deployment</td>
+                                        <td>$4,500.00</td>
+                                        <td><span class="status-pill success">PAID</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>INV-2026-008</td>
+                                        <td>Database and API setup completion</td>
+                                        <td>$4,500.00</td>
+                                        <td><span class="status-pill success">PAID</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>INV-2026-012</td>
+                                        <td>Custom dashboard design milestone</td>
+                                        <td>$6,400.00</td>
+                                        <td><span class="status-pill warning">UNPAID</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    `
+                },
+                {
+                    id: 'support',
+                    title: 'Support Tickets',
+                    icon: `<svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>`,
+                    html: `
+                        <div class="dash-panel" style="max-width: 600px; margin: 0 auto;">
+                            <div class="panel-header">
+                                <div class="panel-title">Submit Support Ticket</div>
+                            </div>
+                            <form onsubmit="return false;" style="margin-top:20px;">
+                                <div style="margin-bottom:16px;">
+                                    <label style="display:block; font-size:11px; margin-bottom:8px;">Ticket Title</label>
+                                    <input type="text" class="form-control-dash" placeholder="e.g. Broken links on User Manager page">
+                                </div>
+                                <div style="margin-bottom:16px;">
+                                    <label style="display:block; font-size:11px; margin-bottom:8px;">Severity Level</label>
+                                    <select class="form-control-dash">
+                                        <option>Low (Cosmetic glitch)</option>
+                                        <option>Medium (Feature broken, workaround exists)</option>
+                                        <option>High (Blocked completely)</option>
+                                    </select>
+                                </div>
+                                <div style="margin-bottom:16px;">
+                                    <label style="display:block; font-size:11px; margin-bottom:8px;">Description</label>
+                                    <textarea class="form-control-dash" rows="3" placeholder="Provide detail regarding your issue..."></textarea>
+                                </div>
+                                <button class="dash-btn" style="width:100%; justify-content:center;">Submit Ticket</button>
+                            </form>
+                        </div>
+                    `
+                },
+                {
+                    id: 'docs_share',
+                    title: 'Document Share',
+                    icon: `<svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.4 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>`,
+                    html: `
+                        <div class="dash-panel">
+                            <div class="panel-header">
+                                <div class="panel-title">Shared Project Resources</div>
+                            </div>
+                            <table class="dash-table">
+                                <thead>
+                                    <tr>
+                                        <th>File Name</th>
+                                        <th>Size</th>
+                                        <th>Uploaded Date</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>stackly_corporate_agreement_signed.pdf</td>
+                                        <td>12.4 MB</td>
+                                        <td>May 02, 2026</td>
+                                        <td><button class="dash-btn" style="padding: 4px 8px; font-size: 11px;">Download Contract</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>UI_UX_style_guide_assets.zip</td>
+                                        <td>45.8 MB</td>
+                                        <td>May 15, 2026</td>
+                                        <td><button class="dash-btn" style="padding: 4px 8px; font-size: 11px;">Download ZIP</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Database_migration_report.pdf</td>
+                                        <td>2.4 MB</td>
+                                        <td>June 01, 2026</td>
+                                        <td><button class="dash-btn" style="padding: 4px 8px; font-size: 11px;">Download Report</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    `
+                },
+                {
+                    id: 'team_contact',
+                    title: 'Team Contacts',
+                    icon: `<svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle></svg>`,
+                    html: `
+                        <div class="dash-panel">
+                            <div class="panel-header">
+                                <div class="panel-title">Assigned Project Team Contacts</div>
+                            </div>
+                            <table class="dash-table">
+                                <thead>
+                                    <tr>
+                                        <th>Full Name</th>
+                                        <th>Role Assigned</th>
+                                        <th>Email Address</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Sarah Jenkins</td>
+                                        <td>Lead Project Manager</td>
+                                        <td>sarah@stackly.com</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Emma Watson</td>
+                                        <td>Senior Frontend Engineer</td>
+                                        <td>emma@stackly.com</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Daniel Radcliffe</td>
+                                        <td>Senior Database Engineer</td>
+                                        <td>daniel@stackly.com</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    `
+                },
+                {
+                    id: 'feedback',
+                    title: 'Feedback Portal',
+                    icon: `<svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>`,
+                    html: `
+                        <div class="dash-panel" style="max-width: 600px; margin: 0 auto;">
+                            <div class="panel-header">
+                                <div class="panel-title">Submit Feedback / Recommendations</div>
+                            </div>
+                            <form onsubmit="return false;" style="margin-top:20px;">
+                                <div style="margin-bottom:16px;">
+                                    <label style="display:block; font-size:11px; margin-bottom:8px;">Milestone Reviewed</label>
+                                    <select class="form-control-dash">
+                                        <option>System Architecture blueprint design</option>
+                                        <option>Database and API setup</option>
+                                        <option>User portal custom dashboards styling</option>
+                                    </select>
+                                </div>
+                                <div style="margin-bottom:16px;">
+                                    <label style="display:block; font-size:11px; margin-bottom:8px;">Rating Score (1-10)</label>
+                                    <input type="number" class="form-control-dash" min="1" max="10" value="9">
+                                </div>
+                                <div style="margin-bottom:16px;">
+                                    <label style="display:block; font-size:11px; margin-bottom:8px;">Critiques / Reviews</label>
+                                    <textarea class="form-control-dash" rows="3" placeholder="Provide details regarding delivery rating..."></textarea>
+                                </div>
+                                <button class="dash-btn" style="width:100%; justify-content:center;">Submit Feedback</button>
+                            </form>
+                        </div>
+                    `
+                },
+                {
+                    id: 'brief',
+                    title: 'Project Brief',
+                    icon: `<svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon></svg>`,
+                    html: `
+                        <div class="dash-panel" style="max-width: 750px; margin: 0 auto;">
+                            <div class="panel-header">
+                                <div class="panel-title">Original Project Scope Brief</div>
+                            </div>
+                            <h3 style="font-size:14px; margin-bottom:10px;">Objective & Goals</h3>
+                            <p style="font-size:12px; line-height:1.6; color:var(--gray-light); margin-bottom:20px;">
+                                Build a responsive, high-performance web dashboard system providing user roles with custom sidebar menus. The landing pages and portals must integrate glassmorphism elements, CSS animations, and client-side page validation.
+                            </p>
+                            <h3 style="font-size:14px; margin-bottom:10px;">Security & Compliance Requirements</h3>
+                            <p style="font-size:12px; line-height:1.6; color:var(--gray-light); margin-bottom:20px;">
+                                Ensure all action buttons within the panels redirect unauthenticated elements and dynamic views to 404.html to simulate sandboxing constraint parameters.
+                            </p>
+                            <button class="dash-btn dash-btn-outline">Open Full Statement of Work (SOW)</button>
+                        </div>
+                    `
+                }
+            ],
+            'Partner': [
+                {
+                    id: 'links',
+                    title: 'Affiliate Links',
+                    icon: `<svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>`,
+                    html: `
+                        <div class="dash-panel" style="max-width: 600px; margin: 0 auto;">
+                            <div class="panel-header">
+                                <div class="panel-title">Campaign Link Generator</div>
+                                <button class="dash-btn">Create Custom Link</button>
+                            </div>
+                            <form onsubmit="return false;" style="margin-top:16px;">
+                                <div style="margin-bottom:16px;">
+                                    <label style="display:block; font-size:11px; margin-bottom:8px;">Select Landing Page</label>
+                                    <select class="form-control-dash">
+                                        <option>Homepage (Stackly Main)</option>
+                                        <option>Services Suite Overview</option>
+                                        <option>Contact/Inquiry Form Page</option>
+                                    </select>
+                                </div>
+                                <div style="margin-bottom:16px;">
+                                    <label style="display:block; font-size:11px; margin-bottom:8px;">Referral Campaign Code (Optional)</label>
+                                    <input type="text" class="form-control-dash" value="stackly_partner_johndoe">
+                                </div>
+                                <button class="dash-btn" style="width:100%; justify-content:center;">Generate Referral URL</button>
+                            </form>
+                        </div>
+                    `
+                },
+                {
+                    id: 'commissions',
+                    title: 'My Commissions',
+                    icon: `<svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>`,
+                    html: `
+                        <div class="dash-panel">
+                            <div class="panel-header">
+                                <div class="panel-title">Commission payout tracking</div>
+                                <button class="dash-btn dash-btn-outline">Request payout transfer</button>
+                            </div>
+                            <table class="dash-table">
+                                <thead>
+                                    <tr>
+                                        <th>Payout Period</th>
+                                        <th>Total Conversions</th>
+                                        <th>Net Amount</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>May 1 - May 31, 2026</td>
+                                        <td>42 referrers</td>
+                                        <td>$3,200.00</td>
+                                        <td><span class="status-pill success">PAID</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>April 1 - April 30, 2026</td>
+                                        <td>35 referrers</td>
+                                        <td>$2,750.00</td>
+                                        <td><span class="status-pill success">PAID</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>June 1 - June 15, 2026</td>
+                                        <td>28 referrers</td>
+                                        <td>$2,300.00</td>
+                                        <td><span class="status-pill warning">PROCESSING</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    `
+                },
+                {
+                    id: 'docs',
+                    title: 'Partner Docs',
+                    icon: `<svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.4 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>`,
+                    html: `
+                        <div class="dash-panel">
+                            <div class="panel-header">
+                                <div class="panel-title">Partner Resource Directory</div>
+                            </div>
+                            <table class="dash-table">
+                                <thead>
+                                    <tr>
+                                        <th>Agreement / Doc</th>
+                                        <th>Version</th>
+                                        <th>Last Updated</th>
+                                        <th>Operation</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Affiliate Program terms & Policies.pdf</td>
+                                        <td>v3.4</td>
+                                        <td>Jan 12, 2026</td>
+                                        <td><button class="dash-btn" style="padding:4px 8px; font-size:11px;">Download PDF</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Co-Marketing Guidelines.pdf</td>
+                                        <td>v1.2</td>
+                                        <td>Feb 20, 2026</td>
+                                        <td><button class="dash-btn" style="padding:4px 8px; font-size:11px;">Download PDF</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>API Integration Guidelines.docx</td>
+                                        <td>v2.0</td>
+                                        <td>Mar 05, 2026</td>
+                                        <td><button class="dash-btn" style="padding:4px 8px; font-size:11px;">Download DOCX</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    `
+                },
+                {
+                    id: 'banners',
+                    title: 'Promo Banners',
+                    icon: `<svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>`,
+                    html: `
+                        <div class="dash-panel">
+                            <div class="panel-header">
+                                <div class="panel-title">Marketing Banners downloads</div>
+                            </div>
+                            <table class="dash-table">
+                                <thead>
+                                    <tr>
+                                        <th>Asset Preview</th>
+                                        <th>Dimensions</th>
+                                        <th>Format</th>
+                                        <th>Download</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Corporate Stackly Banner (Dark mode)</td>
+                                        <td>1200 x 630</td>
+                                        <td>PNG Image</td>
+                                        <td><button class="dash-btn" style="padding: 4px 8px; font-size: 11px;">Get Asset Link</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Sidebar Affiliates Ad (Cyber Theme)</td>
+                                        <td>300 x 250</td>
+                                        <td>WebP Image</td>
+                                        <td><button class="dash-btn" style="padding: 4px 8px; font-size: 11px;">Get Asset Link</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Email Newsletter Header</td>
+                                        <td>600 x 150</td>
+                                        <td>GIF Image</td>
+                                        <td><button class="dash-btn" style="padding: 4px 8px; font-size: 11px;">Get Asset Link</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    `
+                },
+                {
+                    id: 'referrals',
+                    title: 'Referrals List',
+                    icon: `<svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle></svg>`,
+                    html: `
+                        <div class="dash-panel">
+                            <div class="panel-header">
+                                <div class="panel-title">Registered Leads generated</div>
+                            </div>
+                            <table class="dash-table">
+                                <thead>
+                                    <tr>
+                                        <th>Referral ID</th>
+                                        <th>Signup Date</th>
+                                        <th>Purchase Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>REF-8832-A</td>
+                                        <td>May 10, 2026</td>
+                                        <td><span class="status-pill success">CONVERTED (ERP Purchase)</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>REF-0982-L</td>
+                                        <td>May 22, 2026</td>
+                                        <td><span class="status-pill success">CONVERTED (CRM Package)</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>REF-3721-H</td>
+                                        <td>June 12, 2026</td>
+                                        <td><span class="status-pill warning">LEAD CHALLENGE (In Discussion)</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    `
+                },
+                {
+                    id: 'payout_set',
+                    title: 'Payout Settings',
+                    icon: `<svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>`,
+                    html: `
+                        <div class="dash-panel" style="max-width: 600px; margin: 0 auto;">
+                            <div class="panel-header">
+                                <div class="panel-title">Payout accounts routing configurations</div>
+                            </div>
+                            <form onsubmit="return false;" style="margin-top:20px;">
+                                <div style="margin-bottom:16px;">
+                                    <label style="display:block; font-size:11px; margin-bottom:8px;">Preferred Payment Mode</label>
+                                    <select class="form-control-dash">
+                                        <option>Stripe Connect Express Account</option>
+                                        <option>Direct Bank Wire Routing</option>
+                                        <option>PayPal Business Portal</option>
+                                    </select>
+                                </div>
+                                <div style="margin-bottom:16px;">
+                                    <label style="display:block; font-size:11px; margin-bottom:8px;">Beneficiary Account / Email</label>
+                                    <input type="text" class="form-control-dash" value="johndoe_payouts@gmail.com">
+                                </div>
+                                <button class="dash-btn" style="width:100%; justify-content:center;">Update Payout routing</button>
+                            </form>
+                        </div>
+                    `
+                },
+                {
+                    id: 'guide',
+                    title: 'Marketing Guide',
+                    icon: `<svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon></svg>`,
+                    html: `
+                        <div class="dash-panel" style="max-width: 700px; margin: 0 auto;">
+                            <div class="panel-header">
+                                <div class="panel-title">Affiliate Promotion tutorial guides</div>
+                            </div>
+                            <h3 style="font-size:13px; margin-bottom:8px;">1. Best Promotion channels</h3>
+                            <p style="font-size:12px; line-height:1.6; color:var(--gray-light); margin-bottom:16px;">
+                                Share your custom generated URLs in developer newsletters, tech blogs, and corporate software recommendations directories.
+                            </p>
+                            <h3 style="font-size:13px; margin-bottom:8px;">2. Visual standards compliance</h3>
+                            <p style="font-size:12px; line-height:1.6; color:var(--gray-light); margin-bottom:20px;">
+                                Do not alter the logo aspect ratios or color palettes from the branding files download list.
+                            </p>
+                            <button class="dash-btn dash-btn-outline">Open Promotion Rules & Guidelines PDF</button>
+                        </div>
+                    `
+                }
+            ]
+        };
+
+        // Check Session state
+        document.addEventListener('DOMContentLoaded', () => {
+            const isLoggedIn = localStorage.getItem('is_logged_in');
+            if (!isLoggedIn) {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            activeRole = localStorage.getItem('active_role') || 'Admin';
+            const userName = localStorage.getItem('user_name') || 'Administrator';
+            const userEmail = localStorage.getItem('user_email') || 'admin@stackly.com';
+
+            // Fill header info
+            document.getElementById('user-display-name').innerText = userName;
+            document.getElementById('user-avatar-initial').innerText = userName.charAt(0).toUpperCase();
+            document.getElementById('user-role-lbl').innerText = activeRole;
+            document.getElementById('set-fname').value = userName.split(' ')[0] || userName;
+            document.getElementById('set-lname').value = userName.split(' ')[1] || '';
+            document.getElementById('set-email').value = userEmail;
+
+            // Load Workspace
+            loadRoleWorkspace(activeRole);
+
+            // Bind Global Click Interceptor (The 404 requirement)
+            // "dashboard page ulla irrukura entha button click panalum 404 page ku ponum"
+            // Except: Logout, sidebar link triggers, hamburger, simulation controls.
+            document.addEventListener('click', (e) => {
+                const buttonOrLink = e.target.closest('button, .dash-btn, .dash-btn-outline, a[role="button"]');
+                if (buttonOrLink) {
+                    // Check if it's the signout button or hamburger menu toggle or settings view switch triggers
+                    if (buttonOrLink.classList.contains('btn-logout') || 
+                        buttonOrLink.classList.contains('dash-toggle') || 
+                        buttonOrLink.classList.contains('sidebar-link') ||
+                        buttonOrLink.classList.contains('btn-back-cc') ||
+                        (buttonOrLink.getAttribute('onclick') && (
+                            buttonOrLink.getAttribute('onclick').includes('switchView') ||
+                            buttonOrLink.getAttribute('onclick').includes('toggleSidebar') ||
+                            buttonOrLink.getAttribute('onclick').includes('handleLogout') ||
+                            buttonOrLink.getAttribute('onclick').includes('simulateRole') ||
+                            buttonOrLink.getAttribute('onclick').includes('exitSimulation')
+                        ))) {
+                        return; // Let system menus/tabs/simulation function
+                    }
+                    // For any action button inside a view, send to 404 page
+                    e.preventDefault();
+                    window.location.href = '404.html';
+                }
+            });
+        });
+
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('open');
+        }
+
+        function switchView(viewName) {
+            const dashboardView = document.getElementById('dashboard-view-content');
+            const settingsView = document.getElementById('settings-view-content');
+            const links = document.querySelectorAll('.sidebar-link');
+            
+            links.forEach(l => l.classList.remove('active'));
+
+            if (viewName === 'settings') {
+                dashboardView.style.display = 'none';
+                settingsView.style.display = 'block';
+                document.getElementById('header-view-title').innerText = 'System Settings';
+                
+                // Highlight settings link in sidebar
+                const settingsBtn = Array.from(links).find(l => l.getAttribute('onclick').includes('settings'));
+                if (settingsBtn) settingsBtn.classList.add('active');
+            } else {
+                dashboardView.style.display = 'block';
+                settingsView.style.display = 'none';
+                
+                // Render subview
+                const pages = rolePages[activeRole];
+                const page = pages.find(p => p.id === viewName) || pages[0];
+                dashboardView.innerHTML = page.html;
+                document.getElementById('header-view-title').innerText = page.title;
+                currentSubView = page.id;
+
+                // Highlight correct link in sidebar
+                const activeBtn = Array.from(links).find(l => l.getAttribute('data-view-id') === page.id);
+                if (activeBtn) activeBtn.classList.add('active');
+            }
+
+            // Close sidebar on mobile after clicking
+            document.getElementById('sidebar').classList.remove('open');
+        }
+
+        function handleLogout() {
+            localStorage.clear();
+            window.location.href = 'login.html';
+        }
+
+        function loadRoleWorkspace(role) {
+            const menuContainer = document.getElementById('role-menu-items');
+            
+            let sidebarLinks = '';
+            rolePages[role].forEach((page, idx) => {
+                sidebarLinks += `
+                    <div class="sidebar-link ${idx === 0 ? 'active' : ''}" onclick="switchView('${page.id}')" data-view-id="${page.id}">
+                        ${page.icon}
+                        <span>${page.title}</span>
+                    </div>
+                `;
+            });
+
+            menuContainer.innerHTML = sidebarLinks;
+            
+            // Render the initial (first) view
+            switchView(rolePages[role][0].id);
+        }
+
+        function simulateRole(role) {
+            activeRole = role;
+            loadRoleWorkspace(role);
+            
+            // Show role simulation state in badge
+            const actualRole = localStorage.getItem('active_role') || 'Admin';
+            document.getElementById('user-role-lbl').innerText = `Simulating ${role}`;
+            
+            // Show the Back to Control Center button
+            document.getElementById('btn-back-admin').style.display = 'inline-flex';
+        }
+
+        function exitSimulation() {
+            const actualRole = localStorage.getItem('active_role') || 'Admin';
+            activeRole = actualRole;
+            loadRoleWorkspace(actualRole);
+            
+            // Restore regular badge role label
+            document.getElementById('user-role-lbl').innerText = actualRole;
+            
+            // Hide the Back to Control Center button
+            document.getElementById('btn-back-admin').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

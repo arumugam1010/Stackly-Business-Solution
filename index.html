@@ -163,61 +163,6 @@
             gap: 32px;
         }
 
-        /* Loading Screen */
-        .loading-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, var(--dark-navy) 0%, #1a2744 100%);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            flex-direction: column;
-        }
-
-        .loading-content {
-            text-align: center;
-        }
-
-        .loading-logo {
-            font-size: 48px;
-            font-weight: 800;
-            color: var(--white);
-            margin-bottom: 32px;
-            letter-spacing: -1px;
-        }
-
-        .loading-bar {
-            width: 200px;
-            height: 4px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 2px;
-            margin-bottom: 24px;
-            overflow: hidden;
-        }
-
-        .loading-progress {
-            height: 100%;
-            background: linear-gradient(90deg, var(--cyan-accent), var(--professional-blue));
-            width: 0%;
-            animation: loading-progress 1.5s ease-in-out forwards;
-        }
-
-        @keyframes loading-progress {
-            0% { width: 0%; }
-            80% { width: 85%; }
-            100% { width: 100%; }
-        }
-
-        .loading-text {
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 13px;
-            letter-spacing: 1px;
-        }
-
         
 
         /* Hero Section */
@@ -237,6 +182,48 @@
             display: inline-block;
             min-height: 1.2em;
             vertical-align: bottom;
+            transition: font-size 0.2s ease;
+        }
+
+        .hero-title span.text-cyan.typing-small {
+            font-size: 0.8em;
+        }
+
+        .hero-glass-card.card-primary {
+            position: relative;
+            width: 85%;
+            margin-right: auto;
+            margin-left: 0;
+            z-index: 2;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .hero-glass-card.card-secondary {
+            position: relative;
+            width: 85%;
+            margin-left: auto;
+            margin-right: 0;
+            margin-top: -50px;
+            z-index: 1;
+            background: rgba(15, 23, 42, 0.4);
+            border: 1px solid rgba(6, 182, 212, 0.15);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Hovering highlights card and brings it to front */
+        .hero-glass-card.card-primary:hover,
+        .hero-glass-card.card-secondary:hover {
+            z-index: 10;
+            transform: translateY(-8px) scale(1.04);
+            border-color: rgba(37, 99, 235, 0.45) !important;
+            box-shadow: 0 25px 50px rgba(37, 99, 235, 0.25) !important;
+        }
+
+        /* Dim the non-hovered card for focus effect */
+        .hero-illustration:hover .hero-glass-card:not(:hover) {
+            opacity: 0.5;
+            transform: scale(0.96);
         }
 
         .hero-bg-shapes {
@@ -944,6 +931,49 @@
             height: 280px;
             overflow: hidden;
             background-color: var(--gray-200);
+            position: relative;
+        }
+
+        .team-card-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.75);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+        }
+
+        .team-card:hover .team-card-overlay {
+            opacity: 1;
+        }
+
+        .team-card-social {
+            display: flex;
+            gap: 12px;
+        }
+
+        .team-card-social a {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: var(--white);
+            color: var(--dark-navy);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .team-card-social a:hover {
+            background: var(--professional-blue);
+            color: var(--white);
+            transform: translateY(-3px);
         }
 
         .team-image img {
@@ -1245,11 +1275,12 @@
     </style>
 </head>
 <body>
-      <!-- Loading Screen -->
+        <!-- Loading Screen -->
   <div class="loading-screen">
     <div class="loading-content">
       <div class="loading-logo">
-        <img src="assets/logo.webp" alt="STACKLY" class="logo-icon" style="height: 56px; width: auto; vertical-align: middle; object-fit: contain;"></div>
+        <img src="assets/logo.webp" alt="STACKLY" class="logo-icon" style="height: 56px; width: auto; vertical-align: middle; object-fit: contain;">
+      </div>
       <div class="loading-bar">
         <div class="loading-bar-inner"></div>
       </div>
@@ -1282,6 +1313,7 @@
         <a href="team.html">Team</a>
         <a href="blog.html">Blog</a>
         <a href="contact.html">Contact</a>
+        <a href="login.html" class="btn-login-nav">Login</a>
         <a href="contact.html" class="btn-nav">Get Started</a>
       </div>
       <button class="nav-toggle" aria-label="Toggle navigation">
@@ -1318,37 +1350,124 @@
 
         <div class="hero-grid-overlay"></div>
 
-        <div class="container hero-content">
-            <div class="hero-badge">
-                <span class="pulse-dot"></span>
-                <span class="badge-text">Trusted by 500+ Companies</span>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="pulse-dot"></span>
+                    <span class="badge-text">Trusted by 500+ Companies</span>
+                </div>
+
+                <h1 class="hero-title">
+                    Transform Your <br><span class="text-cyan" style="display: inline-block; white-space: nowrap;" data-typing="Business Solutions, Digital Transformation, Enterprise Software, Cloud Innovation">Business Solutions</span>
+                </h1>
+
+                <p class="hero-description">
+                    Empower your organization with cutting-edge enterprise software solutions and digital transformation services designed for modern businesses.
+                </p>
+
+                <div class="hero-buttons">
+                    <a href="contact.html" class="btn btn-primary">Get Started Today</a>
+                    <a href="services.html" class="btn btn-secondary">Explore Our Services</a>
+                </div>
+
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">Enterprise Clients</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">15+</div>
+                        <div class="stat-label">Years Experience</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">98%</div>
+                        <div class="stat-label">Client Satisfaction</div>
+                    </div>
+                </div>
             </div>
 
-            <h1 class="hero-title">
-                Transform Your <br><span class="text-cyan" data-typing="Business Solutions, Digital Transformation, Enterprise Software, Cloud Innovation">Business Solutions</span>
-            </h1>
+            <div class="hero-visual">
+                <div class="hero-illustration">
+                    <!-- Main glass dashboard card -->
+                    <div class="hero-glass-card card-primary">
+                        <div style="border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 15px; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center;">
+                            <div style="display: flex; gap: 6px;">
+                                <span style="width: 10px; height: 10px; border-radius: 50%; background: #ef4444; display: inline-block;"></span>
+                                <span style="width: 10px; height: 10px; border-radius: 50%; background: #fbbf24; display: inline-block;"></span>
+                                <span style="width: 10px; height: 10px; border-radius: 50%; background: #10b981; display: inline-block;"></span>
+                            </div>
+                            <span style="font-size: 11px; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 1px; font-weight: 600;">System Console</span>
+                        </div>
+                        <div style="font-family: 'Courier New', monospace; font-size: 13px; color: #10b981;">
+                            <p style="margin-bottom: 8px; text-align: left;"><span style="color: #60a5fa;">stackly-app$</span> npm run deploy:prod</p>
+                            <p style="margin-bottom: 8px; color: rgba(255,255,255,0.5); text-align: left;">[18:07:01] Optimizing production build...</p>
+                            <p style="margin-bottom: 8px; color: rgba(255,255,255,0.5); text-align: left;">[18:07:03] Uploading build to Edge CDN...</p>
+                            <p style="margin-bottom: 8px; text-align: left;"><span style="color: #10b981;">✓ Success!</span> Deployment complete on 12 nodes.</p>
+                        </div>
+                    </div>
 
-            <p class="hero-description">
-                Empower your organization with cutting-edge enterprise software solutions and digital transformation services designed for modern businesses.
-            </p>
+                    <!-- Secondary glass analytics card -->
+                    <div class="hero-glass-card card-secondary">
+                        <div style="border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 15px; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center;">
+                            <div style="display: flex; gap: 6px;">
+                                <span style="width: 10px; height: 10px; border-radius: 50%; background: #60a5fa; display: inline-block;"></span>
+                                <span style="width: 10px; height: 10px; border-radius: 50%; background: #c084fc; display: inline-block;"></span>
+                                <span style="width: 10px; height: 10px; border-radius: 50%; background: #34d399; display: inline-block;"></span>
+                            </div>
+                            <span style="font-size: 11px; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 1px; font-weight: 600;">Performance metrics</span>
+                        </div>
+                        <div style="font-family: sans-serif; font-size: 13px; color: var(--white); text-align: left;">
+                            <div style="margin-bottom: 12px;">
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                                    <span>Cloud API Requests</span>
+                                    <span style="color: var(--cyan-accent); font-weight: bold;">99.9% Success</span>
+                                </div>
+                                <div style="width: 100%; height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; overflow: hidden;">
+                                    <div style="width: 99.9%; height: 100%; background: linear-gradient(90deg, var(--cyan-accent), var(--professional-blue));"></div>
+                                </div>
+                            </div>
+                            <div style="margin-bottom: 12px;">
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                                    <span>Server Load</span>
+                                    <span style="color: #34d399; font-weight: bold;">32% (Stable)</span>
+                                </div>
+                                <div style="width: 100%; height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; overflow: hidden;">
+                                    <div style="width: 32%; height: 100%; background: #34d399;"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                                    <span>Active Edge Nodes</span>
+                                    <span style="color: #fbbf24; font-weight: bold;">12 / 12 Online</span>
+                                </div>
+                                <div style="width: 100%; height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; overflow: hidden;">
+                                    <div style="width: 100%; height: 100%; background: #fbbf24;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-            <div class="hero-buttons">
-                <a href="contact.html" class="btn btn-primary">Get Started Today</a>
-                <a href="services.html" class="btn btn-secondary">Explore Our Services</a>
-            </div>
+                    <!-- Floating Card 1 (Top Right) -->
+                    <div class="hero-float-card card-top-right">
+                        <div class="hero-float-icon cyan">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 20px; height: 20px; color: var(--cyan-accent);"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                        </div>
+                        <div class="hero-float-text" style="text-align: left;">
+                            99.98% Uptime
+                            <small>Enterprise standard</small>
+                        </div>
+                    </div>
 
-            <div class="hero-stats">
-                <div class="stat-item">
-                    <div class="stat-number">500+</div>
-                    <div class="stat-label">Enterprise Clients</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">15+</div>
-                    <div class="stat-label">Years Experience</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">98%</div>
-                    <div class="stat-label">Client Satisfaction</div>
+                    <!-- Floating Card 2 (Bottom Left) -->
+                    <div class="hero-float-card card-bottom-left">
+                        <div class="hero-float-icon blue">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 20px; height: 20px; color: var(--professional-blue);"><rect x="2" y="2" width="20" height="20" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6" y2="18"></line><line x1="10" y1="6" x2="10" y2="18"></line><line x1="14" y1="6" x2="14" y2="18"></line></svg>
+                        </div>
+                        <div class="hero-float-text" style="text-align: left;">
+                            12TB+ Scaling
+                            <small>Database capacity</small>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1477,7 +1596,7 @@
     </section>
 
     <!-- Services Overview -->
-<section class="services" style="background-image: url('assets/solution-bi.webp'); background-size: cover; background-position: center;">
+<section class="services" style="background-image: url('assets/services-bg-new.webp'); background-size: cover; background-position: center;">
         <div class="container">
             <h2 class="section-title">Our <span class="text-blue">Services</span></h2>
             <p class="section-subtitle">Comprehensive solutions tailored to drive your business forward and accelerate digital growth</p>
@@ -1818,6 +1937,12 @@
                 <div class="team-card">
                     <div class="team-image">
                         <img src="assets/leader-ceo.webp" alt="James Wilson">
+                        <div class="team-card-overlay">
+                            <div class="team-card-social">
+                                <a href="https://linkedin.com" target="_blank" title="LinkedIn">in</a>
+                                <a href="mailto:ceo@stackly.com" title="Email">em</a>
+                            </div>
+                        </div>
                     </div>
                     <h3 class="team-name">James Wilson</h3>
                     <p class="team-role">Chief Executive Officer</p>
@@ -1827,6 +1952,12 @@
                 <div class="team-card">
                     <div class="team-image">
                         <img src="assets/leader-cto.webp" alt="Lisa Anderson">
+                        <div class="team-card-overlay">
+                            <div class="team-card-social">
+                                <a href="https://linkedin.com" target="_blank" title="LinkedIn">in</a>
+                                <a href="mailto:cto@stackly.com" title="Email">em</a>
+                            </div>
+                        </div>
                     </div>
                     <h3 class="team-name">Lisa Anderson</h3>
                     <p class="team-role">Chief Technology Officer</p>
@@ -1836,6 +1967,12 @@
                 <div class="team-card">
                     <div class="team-image">
                         <img src="assets/leader-coo.webp" alt="David Martinez">
+                        <div class="team-card-overlay">
+                            <div class="team-card-social">
+                                <a href="https://linkedin.com" target="_blank" title="LinkedIn">in</a>
+                                <a href="mailto:solutions@stackly.com" title="Email">em</a>
+                            </div>
+                        </div>
                     </div>
                     <h3 class="team-name">David Martinez</h3>
                     <p class="team-role">Head of Solutions</p>
@@ -1845,6 +1982,12 @@
                 <div class="team-card">
                     <div class="team-image">
                         <img src="assets/leader-cfo.webp" alt="Rebecca Taylor">
+                        <div class="team-card-overlay">
+                            <div class="team-card-social">
+                                <a href="https://linkedin.com" target="_blank" title="LinkedIn">in</a>
+                                <a href="mailto:clientsuccess@stackly.com" title="Email">em</a>
+                            </div>
+                        </div>
                     </div>
                     <h3 class="team-name">Rebecca Taylor</h3>
                     <p class="team-role">VP of Client Success</p>
@@ -1925,7 +2068,7 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <h3 class="footer-logo">STACKLY</h3>
+                    <a href="index.html" class="footer-logo-link" style="display: inline-block; margin-bottom: 20px;"><img src="assets/logo.webp" alt="STACKLY" class="logo-icon" style="height: 38px; width: auto; vertical-align: middle; object-fit: contain;"></a>
                     <p class="footer-tagline">Transforming businesses through innovative enterprise solutions.</p>
                     <div class="footer-social">
                         <a href="#" aria-label="LinkedIn" class="social-link">in</a>

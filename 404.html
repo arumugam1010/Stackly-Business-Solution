@@ -205,6 +205,20 @@
         .btn-glow:active {
             transform: translateY(-1px);
         }
+
+        .btn-glow-outline {
+            background: transparent !important;
+            border: 2px solid var(--cyan) !important;
+            color: var(--cyan) !important;
+            box-shadow: none !important;
+        }
+        
+        .btn-glow-outline:hover {
+            background: rgba(6, 182, 212, 0.1) !important;
+            color: #ffffff !important;
+            border-color: #ffffff !important;
+            box-shadow: 0 10px 25px rgba(6, 182, 212, 0.2) !important;
+        }
     </style>
 </head>
 <body>
@@ -220,7 +234,10 @@
             <h1 class="error-number" data-text="404">404</h1>
             <h2>Lost in Space</h2>
             <p>The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.</p>
-            <a href="index.html" class="btn-glow">Back to Homepage</a>
+            <div class="error-actions" style="display: flex; gap: 16px; justify-content: center; align-items: center; flex-wrap: wrap;">
+                <a id="btn-back-home" href="index.html" class="btn-glow">Back to Homepage</a>
+                <a id="btn-back-dash" href="dashboard.html" class="btn-glow btn-glow-outline" style="display: none;">Back to Dashboard</a>
+            </div>
         </div>
     </main>
 
@@ -230,6 +247,16 @@
 
     <!-- Canvas Particle Interaction Script -->
     <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const isLoggedIn = localStorage.getItem('is_logged_in');
+            if (isLoggedIn === 'true') {
+                const backDashBtn = document.getElementById('btn-back-dash');
+                if (backDashBtn) {
+                    backDashBtn.style.display = 'inline-flex';
+                }
+            }
+        });
+
         const canvas = document.getElementById('particleCanvas');
         const ctx = canvas.getContext('2d');
         let particles = [];

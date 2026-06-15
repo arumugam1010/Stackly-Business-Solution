@@ -83,9 +83,22 @@ function initLoader() {
   }
 }
 
+// Change "Login" button to "Dashboard" if logged in
+function updateLoginNavButton() {
+  const isLoggedIn = localStorage.getItem('is_logged_in');
+  if (isLoggedIn === 'true') {
+    const loginButtons = document.querySelectorAll('.btn-login-nav');
+    loginButtons.forEach(btn => {
+      btn.innerText = 'Dashboard';
+      btn.href = 'dashboard.html';
+    });
+  }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   initNavigation();
   setActiveNavLink();
   initLoader();
+  updateLoginNavButton();
 });
 
