@@ -765,7 +765,7 @@
     <!-- Sidebar -->
     <aside id="sidebar" class="dash-sidebar">
         <div class="dash-logo">
-            <a href="index.html">
+            <a href="dashboard.html">
                 <img src="assets/logo.webp" alt="STACKLY">
             </a>
         </div>
@@ -933,25 +933,6 @@
                                 <div class="role-sim-btn">Enter Employee View &rarr;</div>
                             </div>
 
-                            <!-- Client Card -->
-                            <div class="role-card client-card" onclick="simulateRole('Client')">
-                                <div class="role-icon-wrapper">
-                                    <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-                                </div>
-                                <h3>Client View</h3>
-                                <p>Review detailed project deliverable timelines, inspect unpaid invoices, and track milestone releases.</p>
-                                <div class="role-sim-btn">Enter Client View &rarr;</div>
-                            </div>
-
-                            <!-- Partner Card -->
-                            <div class="role-card partner-card" onclick="simulateRole('Partner')">
-                                <div class="role-icon-wrapper">
-                                    <svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
-                                </div>
-                                <h3>Partner View</h3>
-                                <p>Generate custom affiliate campaign links, view net commissions, and download resource agreements.</p>
-                                <div class="role-sim-btn">Enter Partner View &rarr;</div>
-                            </div>
                         </div>
                     `
                 },
@@ -2271,24 +2252,23 @@
 
             // Bind Global Click Interceptor (The 404 requirement)
             // "dashboard page ulla irrukura entha button click panalum 404 page ku ponum"
-            // Except: Logout, sidebar link triggers, hamburger, simulation controls.
             document.addEventListener('click', (e) => {
                 const buttonOrLink = e.target.closest('button, .dash-btn, .dash-btn-outline, a[role="button"]');
                 if (buttonOrLink) {
-                    // Check if it's the signout button or hamburger menu toggle or settings view switch triggers
-                    if (buttonOrLink.classList.contains('btn-logout') || 
-                        buttonOrLink.classList.contains('dash-toggle') || 
-                        buttonOrLink.classList.contains('sidebar-link') ||
+                    // Bypass system control elements:
+                    if (buttonOrLink.classList.contains('dash-toggle') || 
                         buttonOrLink.classList.contains('btn-back-cc') ||
-                        (buttonOrLink.getAttribute('onclick') && (
-                            buttonOrLink.getAttribute('onclick').includes('switchView') ||
-                            buttonOrLink.getAttribute('onclick').includes('toggleSidebar') ||
-                            buttonOrLink.getAttribute('onclick').includes('handleLogout') ||
-                            buttonOrLink.getAttribute('onclick').includes('simulateRole') ||
-                            buttonOrLink.getAttribute('onclick').includes('exitSimulation')
-                        ))) {
-                        return; // Let system menus/tabs/simulation function
+                        buttonOrLink.id === 'btn-back-admin') {
+                        return; // Let hamburger and simulation exit function
                     }
+                    
+                    const onclickAttr = buttonOrLink.getAttribute('onclick') || '';
+                    if (onclickAttr.includes('toggleSidebar') || 
+                        onclickAttr.includes('exitSimulation') || 
+                        onclickAttr.includes('handleLogout')) {
+                        return; // Let logout and internal sidebar toggles function
+                    }
+
                     // For any action button inside a view, send to 404 page
                     e.preventDefault();
                     window.location.href = '404.html';
@@ -2361,16 +2341,7 @@
         }
 
         function simulateRole(role) {
-            activeRole = role;
-            loadRoleWorkspace(role);
-            
-            // Show role simulation state in badge
-            const actualRole = localStorage.getItem('active_role') || 'Admin';
-
-            document.getElementById('header-user-role-lbl').innerText = `Simulating ${role}`;
-            
-            // Show the Back to Control Center button
-            document.getElementById('btn-back-admin').style.display = 'inline-flex';
+            window.location.href = '404.html';
         }
 
         function exitSimulation() {

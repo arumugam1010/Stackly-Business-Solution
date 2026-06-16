@@ -332,6 +332,13 @@
                     </div>
                 </div>
 
+                <div class="form-group register-only">
+                    <label for="reg-confirm-password">Confirm Password</label>
+                    <div class="input-wrapper">
+                        <input type="password" id="reg-confirm-password" class="form-input" placeholder="••••••••">
+                    </div>
+                </div>
+
                 <div class="form-group">
                     <label>Select Workspace Role</label>
                     <div class="role-grid">
@@ -357,22 +364,6 @@
                                 <circle cx="12" cy="7" r="4"></circle>
                             </svg>
                             <span>Employee</span>
-                        </div>
-                        <div class="role-pill" onclick="selectRole('Client')">
-                            <svg viewBox="0 0 24 24" stroke-width="2">
-                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                                <polyline points="14 2 14 8 20 8"></polyline>
-                                <line x1="16" y1="13" x2="8" y2="13"></line>
-                                <line x1="16" y1="17" x2="8" y2="17"></line>
-                                <polyline points="10 9 9 9 8 9"></polyline>
-                            </svg>
-                            <span>Client</span>
-                        </div>
-                        <div class="role-pill" onclick="selectRole('Partner')">
-                            <svg viewBox="0 0 24 24" stroke-width="2">
-                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                            </svg>
-                            <span>Partner</span>
                         </div>
                     </div>
                 </div>
@@ -419,6 +410,7 @@
                 // Hide register only fields
                 document.querySelectorAll('.register-only').forEach(el => el.style.display = 'none');
                 document.getElementById('reg-name').required = false;
+                document.getElementById('reg-confirm-password').required = false;
             } else {
                 tabs[1].classList.add('active');
                 document.getElementById('form-title').innerText = 'Create Account';
@@ -431,6 +423,7 @@
                 // Show register only fields
                 document.querySelectorAll('.register-only').forEach(el => el.style.display = 'block');
                 document.getElementById('reg-name').required = true;
+                document.getElementById('reg-confirm-password').required = true;
             }
         }
 
@@ -442,7 +435,7 @@
             pills.forEach(pill => pill.classList.remove('active'));
             
             // Add active class to clicked pill
-            const roleIndex = ['Admin', 'Manager', 'Employee', 'Client', 'Partner'].indexOf(role);
+            const roleIndex = ['Admin', 'Manager', 'Employee'].indexOf(role);
             if (roleIndex !== -1) {
                 pills[roleIndex].classList.add('active');
             }
@@ -466,6 +459,11 @@
             
             if (currentMode === 'register') {
                 displayName = document.getElementById('reg-name').value;
+                const confirmPassword = document.getElementById('reg-confirm-password').value;
+                if (password !== confirmPassword) {
+                    showToast('Passwords do not match!');
+                    return;
+                }
             }
             
             // Save state to localstorage
