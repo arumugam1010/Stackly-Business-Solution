@@ -86,7 +86,9 @@
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .process-step::after { display: none; }
+  .process-step::after {
+    display: none;
+  }
 
   .achievements-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -158,15 +160,17 @@
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     flex-direction: column;
+    align-items: flex-start; /* Left-align links to prevent horizontal shifting */
     padding: 80px 24px 40px;
     gap: 20px;
     transition: var(--transition);
     z-index: 999;
+    overflow-y: auto; /* Scroll support if menu height exceeds viewport */
   }
 
   .nav-links.open {
     right: 0;
-    box-shadow: -10px 0 30px rgba(0,0,0,0.3);
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.3);
   }
 
   .nav-toggle {
@@ -174,18 +178,48 @@
     z-index: 1001;
   }
 
-  .nav-dropdown-menu {
-    position: static;
-    transform: none;
-    opacity: 1;
-    visibility: visible;
-    background: rgba(255,255,255,0.05);
-    border: none;
-    padding: 0 0 0 16px;
-    min-width: auto;
+  .nav-dropdown {
+    width: 100%; /* Stretch dropdown to full width */
   }
 
-  .nav-dropdown-toggle svg { display: block; }
+  .nav-dropdown-toggle {
+    width: 100%;
+    display: flex;
+    justify-content: space-between; /* Align text left, arrow right */
+    align-items: center;
+  }
+
+  .nav-links .btn-nav,
+  .nav-links .btn-login-nav {
+    width: 100%;
+    justify-content: center; /* Center text inside buttons */
+  }
+
+  .nav-dropdown-menu {
+    display: none;
+    position: static !important;
+    transform: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 0 0 16px !important;
+    min-width: auto !important;
+    pointer-events: auto !important;
+  }
+
+  .nav-dropdown.open .nav-dropdown-menu {
+    display: block !important;
+  }
+
+  .nav-dropdown.open .nav-dropdown-toggle svg {
+    transform: rotate(180deg);
+  }
+
+  .nav-dropdown-toggle svg {
+    display: block;
+  }
 
   .hero-title {
     font-size: 34px;

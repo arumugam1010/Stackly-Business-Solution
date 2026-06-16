@@ -320,9 +320,6 @@ function initSmoothScroll() {
 
 // Custom animated cursor
 function initCustomCursor() {
-  // Only initialize on desktop/fine-pointer devices
-  if (!window.matchMedia('(pointer: fine)').matches) return;
-
   const dot = document.createElement('div');
   const outline = document.createElement('div');
   dot.className = 'custom-cursor-dot';
@@ -342,6 +339,8 @@ function initCustomCursor() {
   let hasMoved = false;
 
   window.addEventListener('mousemove', (e) => {
+    if (!window.matchMedia('(pointer: fine)').matches) return;
+
     mouseX = e.clientX;
     mouseY = e.clientY;
     
@@ -360,7 +359,7 @@ function initCustomCursor() {
 
   // Smooth lerp loop for outline trailing
   function animateCursor() {
-    if (hasMoved) {
+    if (hasMoved && window.matchMedia('(pointer: fine)').matches) {
       // Linear interpolation: 15% follow speed for smooth lag
       outlineX += (mouseX - outlineX) * 0.15;
       outlineY += (mouseY - outlineY) * 0.15;
@@ -375,6 +374,7 @@ function initCustomCursor() {
   const interactives = 'a, button, .btn, input, textarea, select, .service-card, .solution-card, .team-card, .blog-card, .faq-question, .client-logo, .filter-tab, .testimonial-btn, .social-link, [role="button"]';
   
   document.addEventListener('mouseover', (e) => {
+    if (!window.matchMedia('(pointer: fine)').matches) return;
     if (e.target.closest(interactives)) {
       dot.classList.add('cursor-hover');
       outline.classList.add('cursor-hover');
@@ -382,6 +382,7 @@ function initCustomCursor() {
   });
 
   document.addEventListener('mouseout', (e) => {
+    if (!window.matchMedia('(pointer: fine)').matches) return;
     if (e.target.closest(interactives)) {
       dot.classList.remove('cursor-hover');
       outline.classList.remove('cursor-hover');
@@ -390,11 +391,13 @@ function initCustomCursor() {
 
   // Click animations
   window.addEventListener('mousedown', () => {
+    if (!window.matchMedia('(pointer: fine)').matches) return;
     dot.classList.add('cursor-click');
     outline.classList.add('cursor-click');
   });
 
   window.addEventListener('mouseup', () => {
+    if (!window.matchMedia('(pointer: fine)').matches) return;
     dot.classList.remove('cursor-click');
     outline.classList.remove('cursor-click');
   });
@@ -406,7 +409,7 @@ function initCustomCursor() {
   });
 
   document.addEventListener('mouseenter', () => {
-    if (hasMoved) {
+    if (hasMoved && window.matchMedia('(pointer: fine)').matches) {
       dot.style.opacity = '1';
       outline.style.opacity = '1';
     }

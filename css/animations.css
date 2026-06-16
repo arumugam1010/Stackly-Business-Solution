@@ -228,6 +228,11 @@
 }
 
 /* ===== CUSTOM ANIMATED CURSOR ===== */
+.custom-cursor-dot,
+.custom-cursor-outline {
+  display: none;
+}
+
 @media (pointer: fine) {
   /* Hide standard cursor for all elements on desktop */
   html, body, a, button, select, input, textarea, [role="button"], .btn, .service-card, .solution-card, .team-card, .blog-card, .faq-question, .client-logo, .filter-tab, .testimonial-btn, .social-link {
@@ -235,6 +240,7 @@
   }
 
   .custom-cursor-dot {
+    display: block;
     width: 8px;
     height: 8px;
     background-color: var(--cyan, #06B6D4);
@@ -248,6 +254,7 @@
   }
 
   .custom-cursor-outline {
+    display: block;
     width: 40px;
     height: 40px;
     border: 2px solid var(--blue, #2563EB);

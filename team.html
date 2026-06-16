@@ -20,8 +20,8 @@
         /* Team Page Specific Styles */
         .team-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 40px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
             margin-bottom: 80px;
         }
 
@@ -124,10 +124,10 @@
 
         .join-section {
             background: linear-gradient(135deg, var(--light) 0%, var(--gray-bg) 100%);
-            padding: 80px 40px;
-            border-radius: 12px;
+            padding: 80px 0;
             text-align: center;
-            margin: 80px 0;
+            margin: 80px 0 0 0;
+            width: 100%;
         }
 
         .join-section h3 {
@@ -145,10 +145,24 @@
             line-height: 1.8;
         }
 
+        .leadership-section {
+            padding-top: 80px;
+        }
+
+        @media (max-width: 1024px) {
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+            }
+        }
+
         @media (max-width: 768px) {
             .team-grid {
                 grid-template-columns: 1fr;
                 gap: 30px;
+            }
+            .leadership-section {
+                padding-top: 50px;
             }
         }
     </style>
@@ -461,16 +475,16 @@
                         </div>
                     </div>
                 </div>
-            </section>
+            </div> <!-- Close container -->
 
             <!-- Join Our Team Section -->
             <section class="join-section reveal">
-                <h3>Join Our Team</h3>
-                <p>At STACKLY, we believe our people are our greatest asset. We foster a culture of innovation, collaboration, and continuous learning where every team member can thrive and make a meaningful impact on our clients' success.</p>
-                <a href="careers.html" class="btn btn-outline">View Open Positions</a>
+                <div class="container">
+                    <h3>Join Our Team</h3>
+                    <p>At STACKLY, we believe our people are our greatest asset. We foster a culture of innovation, collaboration, and continuous learning where every team member can thrive and make a meaningful impact on our clients' success.</p>
+                    <a href="careers.html" class="btn btn-outline">View Open Positions</a>
+                </div>
             </section>
-
-            </div>
     </main>
 
         <!-- Footer -->
