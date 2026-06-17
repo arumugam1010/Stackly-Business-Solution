@@ -50,8 +50,17 @@
     justify-content: center;
   }
 
+  .hero {
+    padding-top: 120px;
+    padding-bottom: 80px;
+    min-height: auto;
+  }
+
   .hero-visual {
-    display: none;
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    width: 100%;
   }
 
   .hero-title {
@@ -389,5 +398,32 @@
   .milestone-item:nth-child(odd),
   .milestone-item:nth-child(even) {
     padding-left: 32px;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-illustration {
+    transform: scale(0.9);
+    transform-origin: center;
+  }
+
+  .hero-glass-card {
+    padding: 20px !important;
+  }
+
+  .hero-glass-card.card-secondary {
+    margin-top: -30px !important;
+  }
+
+  .hero-float-card {
+    padding: 10px 14px !important;
+    gap: 8px !important;
+  }
+}
+
+@media (max-width: 380px) {
+  .hero-illustration {
+    transform: scale(0.78);
+    transform-origin: center;
   }
 }
